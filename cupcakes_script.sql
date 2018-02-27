@@ -9,14 +9,10 @@ create table `users` (
 `username` varchar(45),
 `user_id` int auto_increment primary key,
 `password` varchar(45),
-`balance` int
+`balance` int,
+`isAdmin` boolean
 );
 
-create table `admin` (
-`admin` varchar(45),
-`isAdmin` boolean,
-`admin_id` int auto_increment primary key
-);
 
 create table `bottom` (
 `id` int AUTO_INCREMENT primary key,
@@ -34,9 +30,8 @@ create table `toppings` (
 
 );
 
-INSERT into users (username, password, balance) VALUES ('Anders And', '1234', 200),('Mickey Mouse', '4321', 100),('Malik', '5555', 1000);
+INSERT into users (username, password, balance, isAdmin) VALUES ('Anders And', '1234', 200, false),('Mickey Mouse', '4321', 100, false),('Malik', '5555', 1000, true);
 
-INSERT into admin (admin, isAdmin) VALUES ('Malik', true);
 
 INSERT INTO bottom (cake_bottom, price, valuta) VALUES ('Chocolate',5,'kr'),('Vanilla',5,'kr'),('Nutmeg',5,'kr'),('Pictacio',6,'kr'),('Almond',7,'kr');
 
