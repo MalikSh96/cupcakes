@@ -35,4 +35,9 @@ public class Cake_toppings
     {
         this.topping_price = topping_price;
     }
+
+    @Override
+    public String toString() {
+        return "Topping: " + topping + " Topping price: " + topping_price + '\n';
+    }
 }

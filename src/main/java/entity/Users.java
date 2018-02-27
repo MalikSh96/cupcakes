@@ -2,23 +2,26 @@ package entity;
 
 public class Users 
 {
-    private int id;
     private String username;
     private String password;
+    private int id;
+    private int balance;
     private boolean admin;
 
-    public Users(String username, String password, boolean admin) 
+    public Users(String username, String password, int balance, boolean admin) 
     {
         this.username = username;
         this.password = password;
+        this.balance = balance;
         this.admin = admin;
     }
 
-    public Users(int id, String username, String password, boolean admin) 
+    public Users(String username, int id, String password, int balance, boolean admin) 
     {
-        this.id = id;
         this.username = username;
         this.password = password;
+        this.id = id;
+        this.balance = balance;
         this.admin = admin;
     }
 
@@ -62,6 +65,16 @@ public class Users
         this.admin = admin;
     }
 
+    public int getBalance() 
+    {
+        return balance;
+    }
+
+    public void setBalance(int balance) 
+    {
+        this.balance = balance;
+    }
+    
     @Override
     public String toString() 
     {

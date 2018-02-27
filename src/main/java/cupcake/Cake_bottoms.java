@@ -35,4 +35,9 @@ public class Cake_bottoms
     {
         this.bottom_price = bottom_price;
     }
+    
+    @Override
+    public String toString() {
+        return "Bottom: " + bottom + " Bottom price: " + bottom_price + '\n';
+    }
 }
