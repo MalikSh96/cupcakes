@@ -166,8 +166,7 @@ public class DAO implements DataInterface
     @Override
     public boolean deleteUser(int id) 
     {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-         try
+        try
         {
             dbc.open();
 
@@ -197,7 +196,6 @@ public class DAO implements DataInterface
                     + "username = '" + username
                     + "' where user_id = " + id;
 
-            System.out.println("ch " + sql);
             dbc.executeUpdate(sql);
 
             dbc.close();
@@ -224,7 +222,6 @@ public class DAO implements DataInterface
                     + "'" + u.getPassword() + "',"
                     + null + ","
                     + u.isAdmin() + ")";
-//            System.out.println("ch " + sql);
             dbc.executeUpdate(sql);
 
             dbc.close();
@@ -241,7 +238,6 @@ public class DAO implements DataInterface
 
     public boolean createUserEmail(Users u) 
     {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         try
         {
             dbc.open();
@@ -270,8 +266,6 @@ public class DAO implements DataInterface
     @Override
     public List<Cake_bottoms> getAllBottoms() 
     {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        Cake_toppings ct = new Cake_toppings();
         List<Cake_bottoms> bottoms = new ArrayList<>();
         try 
         {
@@ -287,7 +281,7 @@ public class DAO implements DataInterface
                 int bt_id = resultset.getInt("id");
                 String valuta = resultset.getString("valuta");
                 
-                Cake_bottoms cake_b = new Cake_bottoms(name, value);
+                Cake_bottoms cake_b = new Cake_bottoms(name, value, bt_id);
                 bottoms.add(cake_b);
                
             }
@@ -319,7 +313,7 @@ public class DAO implements DataInterface
                 int tp_id = resultset.getInt("id");
                 String valuta = resultset.getString("valuta");
                 
-                Cake_toppings cake_t = new Cake_toppings(name, value);
+                Cake_toppings cake_t = new Cake_toppings(name, value, tp_id);
                 toppings.add(cake_t);
                
             }

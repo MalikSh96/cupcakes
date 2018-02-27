@@ -14,18 +14,18 @@ public class Main
         
         System.out.println("\n " + d.getAllBottoms());
         System.out.println("\n " + d.getAllToppings());
-        System.out.println("\n " + d.createUser(new Users("Mester", 0, "9999", 100, true)));
-        System.out.println("\n\n" + d.getUser("Mester"));
-       
-        Users mest = d.getUser("Mester");
-        
-        System.out.println("\n\n" + d.updateUser(mest.getId(), "M"));
-        System.out.println("\n" + d.getUser("M"));
-        
-        System.out.println("\n" + d.getUser(4));
-        
-        
-        System.out.println("\n\n" + d.getUsers());
-        System.out.println("\n\n" + d.deleteUser(1));
+//        System.out.println("\n " + d.createUser(new Users("Mester", 0, "9999", 100, true)));
+//        System.out.println("\n\n" + d.getUser("Mester"));
+//       
+//        Users mest = d.getUser("Mester");
+//        
+//        System.out.println("\n\n" + d.updateUser(mest.getId(), "M"));
+//        System.out.println("\n" + d.getUser("M"));
+//        
+//        System.out.println("\n" + d.getUser(4));
+//        
+//        
+//        System.out.println("\n\n" + d.getUsers());
+//        System.out.println("\n\n" + d.deleteUser(1));
     }
 }

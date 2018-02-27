@@ -4,16 +4,18 @@ public class Cake_toppings
 {
     private String topping;
     private int topping_price;
+    private int id;
 
     public Cake_toppings() 
     {
         
     }
    
-    public Cake_toppings(String topping, int topping_price) 
+    public Cake_toppings(String topping, int topping_price, int id) 
     {
         this.topping = topping;
         this.topping_price = topping_price;
+        this.id = id;
     }
 
     public String getTopping() 
@@ -37,7 +39,8 @@ public class Cake_toppings
     }
 
     @Override
-    public String toString() {
-        return "Topping: " + topping + " Topping price: " + topping_price + '\n';
+    public String toString() 
+    {
+        return "Topping: " + topping + " Topping price: " + topping_price + " Id: " + id + "\n";
     }
 }
