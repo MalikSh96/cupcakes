@@ -5,6 +5,7 @@ public class Users
     private int id;
     private String username;
     private String password;
+    private String email;
     private boolean admin;
 
     public Users(String username, String password, boolean admin) 
@@ -21,6 +22,23 @@ public class Users
         this.password = password;
         this.admin = admin;
     }
+    
+        public Users(String username, String password, boolean admin, String email) 
+    {
+        this.username = username;
+        this.password = password;
+        this.admin = admin;
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
 
     public int getId() 
     {

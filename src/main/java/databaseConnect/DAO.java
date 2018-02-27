@@ -280,6 +280,32 @@ public class DAO implements DataInterface
 //        return user;
 //    }
 
+            public boolean createUserEmail(Users u) 
+    {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try
+        {
+            dbc.open();
+
+            String sql = "insert into user values(null, "
+                    + "'" + u.getUsername() + "', "
+                    + "'" + u.getPassword() + "', "
+                    + "'" + u.getEmail()    + "', "
+                    + u.isAdmin() + ")";
+
+            dbc.executeUpdate(sql);
+
+            dbc.close();
+
+            return true;
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
     @Override
     public ArrayList<Users> getAdmin(int admin_id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
