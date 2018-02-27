@@ -12,7 +12,7 @@ public class DataSource1
         dataSource.setPort(3306);
         dataSource.setDatabaseName("cupcakes");
         dataSource.setUser("root");
-        dataSource.setPassword("your code here");       
+        dataSource.setPassword("your password here");       
     }
     
     public MysqlDataSource getDataSource()

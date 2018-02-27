@@ -35,17 +35,18 @@ public class DAO implements DataInterface
         {
             dbc.open();
 
-            String sql = "select * from user";
+            String sql = "select * from users";
             ResultSet resultset = dbc.executeQuery(sql);
 
             while (resultset.next())
             {
-                int userid = resultset.getInt("user.user_id");
+                int userid = resultset.getInt("users.user_id");
                 String username = resultset.getString("username");
                 String userpassword = resultset.getString("password");
-                boolean admin = resultset.getBoolean("admin");
+                int balance = resultset.getInt("balance");
+                boolean admin = resultset.getBoolean("isAdmin");
 
-                Users u = new Users(userid, username, userpassword, admin);
+                Users u = new Users(username, userid, userpassword, balance, admin);
 
                 users.add(u);
             }
@@ -70,17 +71,18 @@ public class DAO implements DataInterface
         {
             dbc.open();
 
-            String sql = "select * from user where username like '%" + username + "%'";
+            String sql = "select * from users where username like '%" + username + "%'";
             ResultSet resultset = dbc.executeQuery(sql);
 
             while (resultset.next())
             {
-                int userid = resultset.getInt("user.user_id");
+                int userid = resultset.getInt("users.user_id");
                 String name = resultset.getString("username");
                 String userpassword = resultset.getString("password");
-                boolean admin = resultset.getBoolean("admin");
-
-                Users u = new Users(userid, name, userpassword, admin);
+                int balance = resultset.getInt("balance");
+                boolean admin = resultset.getBoolean("isAdmin");
+                
+                Users u = new Users(name, userid, userpassword, balance, admin);
 
                 users.add(u);
             }
@@ -105,17 +107,18 @@ public class DAO implements DataInterface
         {
             dbc.open();
 
-            String sql = "select * from user where user_id = " + id;
+            String sql = "select * from users where user_id = " + id;
             ResultSet resultset = dbc.executeQuery(sql);
 
-            while (resultset.next())
+            while(resultset.next())
             {
                 int userid = resultset.getInt("user_id");
                 String username = resultset.getString("username");
                 String userpassword = resultset.getString("password");
-                boolean admin = resultset.getBoolean("admin");
-
-                u = new Users(userid, username, userpassword, admin);
+                int balance = resultset.getInt("balance");
+                boolean admin = resultset.getBoolean("isAdmin");
+                
+                u = new Users(username, userid, userpassword, balance, admin);
             }
 
             dbc.close();
@@ -136,17 +139,18 @@ public class DAO implements DataInterface
         {
             dbc.open();
 
-            String sql = "select * from user where username = '" + username + "'";
+            String sql = "select * from users where username = '" + username + "'";
             ResultSet resultset = dbc.executeQuery(sql);
 
             while (resultset.next())
             {
-                int userid = resultset.getInt("user.user_id");
+                int userid = resultset.getInt("users.user_id");
                 String name = resultset.getString("username");
                 String userpassword = resultset.getString("password");
-                boolean admin = resultset.getBoolean("admin");
-
-                return new Users(userid, name, userpassword, admin);
+                int balance = resultset.getInt("balance");
+                boolean admin = resultset.getBoolean("isAdmin");
+                
+                return new Users(name, userid, userpassword, balance, admin);
             }
 
             dbc.close();
@@ -162,15 +166,11 @@ public class DAO implements DataInterface
     @Override
     public boolean deleteUser(int id) 
     {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-         try
+        try
         {
             dbc.open();
 
-            String sql = "delete from team_user where user_id = " + id + ";";
-            dbc.executeUpdate(sql);
-
-            sql = "delete from user where user_id = " + id + ";";
+            String sql = "delete from users where user_id = " + id + ";";
             dbc.executeUpdate(sql);
 
             dbc.close();
@@ -186,18 +186,15 @@ public class DAO implements DataInterface
     }
 
     @Override
-    public boolean updateUser(Users u)
+    public boolean updateUser(int id, String username)
     {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         try
         {
             dbc.open();
 
-            String sql = "update user set "
-                    + "username = '" + u.getUsername() + "', "
-                    + "password = '" + u.getPassword() + "', "
-                    + "admin = " + u.isAdmin() + " "
-                    + "where user_id = " + u.getId();
+            String sql = "update users set "
+                    + "username = '" + username
+                    + "' where user_id = " + id;
 
             dbc.executeUpdate(sql);
 
@@ -216,7 +213,31 @@ public class DAO implements DataInterface
     @Override
     public boolean createUser(Users u) 
     {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try
+        {
+            dbc.open();
+
+            String sql = "INSERT into users (username, password, balance, isAdmin) VALUES ("
+                    + "'" + u.getUsername() + "',"
+                    + "'" + u.getPassword() + "',"
+                    + null + ","
+                    + u.isAdmin() + ")";
+            dbc.executeUpdate(sql);
+
+            dbc.close();
+
+            return true;
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public boolean createUserEmail(Users u) 
+    {
         try
         {
             dbc.open();
@@ -224,6 +245,7 @@ public class DAO implements DataInterface
             String sql = "insert into user values(null, "
                     + "'" + u.getUsername() + "', "
                     + "'" + u.getPassword() + "', "
+                    + "'" + u.getEmail() + "', "
                     + u.isAdmin() + ")";
 
             dbc.executeUpdate(sql);
@@ -239,171 +261,32 @@ public class DAO implements DataInterface
 
         return false;
     }
-    
-//    @Override
-//    public Users validateUser(String username, String password)
-//    {
-//        Users user = null;
-//        
-//        try
-//        {
-//            dbc.open();
-//            
-//            /*
-//            String sql = "select * from user where username = '" + username + "' and password = '" + password + "'";
-//            System.out.println("SQL: " + sql);
-//            ResultSet resultSet = dbc.executeQuery(sql);
-//            */
-//            
-//            //PreparedStatement
-//            String sql = "select * from user where username = ? and password = ?";
-//            PreparedStatement preparedStatement = dbc.preparedStatement(sql); //<-- does not work
-//            preparedStatement.setString(1, username);
-//            preparedStatement.setString(2, password);
-//            ResultSet resultSet = preparedStatement.executeQuery();
-//            
-//            if (resultSet.next())
-//            {
-//                int id = resultSet.getInt("user_id");
-//                boolean admin = resultSet.getInt("admin") > 0;
-//                
-//                user = new Users(id, username, password, admin);
-//            }
-//
-//            dbc.close();
-//        }
-//        catch (SQLException ex)
-//        {
-//            ex.printStackTrace();
-//        }
-//        
-//        return user;
-//    }
 
-            public boolean createUserEmail(Users u) 
-    {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        try
-        {
-            dbc.open();
-
-            String sql = "insert into user values(null, "
-                    + "'" + u.getUsername() + "', "
-                    + "'" + u.getPassword() + "', "
-                    + "'" + u.getEmail()    + "', "
-                    + u.isAdmin() + ")";
-
-            dbc.executeUpdate(sql);
-
-            dbc.close();
-
-            return true;
-        }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
-
-        return false;
-    }
-    @Override
-    public ArrayList<Users> getAdmin(int admin_id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getBottoms(String bottom_name) 
-    {
-        Cake_bottoms cb = new Cake_bottoms();
-        int total = 0;
-        try 
-        {
-            dbc.open();
-
-            String sql = "SELECT * FROM cupcakes.bottom";
-            ResultSet resultset = dbc.executeQuery(sql);
-
-            while(resultset.next()) 
-            {
-                String name = resultset.getString("name");
-                int value = resultset.getInt("price");
-                cb.setBottom(bottom_name);
-                cb.setBottom_price(total);
-                if(name.equals(bottom_name))
-                {
-                    cb = new Cake_bottoms(bottom_name, value);
-                    total = cb.getBottom_price();
-                    break;
-                }
-            }
-            dbc.close();
-        } catch (SQLException e) 
-        {
-            e.printStackTrace();
-        }
-        return total;
-    }
-
-    @Override
-    public int getToppings(String topping_name) 
-    {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        Cake_toppings ct = new Cake_toppings();
-        int total = 0;
-        try 
-        {
-            dbc.open();
-
-            String sql = "SELECT * FROM cupcakes.toppings";
-            ResultSet resultset = dbc.executeQuery(sql);
-
-            while(resultset.next()) 
-            {
-                String name = resultset.getString("name");
-                int value = resultset.getInt("price");
-                ct.setTopping(topping_name);
-                ct.setTopping_price(total);
-                if(name.equals(topping_name))
-                {
-                    ct = new Cake_toppings(topping_name, value);
-                    total = ct.getTopping_price();
-                    break;
-                }
-            }
-            dbc.close();
-        } catch (SQLException e) 
-        {
-            e.printStackTrace();
-        }
-        return total;
-    }
 
     @Override
     public List<Cake_bottoms> getAllBottoms() 
     {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         List<Cake_bottoms> bottoms = new ArrayList<>();
-        
-        try
+        try 
         {
             dbc.open();
-            
+
             String sql = "SELECT * FROM cupcakes.bottom";
-            
-            
-            for(Cake_bottoms bottom : bottoms)
+            ResultSet resultset = dbc.executeQuery(sql);
+
+            while(resultset.next()) 
             {
-                System.out.println(bottom.getBottom() + "\n");
+                String name = resultset.getString("cake_bottom");
+                int value = resultset.getInt("price");
+                int bt_id = resultset.getInt("id");
+                String valuta = resultset.getString("valuta");
+                
+                Cake_bottoms cake_b = new Cake_bottoms(name, value, bt_id);
+                bottoms.add(cake_b);
+               
             }
-            
-
-            dbc.executeUpdate(sql);
-
             dbc.close();
-            
-            return bottoms;
-        }
-        catch (SQLException e)
+        } catch (SQLException e) 
         {
             e.printStackTrace();
         }
@@ -413,6 +296,32 @@ public class DAO implements DataInterface
     @Override
     public List<Cake_toppings> getAllToppings() 
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Cake_toppings ct = new Cake_toppings();
+        List<Cake_toppings> toppings = new ArrayList<>();
+        try 
+        {
+            dbc.open();
+
+            String sql = "SELECT * FROM cupcakes.toppings";
+            ResultSet resultset = dbc.executeQuery(sql);
+
+            while(resultset.next()) 
+            {
+                String name = resultset.getString("cake_topping");
+                int value = resultset.getInt("price");
+                int tp_id = resultset.getInt("id");
+                String valuta = resultset.getString("valuta");
+                
+                Cake_toppings cake_t = new Cake_toppings(name, value, tp_id);
+                toppings.add(cake_t);
+               
+            }
+            dbc.close();
+        } catch (SQLException e) 
+        {
+            e.printStackTrace();
+        }
+        return toppings;
     }
 }

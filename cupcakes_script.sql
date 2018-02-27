@@ -7,16 +7,12 @@ DROP TABLE IF EXISTS `users`;
 
 create table `users` (
 `username` varchar(45),
-`user_id` int,
+`user_id` int auto_increment primary key,
 `password` varchar(45),
-`balance` int
+`balance` int,
+`isAdmin` boolean
 );
 
-create table `admin` (
-`admin` varchar(45),
-`isAdmin` boolean,
-`admin_id` int
-);
 
 create table `bottom` (
 `id` int AUTO_INCREMENT primary key,
@@ -33,6 +29,9 @@ create table `toppings` (
 `valuta` varchar(45) DEFAULT NULL
 
 );
+
+INSERT into users (username, password, balance, isAdmin) VALUES ('Malik', '5555', 1000, true);
+
 
 INSERT INTO bottom (cake_bottom, price, valuta) VALUES ('Chocolate',5,'kr'),('Vanilla',5,'kr'),('Nutmeg',5,'kr'),('Pictacio',6,'kr'),('Almond',7,'kr');
 
