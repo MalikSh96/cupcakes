@@ -116,7 +116,7 @@ public class DAO implements DataInterface
                 String username = resultset.getString("username");
                 String userpassword = resultset.getString("password");
                 int balance = resultset.getInt("balance");
-                boolean admin = resultset.getBoolean("admin");
+                boolean admin = resultset.getBoolean("isAdmin");
                 
                 u = new Users(username, userid, userpassword, balance, admin);
             }
@@ -144,11 +144,11 @@ public class DAO implements DataInterface
 
             while (resultset.next())
             {
-                int userid = resultset.getInt("user.user_id");
+                int userid = resultset.getInt("users.user_id");
                 String name = resultset.getString("username");
                 String userpassword = resultset.getString("password");
                 int balance = resultset.getInt("balance");
-                boolean admin = resultset.getBoolean("admin");
+                boolean admin = resultset.getBoolean("isAdmin");
                 
                 return new Users(name, userid, userpassword, balance, admin);
             }
@@ -187,19 +187,17 @@ public class DAO implements DataInterface
     }
 
     @Override
-    public boolean updateUser(Users u)
+    public boolean updateUser(int id, String username)
     {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         try
         {
             dbc.open();
 
             String sql = "update users set "
-                    + "username = '" + u.getUsername() + "', "
-                    + "where user_id = " + u.getId() + " "
-                    + "password = '" + u.getPassword() + "', "
-                    + "balance = ' " + u.getBalance();
+                    + "username = '" + username
+                    + "' where user_id = " + id;
 
+            System.out.println("ch " + sql);
             dbc.executeUpdate(sql);
 
             dbc.close();
@@ -226,7 +224,7 @@ public class DAO implements DataInterface
                     + "'" + u.getPassword() + "',"
                     + null + ","
                     + u.isAdmin() + ")";
-            System.out.println("ch " + sql);
+//            System.out.println("ch " + sql);
             dbc.executeUpdate(sql);
 
             dbc.close();
@@ -240,6 +238,34 @@ public class DAO implements DataInterface
 
         return false;
     }
+
+    public boolean createUserEmail(Users u) 
+    {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try
+        {
+            dbc.open();
+
+            String sql = "insert into user values(null, "
+                    + "'" + u.getUsername() + "', "
+                    + "'" + u.getPassword() + "', "
+                    + "'" + u.getEmail() + "', "
+                    + u.isAdmin() + ")";
+
+            dbc.executeUpdate(sql);
+
+            dbc.close();
+
+            return true;
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
 
     @Override
     public List<Cake_bottoms> getAllBottoms() 

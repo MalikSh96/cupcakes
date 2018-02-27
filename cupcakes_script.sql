@@ -30,7 +30,7 @@ create table `toppings` (
 
 );
 
-INSERT into users (username, password, balance, isAdmin) VALUES ('Anders And', '1234', 200, false),('Mickey Mouse', '4321', 100, false),('Malik', '5555', 1000, true);
+INSERT into users (username, password, balance, isAdmin) VALUES ('Malik', '5555', 1000, true);
 
 
 INSERT INTO bottom (cake_bottom, price, valuta) VALUES ('Chocolate',5,'kr'),('Vanilla',5,'kr'),('Nutmeg',5,'kr'),('Pictacio',6,'kr'),('Almond',7,'kr');

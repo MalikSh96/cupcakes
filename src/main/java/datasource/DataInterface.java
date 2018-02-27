@@ -13,7 +13,7 @@ public interface DataInterface
     public Users getUser(int id);
     public Users getUser(String username);
     public boolean deleteUser(int id);
-    public boolean updateUser(Users u);
+    public boolean updateUser(int id, String username);
     public boolean createUser(Users u);
     
     public List<Cake_bottoms> getAllBottoms();

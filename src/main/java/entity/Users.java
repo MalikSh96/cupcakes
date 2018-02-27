@@ -7,6 +7,16 @@ public class Users
     private int id;
     private int balance;
     private boolean admin;
+    private String email;
+
+   
+
+    public Users(String username, String password, boolean admin, String email) {
+        this.username = username;
+        this.password = password;
+        this.admin = admin;
+        this.email = email;
+    }
 
     public Users(String username, String password, int balance, boolean admin) 
     {
@@ -73,6 +83,16 @@ public class Users
     public void setBalance(int balance) 
     {
         this.balance = balance;
+    }
+    
+    public String getEmail() 
+    {
+        return email;
+    }
+
+    public void setEmail(String email) 
+    {
+        this.email = email;
     }
     
     @Override
