@@ -1,5 +1,6 @@
 package databaseConnect;
 
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import connecter.DBConnector;
 import cupcake.Cake_bottoms;
 import cupcake.Cake_toppings;
@@ -8,7 +9,9 @@ import entity.Users;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import javax.sql.DataSource;
 
 //Change your sql queries, as they for now are wrong
@@ -347,5 +350,43 @@ public class DAO implements DataInterface
             e.printStackTrace();
         }
         return total;
+    }
+
+    @Override
+    public List<Cake_bottoms> getAllBottoms() 
+    {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Cake_bottoms> bottoms = new ArrayList<>();
+        
+        try
+        {
+            dbc.open();
+            
+            String sql = "SELECT * FROM cupcakes.bottom";
+            
+            
+            for(Cake_bottoms bottom : bottoms)
+            {
+                System.out.println(bottom.getBottom() + "\n");
+            }
+            
+
+            dbc.executeUpdate(sql);
+
+            dbc.close();
+            
+            return bottoms;
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return bottoms;
+    }
+
+    @Override
+    public List<Cake_toppings> getAllToppings() 
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
