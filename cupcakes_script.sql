@@ -5,7 +5,9 @@ USE `cupcakes`;
 
 DROP TABLE IF EXISTS `users`;
 DROP TABLE IF EXISTS `bottom`;
+DROP TABLE IF EXISTS `orderline`;
 DROP TABLE IF EXISTS `toppings`;
+DROP TABLE IF EXISTS `finalized_orders`;
 
 
 create table `users` (
@@ -22,21 +24,28 @@ create table `bottom` (
 `cake_bottom` varchar(45) not null,
 `price` int not null,
 `valuta` varchar(45) DEFAULT NULL
-
 );
+
+create table `orderline` (
+`toppings_id` int AUTO_INCREMENT primary key,
+`bottom_id` int not null,
+`qty` int not null,
+`finalized_orders_id` int DEFAULT NULL,
+FOREIGN KEY (`finalized_orders_id`) REFERENCES finalized_orders(userOrderID)
+);
+
 
 create table `toppings` (
 `id` int AUTO_INCREMENT primary key,
 `cake_topping` varchar(45) not null,
 `price` int not null,
 `valuta` varchar(45) DEFAULT NULL
-
 );
 
 create table `finalized_orders` (
 `id` int auto_increment primary key,
-`price` int not null,
-`cupcake` varchar(45) not null,
+userOrderID int not null,
+FOREIGN KEY (userOrderID) REFERENCES users(`user_id`),
 `dates` datetime default current_timestamp
 );
 

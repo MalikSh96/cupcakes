@@ -9,6 +9,11 @@ public class ShoppingCart {
     private int totalPrice;
     ArrayList<Cupcake> shoppingCart = new ArrayList<>();
     DAO dao;
+
+    public ArrayList<Cupcake> getShoppingCart() {
+        return shoppingCart;
+    }
+    
     
     public void shoppingCartAdd(Cupcake cake) {
 
@@ -23,4 +28,11 @@ public class ShoppingCart {
     {
         return totalPrice;
     }
+
+    @Override
+    public String toString() {
+        return "ShoppingCart{" + "totalPrice=" + totalPrice + ", shoppingCart=" + shoppingCart + ", dao=" + dao + '}';
+    }
+    
+    
 }

@@ -25,10 +25,12 @@ public class Main
         Users u = d.getUser(1);
         u.setCart(shop);
         System.out.println(u.getBalance());
-        System.out.println("......" + d.updateUserBalance(u));
+        System.out.println("...Before..." + d.updateUserBalance(u));
         System.out.println("Balance: " + calc.calculatePrice(u));
         d.updateUserBalance(u);
-        System.out.println("...efter..." + d.updateUserBalance(u));
+        System.out.println("...After..." + d.updateUserBalance(u));
+        
+
 
         
 //        System.out.println(d.getCakeBottom("Vanilla"));

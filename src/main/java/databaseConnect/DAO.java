@@ -4,6 +4,7 @@ import com.sun.javafx.scene.control.skin.VirtualFlow;
 import connecter.DBConnector;
 import cupcake.Cake_bottoms;
 import cupcake.Cake_toppings;
+import cupcake.Cupcake;
 import datasource.DataInterface;
 import entity.Users;
 import java.sql.PreparedStatement;
@@ -499,20 +500,25 @@ public class DAO implements DataInterface
 
         return false;
     }
-    public boolean finalOrder(Users cart) //WORK IN PROGRESS
+    public boolean finalOrder(ShoppingCart cart, int id) //WORK IN PROGRESS, DOES NOT WORK
     {
-        cart.getCart();
+        ArrayList<Cupcake> shoppingCart = cart.getShoppingCart();
+        
         try
         {
             dbc.open();
+            for(int i = 0; i < shoppingCart.size(); i++)
+            {
+                String sql = "insert into orderline values(?,?,?,?); ";
+                PreparedStatement prep = dbc.preparedStatement(sql);
+                prep.setString(1, shoppingCart.get(i).getTopping().getTopping());
+                prep.setString(2, shoppingCart.get(i).getBottom().getBottom());
+                //prep.setString(3, shoppingCart.get(id));
+                prep.setInt(4, shoppingCart.get(i).getTotalPrice());
 
-            String sql = "insert into finalized_orders set "
-                                + "price = '" + cart.getCart().getTotalPrice()
-                                + ", set cupcake = '" ;
-
-                     
-            dbc.executeUpdate(sql);
-
+                System.out.println("Check sql: " + sql);
+                dbc.executeUpdate(sql);
+            }
             dbc.close();
 
             return true;
