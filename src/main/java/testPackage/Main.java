@@ -2,9 +2,11 @@ package testPackage;
 
 import calculator.Calculator;
 import cupcake.Cake_bottoms;
+import cupcake.Cupcake;
 import databaseConnect.DAO;
 import datasource.DataSource1;
 import entity.Users;
+import shoppingCart.ShoppingCart;
 
 public class Main 
 {    
@@ -14,11 +16,19 @@ public class Main
         DAO d = new DAO(ds1.getDataSource());
         Calculator calc = new Calculator();
         
-        int bt = d.getCakeBottomPrice("Chocolate");
-        int ct = d.getCakeToppingPrice("Blueberry");
-        int userFund = d.getUser(1).getBalance();
+        int ch = d.getCakeBottomPrice("Chocolate");
+        int hc = d.getCakeToppingPrice("Blueberry");
+        int u = d.getUser(1).getBalance();
+        System.out.println("Total: " + calc.calculatePrice(u, ch, hc));
+        System.out.println(d.updateUser(1, "Malik"));
         
-        System.out.println("Total: " + calc.calculatePrice(userFund - bt - ct));
+//        ShoppingCart shop = new ShoppingCart();
+//        shop.shoppingCartAdd(new Cupcake(d.getCakeTopping("Chocolate"), d.getCakeBottom("Almond"), 
+//            d.getCakeTopping("Chocolate").getTopping_price(), d.getCakeBottom("Almond").getBottom_price()));
+//        
+//        shop.shoppingCartAdd(new Cupcake(d.getCakeTopping("Chocolate"), d.getCakeBottom("Almond"), 
+//            d.getCakeTopping("Chocolate").getTopping_price(), d.getCakeBottom("Almond").getBottom_price()));
+        
 //        System.out.println(d.getCakeBottom("Vanilla"));
 //        System.out.println(d.getCakeTopping("Blueberry"));
 //        
@@ -28,13 +38,13 @@ public class Main
 //        System.out.println("\n " + d.createUser(new Users("Mester", 0, "9999", 100, true)));
 //        System.out.println("\n\n" + d.getUser("Mester"));
 //        
-//        System.out.println("\n " + d.createUser(new Users("abc", 0, "8888", 200, false)));
-//        System.out.println("\n\n" + d.getUser("abc"));
+//        System.out.println("\n " + d.createUser(new Users("Man", 0, "8888", 200, false)));
+//        System.out.println("\n\n" + d.getUser("Man"));
 //       
 //        Users mest = d.getUser("Mester");        
 //        System.out.println("\n\n" + d.updateUser(mest.getId(), "M"));
-//        System.out.println("\n" + d.getUser("M"));
 //        
+//        System.out.println("\n" + d.getUser("M"));
 //        
 //        System.out.println("\n" + d.getUser(4));
 //        

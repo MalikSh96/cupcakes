@@ -421,10 +421,13 @@ public class DAO implements DataInterface
             dbc.open();
 
             String sql = "SELECT * FROM toppings";
+            //String sql = "SELECT * FROM toppings where cake_topping = '" + cake + "'";
             ResultSet resultset = dbc.executeQuery(sql);
 
             while(resultset.next()) 
             {
+              //if(resultset.next())
+              //{
                 String name = resultset.getString("cake_topping");
                 int value = resultset.getInt("price");
                 int id = resultset.getInt("id");
