@@ -20,4 +20,7 @@ public interface DataInterface
     public Cake_toppings getCakeTopping(String cake);
     public List<Cake_bottoms> getAllBottoms();
     public List<Cake_toppings> getAllToppings();
+    
+    public int getCakeBottomPrice(String cake);
+    public int getCakeToppingPrice(String cake);
 }

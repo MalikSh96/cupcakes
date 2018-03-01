@@ -28,7 +28,6 @@ public class DAO implements DataInterface
     @Override
     public ArrayList<Users> getUsers() 
     {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         ArrayList<Users> users = new ArrayList();
 
         try
@@ -64,7 +63,6 @@ public class DAO implements DataInterface
     @Override
     public ArrayList<Users> getUsers(String username) 
     {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         ArrayList<Users> users = new ArrayList();
 
         try
@@ -100,7 +98,6 @@ public class DAO implements DataInterface
     @Override
     public Users getUser(int id) 
     {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         Users u = null;
         
         try
@@ -210,7 +207,7 @@ public class DAO implements DataInterface
     }
 
     @Override
-    public boolean createUser(Users u) //change null here to be able to change the balance
+    public boolean createUser(Users u)
     {
         try
         {
@@ -378,5 +375,73 @@ public class DAO implements DataInterface
             e.printStackTrace();
         }
         return toppings;
+    }
+
+    @Override
+    public int getCakeBottomPrice(String cake) 
+    {
+        Cake_bottoms bottom = new Cake_bottoms();
+        int total = 0;
+        try 
+        {
+            dbc.open();
+
+            String sql = "SELECT * FROM bottom";
+            ResultSet resultset = dbc.executeQuery(sql);
+
+            while(resultset.next()) 
+            {
+                String name = resultset.getString("cake_bottom");
+                int value = resultset.getInt("price");
+                int id = resultset.getInt("id");
+                bottom.setBottom(name);
+                bottom.setBottom_price(value);
+                if(name.equals(cake))
+                {
+                    bottom = new Cake_bottoms(cake, value, id);
+                    total = bottom.getBottom_price();
+                    break;
+                }
+            }
+            dbc.close();
+        } catch (SQLException e) 
+        {
+            e.printStackTrace();
+        }
+        return total;
+    }
+
+    @Override
+    public int getCakeToppingPrice(String cake) 
+    {
+        Cake_toppings topping = new Cake_toppings();
+        int total = 0;
+        try 
+        {
+            dbc.open();
+
+            String sql = "SELECT * FROM toppings";
+            ResultSet resultset = dbc.executeQuery(sql);
+
+            while(resultset.next()) 
+            {
+                String name = resultset.getString("cake_topping");
+                int value = resultset.getInt("price");
+                int id = resultset.getInt("id");
+                topping.setTopping(name);
+                topping.setTopping_price(value);
+                if(name.equals(cake))
+                {
+                    topping = new Cake_toppings(cake, value, id);
+                    total = topping.getTopping_price();
+                    break;
+                }
+            }
+            dbc.close();
+        } catch (SQLException e) 
+        {
+            e.printStackTrace();
+        }
+        return total;
     }
 }

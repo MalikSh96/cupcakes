@@ -9,7 +9,8 @@ public class Users
     private boolean admin;
     private String email;
     
-    public Users(String username, String password){
+    public Users(String username, String password)
+    {
         this.username = username;
         this.password = password;
     }
@@ -46,6 +47,12 @@ public class Users
         this.admin = admin;
     }
 
+    public Users(int id, int balance) 
+    {
+        this.id = id;
+        this.balance = balance;
+    }
+    
     public int getId() 
     {
         return id;

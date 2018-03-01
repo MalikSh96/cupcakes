@@ -6,11 +6,10 @@ import cupcake.Cake_toppings;
 
 public class LineItems {
     
-    private String lineItems(Cake_toppings topping, Cake_bottoms bottom) {
+    private String lineItems(Cake_toppings topping, Cake_bottoms bottom) 
+    {
         
         
-        return "";
-        
+        return "";       
     }
-    
 }
