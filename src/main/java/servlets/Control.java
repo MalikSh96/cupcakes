@@ -24,20 +24,32 @@ public class Control extends HttpServlet {
         System.out.println(request.getParameter("origin"));
         switch (request.getParameter("origin")) {
             case "login": {
-                String username = request.getParameter("username");
-                String password = request.getParameter("password");
-                search.getUsername(username, password);
+                {
+                    String username = request.getParameter("username");
+                    String password = request.getParameter("password");
 
+                    Users user = dao.validateUser(username, password);
+
+                    request.getSession().setAttribute("user", user);
+
+                    //request.getRequestDispatcher("user.jsp").forward(request, response);
+                    response.sendRedirect("validatelogin.jsp");                
+
+                }
             }
             break;
             case "registration": {
                 System.out.println("registration");
                 String username = request.getParameter("username");
                 String password = request.getParameter("password");
+                String balance = request.getParameter("balance");
+                System.out.println(balance);
+                
+                int number= Integer.parseInt(balance);
                 //String email = request.getParameter("email");
                 //Boolean.parseBoolean(request.getParameter("admin"));
                 //search.alreadyExist(username);
-                dao.createUser(new Users(username, password));
+                dao.createUser(new Users(username, password, number));
                 
                 response.sendRedirect("index.jsp");
             
