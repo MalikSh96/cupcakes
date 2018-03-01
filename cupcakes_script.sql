@@ -4,6 +4,9 @@ CREATE DATABASE `cupcakes`;
 USE `cupcakes`;
 
 DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS `bottom`;
+DROP TABLE IF EXISTS `toppings`;
+
 
 create table `users` (
 `username` varchar(45),

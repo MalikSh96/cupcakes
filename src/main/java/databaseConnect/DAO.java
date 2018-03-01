@@ -134,7 +134,6 @@ public class DAO implements DataInterface
     @Override
     public Users getUser(String username) 
     {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         try
         {
             dbc.open();
@@ -170,7 +169,7 @@ public class DAO implements DataInterface
         {
             dbc.open();
 
-            String sql = "delete from users where user_id = " + id + ";";
+            String sql = "delete from users where user_id = " + id;
             dbc.executeUpdate(sql);
 
             dbc.close();
@@ -211,17 +210,18 @@ public class DAO implements DataInterface
     }
 
     @Override
-    public boolean createUser(Users u) 
+    public boolean createUser(Users u) //change null here to be able to change the balance
     {
         try
         {
             dbc.open();
 
-            String sql = "INSERT into users (username, password) VALUES ("
+            String sql = "INSERT into users (username, password, balance, isAdmin) VALUES ("
                     + "'" + u.getUsername() + "',"
-                    + "'" + u.getPassword() + "'" + ")"
-                    ;
-            System.out.println(sql + "SQL");
+                    + "'" + u.getPassword() + "',"
+                    + "'" + u.getBalance() + "',"
+                    + u.isAdmin() + ")";
+            
             dbc.executeUpdate(sql);
 
             dbc.close();
@@ -262,7 +262,64 @@ public class DAO implements DataInterface
         return false;
     }
 
+    @Override
+    public Cake_bottoms getCakeBottom(String cake) 
+    {
+        try
+        {
+            dbc.open();
 
+            String sql = "select * from bottom where cake_bottom = '" + cake + "'";
+            ResultSet resultset = dbc.executeQuery(sql);
+
+            while (resultset.next())
+            {
+                String bottom_name = resultset.getString("cake_bottom");
+                int price = resultset.getInt("price");
+                int id = resultset.getInt("id");
+                
+                return new Cake_bottoms(bottom_name, price, id);
+            }
+
+            dbc.close();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public Cake_toppings getCakeTopping(String cake) 
+    {
+         try
+        {
+            dbc.open();
+
+            String sql = "select * from toppings where cake_topping = '" + cake + "'";
+            ResultSet resultset = dbc.executeQuery(sql);
+
+            while (resultset.next())
+            {
+                String topping_name = resultset.getString("cake_topping");
+                int price = resultset.getInt("price");
+                int id = resultset.getInt("id");
+                
+                return new Cake_toppings(topping_name, price, id);
+            }
+
+            dbc.close();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+    
     @Override
     public List<Cake_bottoms> getAllBottoms() 
     {
@@ -296,8 +353,6 @@ public class DAO implements DataInterface
     @Override
     public List<Cake_toppings> getAllToppings() 
     {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        Cake_toppings ct = new Cake_toppings();
         List<Cake_toppings> toppings = new ArrayList<>();
         try 
         {

@@ -8,15 +8,21 @@ public class Users
     private int balance;
     private boolean admin;
     private String email;
-
     
     public Users(String username, String password){
         this.username = username;
         this.password = password;
     }
    
+    public Users(String username, String password, String email) 
+    {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+    }
 
-    public Users(String username, String password, boolean admin, String email) {
+    public Users(String username, String password, boolean admin, String email) 
+    {
         this.username = username;
         this.password = password;
         this.admin = admin;
@@ -103,6 +109,6 @@ public class Users
     @Override
     public String toString() 
     {
-        return "User id " + id + "\nUsername: " + username + "\nPassword: " + password + "\nAdmin: " + admin;
+        return "\nUser id " + id + "\nUsername: " + username + "\nPassword: " + password + "\nAdmin: " + admin;
     }
 }
