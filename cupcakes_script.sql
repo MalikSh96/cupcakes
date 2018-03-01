@@ -33,6 +33,13 @@ create table `toppings` (
 
 );
 
+create table `finalized_orders` (
+`id` int auto_increment primary key,
+`price` int not null,
+`cupcake` varchar(45) not null,
+`dates` datetime default current_timestamp
+);
+
 INSERT into users (username, password, balance, isAdmin) VALUES ('Malik', '5555', 1000, true);
 
 

@@ -499,4 +499,29 @@ public class DAO implements DataInterface
 
         return false;
     }
+    public boolean finalOrder(Users cart) //WORK IN PROGRESS
+    {
+        cart.getCart();
+        try
+        {
+            dbc.open();
+
+            String sql = "insert into finalized_orders set "
+                                + "price = '" + cart.getCart().getTotalPrice()
+                                + ", set cupcake = '" ;
+
+                     
+            dbc.executeUpdate(sql);
+
+            dbc.close();
+
+            return true;
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
 }
