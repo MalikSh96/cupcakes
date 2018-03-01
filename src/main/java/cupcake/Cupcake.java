@@ -21,5 +21,9 @@ public class Cupcake {
         return toppingPrice;
     }
     
+    @Override
+    public String toString() {
+        return "Cupcake{" + "topping=" + topping + ", bottom=" + bottom + ", bottomPrice=" + bottomPrice + ", toppingPrice=" + toppingPrice + '}';
+    }
     
 }

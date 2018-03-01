@@ -2,7 +2,6 @@ shoppingCart\ShoppingCart.class
 servlets\Control.class
 calculator\Calculator.class
 datasource\DataInterface.class
-testPackage\Main.class
 cupcake\Cake_toppings.class
 cupcake\Cake_bottoms.class
 entity\Users.class
@@ -10,6 +9,5 @@ servlets\ProductControl.class
 datasource\DataSource1.class
 usersearch\Searcher.class
 connecter\DBConnector.class
-LineItems\LineItems.class
-servlets\ProductList.class
+cupcake\Cupcake.class
 databaseConnect\DAO.class
