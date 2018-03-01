@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.sql.DataSource;
+import shoppingCart.ShoppingCart;
 
 //Change your sql queries, as they for now are wrong
 
@@ -426,8 +427,6 @@ public class DAO implements DataInterface
 
             while(resultset.next()) 
             {
-              //if(resultset.next())
-              //{
                 String name = resultset.getString("cake_topping");
                 int value = resultset.getInt("price");
                 int id = resultset.getInt("id");
@@ -446,5 +445,58 @@ public class DAO implements DataInterface
             e.printStackTrace();
         }
         return total;
+    }
+    
+    public int getUserBalance(Users u)
+    {
+        int balance = u.getBalance();
+        try
+        {
+            dbc.open();
+
+            String sql = "select * from users where username = '" + u.getUsername() 
+                    + "'";
+                    
+
+            dbc.executeQuery(sql);
+
+            dbc.close();
+
+            return balance;
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return balance;
+    }
+    
+    public boolean updateUserBalance(Users u)
+    {
+        ShoppingCart shop = new ShoppingCart();
+        int balance = u.getBalance() - shop.getTotalPrice();
+        try
+        {
+            dbc.open();
+
+            String sql = "update users set "
+                                + "balance = '" + balance
+                                + "' where user_id = " + u.getId();
+
+            
+            
+            dbc.executeUpdate(sql);
+
+            dbc.close();
+
+            return true;
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return false;
     }
 }
