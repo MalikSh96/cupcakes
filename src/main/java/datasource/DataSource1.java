@@ -8,11 +8,11 @@ public class DataSource1
     
     public DataSource1()
     {
-        dataSource.setServerName("159.89.10.5");
+        dataSource.setServerName("localhost");
         dataSource.setPort(3306);
         dataSource.setDatabaseName("cupcakes");     
-        dataSource.setUser("maliksh");
-        dataSource.setPassword("FCBarcelona4ever#");       
+        dataSource.setUser("root");
+        dataSource.setPassword("Password");       
     }
     
     public MysqlDataSource getDataSource()
