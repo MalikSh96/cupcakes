@@ -1,5 +1,7 @@
 package entity;
 
+import shoppingCart.ShoppingCart;
+
 public class Users 
 {
     private String username;
@@ -8,6 +10,8 @@ public class Users
     private int balance;
     private boolean admin;
     private String email;
+    private ShoppingCart cart;
+
     
     public Users(String username, String password)
     {
@@ -111,6 +115,16 @@ public class Users
     public void setEmail(String email) 
     {
         this.email = email;
+    }
+    
+    public ShoppingCart getCart() 
+    {
+        return cart;
+    }
+
+    public void setCart(ShoppingCart cart) 
+    {
+        this.cart = cart;
     }
     
     @Override

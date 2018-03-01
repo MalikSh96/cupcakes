@@ -474,8 +474,8 @@ public class DAO implements DataInterface
     
     public boolean updateUserBalance(Users u)
     {
-        ShoppingCart shop = new ShoppingCart();
-        int balance = u.getBalance() - shop.getTotalPrice();
+        //ShoppingCart shop = new ShoppingCart();
+        int balance = u.getBalance() - u.getCart().getTotalPrice();
         try
         {
             dbc.open();
