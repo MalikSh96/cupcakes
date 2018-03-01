@@ -18,6 +18,13 @@ public class Cake_toppings
         this.id = id;
     }
 
+    public Cake_toppings(String topping, int topping_price) {
+        this.topping = topping;
+        this.topping_price = topping_price;
+    }
+    
+    
+
     public String getTopping() 
     {
         return topping;
