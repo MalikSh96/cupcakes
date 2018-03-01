@@ -16,15 +16,17 @@ public class Main
         DAO d = new DAO(ds1.getDataSource());
         Calculator calc = new Calculator();
         
-        int ch = d.getCakeBottomPrice("Chocolate");
-        int hc = d.getCakeToppingPrice("Blueberry");
+        ShoppingCart shop = new ShoppingCart();
+        shop.shoppingCartAdd(new Cupcake(d.getCakeTopping("Chocolate"), d.getCakeBottom("Almond"), 
+            d.getCakeTopping("Chocolate").getTopping_price(), d.getCakeBottom("Almond").getBottom_price()));
+
         int u = d.getUser(1).getBalance();
-        System.out.println("Total: " + calc.calculatePrice(u, ch, hc));
-        System.out.println(d.updateUser(1, "Malik"));
+//        System.out.println("Total: " + calc.calculatePrice(u, ch, hc));
+        Users upd = d.getUser("Malik");
+        //System.out.println(d.getUserBalance(upd));
+        System.out.println(d.updateUserBalance(upd));
         
-//        ShoppingCart shop = new ShoppingCart();
-//        shop.shoppingCartAdd(new Cupcake(d.getCakeTopping("Chocolate"), d.getCakeBottom("Almond"), 
-//            d.getCakeTopping("Chocolate").getTopping_price(), d.getCakeBottom("Almond").getBottom_price()));
+
 //        
 //        shop.shoppingCartAdd(new Cupcake(d.getCakeTopping("Chocolate"), d.getCakeBottom("Almond"), 
 //            d.getCakeTopping("Chocolate").getTopping_price(), d.getCakeBottom("Almond").getBottom_price()));

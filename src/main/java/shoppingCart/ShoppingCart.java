@@ -20,4 +20,9 @@ public class ShoppingCart {
             System.out.println(shoppingCart.get(i).toString());
         }
     }
+
+    public int getTotalPrice() 
+    {
+        return totalPrice;
+    }
 }
