@@ -13,4 +13,6 @@ public class LineItems {
         
     }
     
+   String lol = lineItems(new Cake_toppings("john", 20), new Cake_bottoms("blah", 15));
+    
 }

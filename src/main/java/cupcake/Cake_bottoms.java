@@ -18,6 +18,11 @@ public class Cake_bottoms
         this.id = id;
     }
 
+    public Cake_bottoms(String bottom, int bottom_price) {
+        this.bottom = bottom;
+        this.bottom_price = bottom_price;
+    }   
+
     public String getBottom() 
     {
         return bottom;
