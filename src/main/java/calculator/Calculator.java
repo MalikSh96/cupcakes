@@ -1,17 +1,16 @@
 package calculator;
 
-import cupcake.Cake_bottoms;
-import cupcake.Cake_toppings;
 import entity.Users;
+import shoppingCart.ShoppingCart;
 
 public class Calculator 
 {
-    private Users u;
-    private Cake_bottoms cb;
-    private Cake_toppings ct;
+    ShoppingCart shop;
+    
    
-    public double calculatePrice(int user_balance, int bottom_price, int topping_price)
+    public double calculatePrice(Users bal)
     {
-        return user_balance - bottom_price - topping_price;
+        if(bal.getBalance() >= bal.getCart().getTotalPrice()) return bal.getBalance() - bal.getCart().getTotalPrice();
+        else throw new IllegalStateException("Insufficient funds");
     }
 }

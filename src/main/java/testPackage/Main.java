@@ -19,17 +19,17 @@ public class Main
         ShoppingCart shop = new ShoppingCart();
         shop.shoppingCartAdd(new Cupcake(d.getCakeTopping("Chocolate"), d.getCakeBottom("Almond"), 
             d.getCakeTopping("Chocolate").getTopping_price(), d.getCakeBottom("Almond").getBottom_price()));
+        shop.shoppingCartAdd(new Cupcake(d.getCakeTopping("Blueberry"), d.getCakeBottom("Vanilla"), 
+            d.getCakeTopping("Blueberry").getTopping_price(), d.getCakeBottom("Vanilla").getBottom_price()));
 
-        int u = d.getUser(1).getBalance();
-//        System.out.println("Total: " + calc.calculatePrice(u, ch, hc));
-        Users upd = d.getUser("Malik");
-        //System.out.println(d.getUserBalance(upd));
-        System.out.println(d.updateUserBalance(upd));
-        
+        Users u = d.getUser(1);
+        u.setCart(shop);
+        System.out.println(u.getBalance());
+        System.out.println("......" + d.updateUserBalance(u));
+        System.out.println("Balance: " + calc.calculatePrice(u));
+        d.updateUserBalance(u);
+        System.out.println("...efter..." + d.updateUserBalance(u));
 
-//        
-//        shop.shoppingCartAdd(new Cupcake(d.getCakeTopping("Chocolate"), d.getCakeBottom("Almond"), 
-//            d.getCakeTopping("Chocolate").getTopping_price(), d.getCakeBottom("Almond").getBottom_price()));
         
 //        System.out.println(d.getCakeBottom("Vanilla"));
 //        System.out.println(d.getCakeTopping("Blueberry"));
