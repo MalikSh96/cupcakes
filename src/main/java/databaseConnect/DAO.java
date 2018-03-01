@@ -217,11 +217,11 @@ public class DAO implements DataInterface
         {
             dbc.open();
 
-            String sql = "INSERT into users (username, password, balance, isAdmin) VALUES ("
+            String sql = "INSERT into users (username, password) VALUES ("
                     + "'" + u.getUsername() + "',"
-                    + "'" + u.getPassword() + "',"
-                    + null + ","
-                    + u.isAdmin() + ")";
+                    + "'" + u.getPassword() + "'" + ")"
+                    ;
+            System.out.println(sql + "SQL");
             dbc.executeUpdate(sql);
 
             dbc.close();

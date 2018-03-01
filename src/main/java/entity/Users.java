@@ -9,6 +9,11 @@ public class Users
     private boolean admin;
     private String email;
 
+    
+    public Users(String username, String password){
+        this.username = username;
+        this.password = password;
+    }
    
 
     public Users(String username, String password, boolean admin, String email) {
