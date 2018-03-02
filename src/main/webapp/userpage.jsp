@@ -19,8 +19,11 @@
             Id: <%= user.getId() %><br>
             Password: <%= user.getPassword() %><br>
             Balance: <%= user.getBalance() %> <br>
+            
             Admin: <%= user.isAdmin() %><br>
             
         </p>
+        <a href ="products.jsp"> Click here for cupcakes </a>
+        
     </body>
 </html>

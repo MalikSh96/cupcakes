@@ -1,5 +1,8 @@
 package servlets;
 
+import cupcake.Cake_bottoms;
+import cupcake.Cake_toppings;
+import cupcake.Cupcake;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -42,7 +45,7 @@ public class Control extends HttpServlet {
                 System.out.println("registration");
                 String username = request.getParameter("username");
                 String password = request.getParameter("password");
-                String balance = request.getParameter("balance");
+                String balance = request.getParameter("balance");                
                 System.out.println(balance);
                 
                 int number= Integer.parseInt(balance);
@@ -55,6 +58,27 @@ public class Control extends HttpServlet {
             
             }
             break;
+            case "products": {
+                System.out.println("products");
+            String bottom = request.getParameter("cake_bottom");
+            String topping = request.getParameter("cake_topping");
+            
+            int amount = Integer.parseInt(request.getParameter("amount"));
+            int bottomPrice = dao.getCakeBottomPrice(bottom);
+            int toppingPrice = dao.getCakeToppingPrice(topping);
+            Cupcake cake = new Cupcake(bottomPrice, toppingPrice, amount);
+                System.out.println(cake);
+            response.sendRedirect("confirmation.jsp");
+            
+            
+            
+            }
+            break;
+            case "confirmation": {
+                System.out.println("confirmation");
+                
+                
+            }
         }
     }
     
