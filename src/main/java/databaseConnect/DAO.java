@@ -472,6 +472,31 @@ public class DAO implements DataInterface
         return balance;
     }
     
+    public int getUserId(Users u)
+    {
+        int id = u.getId();
+        try
+        {
+            dbc.open();
+
+            String sql = "select * from users where username = '" + u.getUsername() 
+                    + "'";
+                    
+
+            dbc.executeQuery(sql);
+
+            dbc.close();
+
+            return id;
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return id;
+    }
+    
     public boolean updateUserBalance(Users u)
     {
         //ShoppingCart shop = new ShoppingCart();
