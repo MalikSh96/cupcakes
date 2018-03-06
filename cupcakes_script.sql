@@ -56,3 +56,5 @@ INSERT INTO bottom (cake_bottom, price, valuta) VALUES ('Chocolate',5,'kr'),('Va
 
 INSERT INTO toppings (cake_topping, price, valuta) VALUES ('Chocolate',5,'kr'),('Blueberry',5,'kr'),('Rasberry',5,'kr'),('Crispy',6,'kr'),('Strawberry',6,'kr'),
 ('Rum/Raisin',7,'kr'),('Orange',8,'kr'),('Lemon',8,'kr'),('Blue cheese',9,'kr');
+
+-- INSERT INTO orderline (toppings_id, bottom_id, qty, orders_id) VALUES (1,2,3,2);
