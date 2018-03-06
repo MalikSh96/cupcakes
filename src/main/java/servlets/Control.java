@@ -73,24 +73,18 @@ public class Control extends HttpServlet {
             break;
             case "products": {
                 
-            System.out.println(user.getCart().toString() + "lala");
-            System.out.println("productssss");
+            System.out.println("products");
             Cake_bottoms bottom = new Cake_bottoms(request.getParameter("cake_bottom"));
             Cake_toppings topping = new Cake_toppings(request.getParameter("cake_topping"));
             this.topping = request.getParameter("cake_topping");
             this.bottom = request.getParameter("cake_bottom");
             amount = Integer.parseInt(request.getParameter("amount"));
-            //user.setCart(cart);
             price += (dao.getCakeBottomPrice(bottom.toString()) + dao.getCakeBottomPrice(topping.toString()))*amount;
             Cupcake cake = new Cupcake(topping, bottom, price, amount);
             user.getCart().cupcakeList.add(new CupcakeList(topping.toString(),bottom.toString(),price,amount));
             user.getCart().shoppingCartAdd(cake, amount);
-                System.out.println(topping + " top");
-                System.out.println(bottom + " bottom");
-                System.out.println(amount + " amount");
-                System.out.println(price + " cart");
-                System.out.println(cake + " cake"); 
-                System.out.println(user.getCart().toString());
+
+            
                 if(request.getParameter("add") != null)
                 response.sendRedirect("products.jsp");
               //  else response.sendRedirect("confirmation.jsp");
@@ -121,18 +115,13 @@ public class Control extends HttpServlet {
             out.println("<br>");
             out.println("Bottom: " + bottom);
             out.println("<br>");
-//            out.println("Bottom Price: " + bottomPrice + " DKK");
-//            out.println("<br>");
-//            out.println("Topping Price: " + toppingPrice + " DKK");
             out.println("<br>");
             out.println("<br>");
-            //out.println("User: " + user + ".");
             out.println("<br>");
             out.println("<br>");
             out.println("<br>");
             out.println("Shoppingcart: <br>");
-            out.println(user.getCart().toString2());
-         //   out.println("<br>Total Price: " + price);
+            out.println(user.getCart().toString2()+"<br><br><br><br><br>");
             
             out.println("</center>");
             out.println("</body>");
