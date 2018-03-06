@@ -31,7 +31,7 @@ public class ShoppingCart
 //        }
         shoppingCart.add(cake);
 
-        totalPrice += cake.getToppingPrice() + cake.getBottomPrice();
+        totalPrice += cake.getTopping().getTopping_price() + cake.getBottom().getBottom_price();
 //        for (int i = 0; i < shoppingCart.size(); i++) 
 //        {
 //            

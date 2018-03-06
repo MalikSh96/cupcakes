@@ -537,14 +537,14 @@ public class DAO implements DataInterface
             {
                 String sql = "insert into orderline values (?,?,?,?);";
                 PreparedStatement prep = dbc.preparedStatement(sql);
-                prep.setInt(1, shoppingCart.get(i).getTopping().getTopping_price());
-                prep.setInt(2, shoppingCart.get(i).getBottom().getBottom_price());
-                prep.setInt(3, shoppingCart.get(i).getId(id)); //
+                
+                prep.setInt(1, shoppingCart.get(i).getTopping().getId());
+                prep.setInt(2, shoppingCart.get(i).getBottom().getId());
+                prep.setInt(3, id); //
                 prep.setInt(4, shoppingCart.get(i).getTotalPrice());
 
                 System.out.println("Check sql: " + sql);
                 prep.executeUpdate();
-                //dbc.executeUpdate(sql);
             }
             dbc.close();
 

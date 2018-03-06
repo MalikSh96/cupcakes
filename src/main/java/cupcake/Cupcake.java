@@ -4,26 +4,22 @@ public class Cupcake {
 
     private Cake_toppings topping;
     private Cake_bottoms bottom;
-    private int bottomPrice, toppingPrice, totalPrice, id;
+    private int totalPrice;
 
     private int amount;
 
     public Cupcake(Cake_toppings topping, Cake_bottoms bottom, int toppingPrice, int bottomPrice) {
         this.topping = topping;
         this.bottom = bottom;
-        this.bottomPrice = bottomPrice;
-        this.toppingPrice = toppingPrice;
     }
     
     public Cupcake(int bottomPrice,int toppingPrice, int amount){
-        this.bottomPrice = bottomPrice;
-        this.toppingPrice = toppingPrice;
         this.amount = amount;
     }
 
     public int getTotalPrice() 
     {
-        return bottomPrice + toppingPrice;
+        return bottom.getBottom_price() + topping.getTopping_price();
     }
         
     public Cake_toppings getTopping() 
@@ -35,27 +31,11 @@ public class Cupcake {
     {
         return bottom;
     }
-
-    
-    public int getBottomPrice() 
-    {
-        return bottomPrice;
-    }
-
-    public int getToppingPrice() 
-    {
-        return toppingPrice;
-    }
-
-    public int getId(int id) 
-    {
-        return id;
-    }
     
     @Override
     public String toString() 
     {
-        return "\n" + topping + bottom + "Price: " + (bottomPrice + toppingPrice);
+        return "\n" + topping + bottom + "Price: " + getTotalPrice();
     }
     
 }
