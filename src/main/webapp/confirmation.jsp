@@ -1,9 +1,3 @@
-<%-- 
-    Document   : confirmation
-    Created on : 26-02-2018, 11:38:12
-    Author     : malik
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

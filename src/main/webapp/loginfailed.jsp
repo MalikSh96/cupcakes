@@ -1,9 +1,3 @@
-<%-- 
-    Document   : loginfailed
-    Created on : 01-03-2018, 13:03:29
-    Author     : Dorte
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

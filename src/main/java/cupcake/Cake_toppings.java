@@ -29,7 +29,9 @@ public class Cake_toppings
         return id;
     }
     
-    
+        public Cake_toppings(String topping){
+        this.topping = topping;
+    }
 
     public String getTopping() 
     {
@@ -54,6 +56,6 @@ public class Cake_toppings
     @Override
     public String toString() 
     {
-        return "Topping: " + topping + " Topping price: " + topping_price + " Id: " + id + "\n";
+        return topping;
     }
 }

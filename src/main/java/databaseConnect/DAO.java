@@ -481,7 +481,7 @@ public class DAO implements DataInterface {
 
     public boolean OrderLine(ShoppingCart cart, int orderId)
     {
-        ArrayList<Cupcake> cupcakes = cart.getCupcakes();
+        ArrayList<Cupcake> cupcakes = cart.getShoppingCart();
 
         try {
             dbc.open();
@@ -539,5 +539,45 @@ public class DAO implements DataInterface {
         }
 
         return user;
+    }
+    
+    public Cupcake getCake(String cake_top, String cake_bottom, int amount) {
+
+        Cake_toppings top = null;
+        Cake_bottoms bottom = null;
+        int price = 0;
+        try {
+            dbc.open();
+
+            String sql = "select * from toppings where cake_topping = '" + cake_top + "'";
+            ResultSet resultset = dbc.executeQuery(sql);
+
+            while (resultset.next()) {
+                String topping_name = resultset.getString("cake_topping");
+                int topPrice = resultset.getInt("price");
+                int id = resultset.getInt("id");
+
+                top = new Cake_toppings(topping_name, topPrice, id);
+                price += topPrice;
+            }
+
+            String sql2 = "select * from bottom where cake_bottom = '" + cake_bottom + "'";
+            ResultSet resultset2 = dbc.executeQuery(sql2);
+
+            while (resultset2.next()) {
+                String bottom_name = resultset.getString("cake_bottom");
+                int bottomPrice = resultset.getInt("price");
+                int id = resultset.getInt("id");
+                price += bottomPrice;
+                bottom = new Cake_bottoms(bottom_name, bottomPrice, id);
+            }
+
+            dbc.close();
+            return new Cupcake(top, bottom, price, amount);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }
