@@ -12,6 +12,11 @@ public class Users
     private String email;
     private ShoppingCart cart;
 
+    public Users(String username, int id)
+    {
+        this.username = username;
+        this.id = id;
+    }
     
     public Users(String username, String password)
     {

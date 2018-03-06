@@ -7,13 +7,30 @@ import java.util.ArrayList;
 public class ShoppingCart 
 {
     private int totalPrice;
-    ArrayList<Cupcake> shoppingCart = new ArrayList<>();
+    ArrayList<Cupcake> cupcakes = new ArrayList<>();
     DAO dao;
+    private int id;
+
+    public DAO getDao() {
+        return dao;
+    }
+
+    public void setDao(DAO dao) {
+        this.dao = dao;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
 
-    public ArrayList<Cupcake> getShoppingCart() 
+    public ArrayList<Cupcake> getCupcakes() 
     {
-        return shoppingCart;
+        return cupcakes;
     }
     
     
@@ -23,24 +40,24 @@ public class ShoppingCart
     }
 
     
-    public void shoppingCartAdd(Cupcake cake, int amount) 
+    public void cupcakeAdd(Cupcake cake) 
     {
 //        for (int i = 0; i < amount; i++) 
 //        {
 //            
 //        }
-        shoppingCart.add(cake);
+        cupcakes.add(cake);
 
         totalPrice += cake.getTopping().getTopping_price() + cake.getBottom().getBottom_price();
-//        for (int i = 0; i < shoppingCart.size(); i++) 
+//        for (int i = 0; i < cupcakes.size(); i++) 
 //        {
 //            
 //        
 //        }
-       totalPrice += (cake.getTopping().getTopping_price() + cake.getBottom().getBottom_price()) * amount;
-        for (int i = 0; i < shoppingCart.size(); i++) 
+       totalPrice += (cake.getTopping().getTopping_price() + cake.getBottom().getBottom_price()) * cake.getAmount();
+        for (int i = 0; i < cupcakes.size(); i++) 
         {
-            System.out.println(shoppingCart.get(i).toString());
+            System.out.println(cupcakes.get(i).toString());
         }
     }
 
@@ -52,6 +69,6 @@ public class ShoppingCart
     @Override
     public String toString() 
     {
-        return "ShoppingCart totalPrice: " + totalPrice + "\nshoppingCart: " + shoppingCart;
+        return "ShoppingCart totalPrice: " + totalPrice + "\nshoppingCart: " + cupcakes;
     }
 }

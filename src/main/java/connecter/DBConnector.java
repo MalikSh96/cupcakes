@@ -80,4 +80,9 @@ public class DBConnector
     {
         return connection.prepareStatement(sql);
     }
+    
+    public PreparedStatement preparedStatement(String sql, int key) throws SQLException
+    {
+        return connection.prepareStatement(sql, key);
+    }
 }

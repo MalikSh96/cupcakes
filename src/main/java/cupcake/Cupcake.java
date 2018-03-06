@@ -8,9 +8,16 @@ public class Cupcake {
 
     private int amount;
 
-    public Cupcake(Cake_toppings topping, Cake_bottoms bottom, int toppingPrice, int bottomPrice) {
+    public int getAmount() {
+        return amount;
+    }
+    
+    
+
+    public Cupcake(Cake_toppings topping, Cake_bottoms bottom, int amount) {
         this.topping = topping;
         this.bottom = bottom;
+        this.amount = amount;
     }
     
     public Cupcake(int bottomPrice,int toppingPrice, int amount){

@@ -1,6 +1,6 @@
 package databaseConnect;
 
-import com.sun.javafx.scene.control.skin.VirtualFlow;
+import calculator.Calculator;
 import connecter.DBConnector;
 import cupcake.Cake_bottoms;
 import cupcake.Cake_toppings;
@@ -17,30 +17,25 @@ import javax.sql.DataSource;
 import shoppingCart.ShoppingCart;
 
 //Change your sql queries, as they for now are wrong
+public class DAO implements DataInterface {
 
-public class DAO implements DataInterface
-{
     private DBConnector dbc = new DBConnector();
 
-    public DAO(DataSource ds) 
-    {
+    public DAO(DataSource ds) {
         dbc.setDs(ds);
-    }   
+    }
 
     @Override
-    public ArrayList<Users> getUsers() 
-    {
+    public ArrayList<Users> getUsers() {
         ArrayList<Users> users = new ArrayList();
 
-        try
-        {
+        try {
             dbc.open();
 
             String sql = "select * from users";
             ResultSet resultset = dbc.executeQuery(sql);
 
-            while (resultset.next())
-            {
+            while (resultset.next()) {
                 int userid = resultset.getInt("users.user_id");
                 String username = resultset.getString("username");
                 String userpassword = resultset.getString("password");
@@ -53,9 +48,7 @@ public class DAO implements DataInterface
             }
 
             dbc.close();
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -63,34 +56,29 @@ public class DAO implements DataInterface
     }
 
     @Override
-    public ArrayList<Users> getUsers(String username) 
-    {
+    public ArrayList<Users> getUsers(String username) {
         ArrayList<Users> users = new ArrayList();
 
-        try
-        {
+        try {
             dbc.open();
 
             String sql = "select * from users where username like '%" + username + "%'";
             ResultSet resultset = dbc.executeQuery(sql);
 
-            while (resultset.next())
-            {
+            while (resultset.next()) {
                 int userid = resultset.getInt("users.user_id");
                 String name = resultset.getString("username");
                 String userpassword = resultset.getString("password");
                 int balance = resultset.getInt("balance");
                 boolean admin = resultset.getBoolean("isAdmin");
-                
+
                 Users u = new Users(name, userid, userpassword, balance, admin);
 
                 users.add(u);
             }
 
             dbc.close();
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -98,32 +86,27 @@ public class DAO implements DataInterface
     }
 
     @Override
-    public Users getUser(int id) 
-    {
+    public Users getUser(int id) {
         Users u = null;
-        
-        try
-        {
+
+        try {
             dbc.open();
 
             String sql = "select * from users where user_id = " + id;
             ResultSet resultset = dbc.executeQuery(sql);
 
-            while(resultset.next())
-            {
+            while (resultset.next()) {
                 int userid = resultset.getInt("user_id");
                 String username = resultset.getString("username");
                 String userpassword = resultset.getString("password");
                 int balance = resultset.getInt("balance");
                 boolean admin = resultset.getBoolean("isAdmin");
-                
+
                 u = new Users(username, userid, userpassword, balance, admin);
             }
 
             dbc.close();
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -131,30 +114,25 @@ public class DAO implements DataInterface
     }
 
     @Override
-    public Users getUser(String username) 
-    {
-        try
-        {
+    public Users getUser(String username) {
+        try {
             dbc.open();
 
             String sql = "select * from users where username = '" + username + "'";
             ResultSet resultset = dbc.executeQuery(sql);
 
-            while (resultset.next())
-            {
+            while (resultset.next()) {
                 int userid = resultset.getInt("users.user_id");
                 String name = resultset.getString("username");
                 String userpassword = resultset.getString("password");
                 int balance = resultset.getInt("balance");
                 boolean admin = resultset.getBoolean("isAdmin");
-                
+
                 return new Users(name, userid, userpassword, balance, admin);
             }
 
             dbc.close();
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -162,10 +140,8 @@ public class DAO implements DataInterface
     }
 
     @Override
-    public boolean deleteUser(int id) 
-    {
-        try
-        {
+    public boolean deleteUser(int id) {
+        try {
             dbc.open();
 
             String sql = "delete from users where user_id = " + id;
@@ -174,9 +150,7 @@ public class DAO implements DataInterface
             dbc.close();
 
             return true;
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -184,10 +158,8 @@ public class DAO implements DataInterface
     }
 
     @Override
-    public boolean updateUser(int id, String username)
-    {
-        try
-        {
+    public boolean updateUser(int id, String username) {
+        try {
             dbc.open();
 
             String sql = "update users set "
@@ -199,9 +171,7 @@ public class DAO implements DataInterface
             dbc.close();
 
             return true;
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -209,10 +179,8 @@ public class DAO implements DataInterface
     }
 
     @Override
-    public boolean createUser(Users u)
-    {
-        try
-        {
+    public boolean createUser(Users u) {
+        try {
             dbc.open();
 
             String sql = "INSERT into users (username, password, balance, isAdmin) VALUES ("
@@ -220,25 +188,21 @@ public class DAO implements DataInterface
                     + "'" + u.getPassword() + "',"
                     + "'" + u.getBalance() + "',"
                     + u.isAdmin() + ")";
-            
+
             dbc.executeUpdate(sql);
 
             dbc.close();
 
             return true;
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return false;
     }
 
-    public boolean createUserEmail(Users u) 
-    {
-        try
-        {
+    public boolean createUserEmail(Users u) {
+        try {
             dbc.open();
 
             String sql = "insert into user values(null, "
@@ -252,9 +216,7 @@ public class DAO implements DataInterface
             dbc.close();
 
             return true;
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -262,28 +224,23 @@ public class DAO implements DataInterface
     }
 
     @Override
-    public Cake_bottoms getCakeBottom(String cake) 
-    {
-        try
-        {
+    public Cake_bottoms getCakeBottom(String cake) {
+        try {
             dbc.open();
 
             String sql = "select * from bottom where cake_bottom = '" + cake + "'";
             ResultSet resultset = dbc.executeQuery(sql);
 
-            while (resultset.next())
-            {
+            while (resultset.next()) {
                 String bottom_name = resultset.getString("cake_bottom");
                 int price = resultset.getInt("price");
                 int id = resultset.getInt("id");
-                
+
                 return new Cake_bottoms(bottom_name, price, id);
             }
 
             dbc.close();
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -291,310 +248,296 @@ public class DAO implements DataInterface
     }
 
     @Override
-    public Cake_toppings getCakeTopping(String cake) 
-    {
-         try
-        {
+    public Cake_toppings getCakeTopping(String cake) {
+        try {
             dbc.open();
 
             String sql = "select * from toppings where cake_topping = '" + cake + "'";
             ResultSet resultset = dbc.executeQuery(sql);
 
-            while (resultset.next())
-            {
+            while (resultset.next()) {
                 String topping_name = resultset.getString("cake_topping");
                 int price = resultset.getInt("price");
                 int id = resultset.getInt("id");
-                
+
                 return new Cake_toppings(topping_name, price, id);
             }
 
             dbc.close();
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return null;
     }
-    
+
     @Override
-    public List<Cake_bottoms> getAllBottoms() 
-    {
+    public List<Cake_bottoms> getAllBottoms() {
         List<Cake_bottoms> bottoms = new ArrayList<>();
-        try 
-        {
+        try {
             dbc.open();
 
             String sql = "SELECT * FROM cupcakes.bottom";
             ResultSet resultset = dbc.executeQuery(sql);
 
-            while(resultset.next()) 
-            {
+            while (resultset.next()) {
                 String name = resultset.getString("cake_bottom");
                 int value = resultset.getInt("price");
                 int bt_id = resultset.getInt("id");
                 String valuta = resultset.getString("valuta");
-                
+
                 Cake_bottoms cake_b = new Cake_bottoms(name, value, bt_id);
                 bottoms.add(cake_b);
-               
+
             }
             dbc.close();
-        } catch (SQLException e) 
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return bottoms;
     }
 
     @Override
-    public List<Cake_toppings> getAllToppings() 
-    {
+    public List<Cake_toppings> getAllToppings() {
         List<Cake_toppings> toppings = new ArrayList<>();
-        try 
-        {
+        try {
             dbc.open();
 
             String sql = "SELECT * FROM cupcakes.toppings";
             ResultSet resultset = dbc.executeQuery(sql);
 
-            while(resultset.next()) 
-            {
+            while (resultset.next()) {
                 String name = resultset.getString("cake_topping");
                 int value = resultset.getInt("price");
                 int tp_id = resultset.getInt("id");
                 String valuta = resultset.getString("valuta");
-                
+
                 Cake_toppings cake_t = new Cake_toppings(name, value, tp_id);
                 toppings.add(cake_t);
-               
+
             }
             dbc.close();
-        } catch (SQLException e) 
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return toppings;
     }
 
     @Override
-    public int getCakeBottomPrice(String cake) 
-    {
+    public int getCakeBottomPrice(String cake) {
         Cake_bottoms bottom = new Cake_bottoms();
         int total = 0;
-        try 
-        {
+        try {
             dbc.open();
 
             String sql = "SELECT * FROM bottom";
             ResultSet resultset = dbc.executeQuery(sql);
 
-            while(resultset.next()) 
-            {
+            while (resultset.next()) {
                 String name = resultset.getString("cake_bottom");
                 int value = resultset.getInt("price");
                 int id = resultset.getInt("id");
                 bottom.setBottom(name);
                 bottom.setBottom_price(value);
-                if(name.equals(cake))
-                {
+                if (name.equals(cake)) {
                     bottom = new Cake_bottoms(cake, value, id);
                     total = bottom.getBottom_price();
                     break;
                 }
             }
             dbc.close();
-        } catch (SQLException e) 
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return total;
     }
 
     @Override
-    public int getCakeToppingPrice(String cake) 
-    {
+    public int getCakeToppingPrice(String cake) {
         Cake_toppings topping = new Cake_toppings();
         int total = 0;
-        try 
-        {
+        try {
             dbc.open();
 
             String sql = "SELECT * FROM toppings";
             //String sql = "SELECT * FROM toppings where cake_topping = '" + cake + "'";
             ResultSet resultset = dbc.executeQuery(sql);
 
-            while(resultset.next()) 
-            {
+            while (resultset.next()) {
                 String name = resultset.getString("cake_topping");
                 int value = resultset.getInt("price");
                 int id = resultset.getInt("id");
                 topping.setTopping(name);
                 topping.setTopping_price(value);
-                if(name.equals(cake))
-                {
+                if (name.equals(cake)) {
                     topping = new Cake_toppings(cake, value, id);
                     total = topping.getTopping_price();
                     break;
                 }
             }
             dbc.close();
-        } catch (SQLException e) 
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return total;
     }
-    
-    public int getUserBalance(Users u)
-    {
+
+    public int getUserBalance(Users u) {
         int balance = u.getBalance();
-        try
-        {
+        try {
             dbc.open();
 
-            String sql = "select * from users where username = '" + u.getUsername() 
+            String sql = "select * from users where username = '" + u.getUsername()
                     + "'";
-                    
 
             dbc.executeQuery(sql);
 
             dbc.close();
 
             return balance;
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return balance;
     }
-    
-    public int getUserId(Users u)
-    {
+
+    public int getUserId(Users u) {
         int id = u.getId();
-        try
-        {
+        try {
             dbc.open();
 
-            String sql = "select * from users where username = '" + u.getUsername() 
+            String sql = "select * from users where username = '" + u.getUsername()
                     + "'";
-                    
 
             dbc.executeQuery(sql);
 
             dbc.close();
 
             return id;
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return id;
     }
-    
-    public boolean updateUserBalance(Users u)
-    {
+
+    public boolean updateUserBalance(Users u) {
         //ShoppingCart shop = new ShoppingCart();
         int balance = u.getBalance() - u.getCart().getTotalPrice();
-        try
-        {
+        try {
             dbc.open();
 
             String sql = "update users set "
-                                + "balance = '" + balance
-                                + "' where user_id = " + u.getId();
+                    + "balance = '" + balance
+                    + "' where user_id = " + u.getId();
 
-            
-            
             dbc.executeUpdate(sql);
 
             dbc.close();
 
             return true;
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return false;
     }
-    
-    public boolean OrderLine(ShoppingCart cart, int id) //WORK IN PROGRESS, DOES NOT WORK
-    {
-        ArrayList<Cupcake> shoppingCart = cart.getShoppingCart();
-        
-        try
-        {
+
+    public Users orderID(Users u) {
+        int orderId = 0;
+        try {
             dbc.open();
-            for(int i = 0; i < shoppingCart.size(); i++)
-            {
-                String sql = "insert into orderline values (?,?,?,?);";
-                PreparedStatement prep = dbc.preparedStatement(sql);
+            String sql = "insert into orders(userOrderID) values (?)";
+            PreparedStatement prep = dbc.preparedStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+            prep.setInt(1, u.getId()); //user id
+            dbc.getConnection().setAutoCommit(false);
+
+            System.out.println("Check sql orderID: " + sql);
+            int check = prep.executeUpdate();
+            if (check == 1) {
+                ResultSet res = prep.getGeneratedKeys();
+                res.next();
+                orderId = res.getInt(1); //ir
+                System.out.println("DEBUG : "+orderId);
                 
-                prep.setInt(1, shoppingCart.get(i).getTopping().getId());
-                prep.setInt(2, shoppingCart.get(i).getBottom().getId());
-                prep.setInt(3, id); //
-                prep.setInt(4, shoppingCart.get(i).getTotalPrice());
+                OrderLine(u.getCart(),orderId);
+                u.getCart().setId(orderId);
+                dbc.getConnection().commit();
+            } 
+            else 
+            {
+                dbc.getConnection().rollback();
+            }
+
+            dbc.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return u;
+    }
+
+    public boolean OrderLine(ShoppingCart cart, int orderId)
+    {
+        ArrayList<Cupcake> cupcakes = cart.getCupcakes();
+
+        try {
+            dbc.open();
+            for (int i = 0; i < cupcakes.size(); i++) {
+                String sql = "insert into orderline(toppings_id, bottom_id, qty, orders_id) values (?,?,?,?);";
+                PreparedStatement prep = dbc.preparedStatement(sql);
+
+                prep.setInt(1, cupcakes.get(i).getTopping().getId());
+                prep.setInt(2, cupcakes.get(i).getBottom().getId());
+                prep.setInt(3, cupcakes.get(i).getAmount()); //
+                prep.setInt(4, orderId);
 
                 System.out.println("Check sql: " + sql);
                 prep.executeUpdate();
             }
-            dbc.close();
+            
 
             return true;
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return false;
     }
 
-    public Users validateUser(String username, String password)
-    {
+    public Users validateUser(String username, String password) {
         Users user = null;
-        
-        try
-        {
+
+        try {
             dbc.open();
-            
+
             /*
             String sql = "select * from user where username = '" + username + "' and password = '" + password + "'";
             System.out.println("SQL: " + sql);
             ResultSet resultSet = dbc.executeQuery(sql);
-            */
-            
+             */
             //PreparedStatement
             String sql = "select * from users where username = ? and password = ?";
             PreparedStatement preparedStatement = dbc.preparedStatement(sql);
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
-            
+
             ResultSet resultSet = preparedStatement.executeQuery();
-            
-            if (resultSet.next())
-            {
+
+            if (resultSet.next()) {
                 int balance = resultSet.getInt("balance");
                 //boolean admin = resultSet.getInt("admin") > 0;
-                
+
                 user = new Users(username, password, balance);
             }
 
             dbc.close();
-        }
-        catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        
+
         return user;
     }
 }
