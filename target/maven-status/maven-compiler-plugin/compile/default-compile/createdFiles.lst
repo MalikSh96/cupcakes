@@ -10,7 +10,6 @@ servlets\ProductControl.class
 datasource\DataSource1.class
 usersearch\Searcher.class
 connecter\DBConnector.class
-LineItems\LineItems.class
 cupcake\Cupcake.class
 servlets\ProductList.class
 databaseConnect\DAO.class

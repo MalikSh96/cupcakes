@@ -473,6 +473,31 @@ public class DAO implements DataInterface
         return balance;
     }
     
+    public int getUserId(Users u)
+    {
+        int id = u.getId();
+        try
+        {
+            dbc.open();
+
+            String sql = "select * from users where username = '" + u.getUsername() 
+                    + "'";
+                    
+
+            dbc.executeQuery(sql);
+
+            dbc.close();
+
+            return id;
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return id;
+    }
+    
     public boolean updateUserBalance(Users u)
     {
         //ShoppingCart shop = new ShoppingCart();
@@ -531,5 +556,45 @@ public class DAO implements DataInterface
         }
 
         return false;
+    }
+
+    public Users validateUser(String username, String password)
+    {
+        Users user = null;
+        
+        try
+        {
+            dbc.open();
+            
+            /*
+            String sql = "select * from user where username = '" + username + "' and password = '" + password + "'";
+            System.out.println("SQL: " + sql);
+            ResultSet resultSet = dbc.executeQuery(sql);
+            */
+            
+            //PreparedStatement
+            String sql = "select * from users where username = ? and password = ?";
+            PreparedStatement preparedStatement = dbc.preparedStatement(sql);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            
+            ResultSet resultSet = preparedStatement.executeQuery();
+            
+            if (resultSet.next())
+            {
+                int balance = resultSet.getInt("balance");
+                //boolean admin = resultSet.getInt("admin") > 0;
+                
+                user = new Users(username, password, balance);
+            }
+
+            dbc.close();
+        }
+        catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        }
+        
+        return user;
     }
 }
