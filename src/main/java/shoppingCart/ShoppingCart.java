@@ -37,7 +37,7 @@ public class ShoppingCart
 //            
 //        
 //        }
-       //totalPrice += (cake.getToppingPrice() + cake.getBottomPrice())*amount;
+       totalPrice += (cake.getTopping().getTopping_price() + cake.getBottom().getBottom_price()) * amount;
         for (int i = 0; i < shoppingCart.size(); i++) 
         {
             System.out.println(shoppingCart.get(i).toString());

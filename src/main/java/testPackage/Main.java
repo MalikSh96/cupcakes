@@ -18,7 +18,7 @@ public class Main
         
         ShoppingCart shop = new ShoppingCart();
         shop.shoppingCartAdd(new Cupcake(d.getCakeTopping("Chocolate"), d.getCakeBottom("Vanilla"), d.getCakeToppingPrice("Chocolate"), 
-                d.getCakeBottomPrice("Vanilla")), 1);
+                d.getCakeBottomPrice("Vanilla")), 2);
         
         Users u = d.getUser(1);
         u.setCart(shop);
@@ -29,7 +29,7 @@ public class Main
         System.out.println("...After..." + d.updateUserBalance(u));
         
         System.out.println("\n\nOrderline here");
-        System.out.println(d.Order(shop, 1));
+        System.out.println(d.OrderLine(shop, 1));
         
 //        System.out.println(d.getCakeBottom("Vanilla"));
 //        System.out.println(d.getCakeTopping("Blueberry"));

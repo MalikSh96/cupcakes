@@ -526,7 +526,7 @@ public class DAO implements DataInterface
         return false;
     }
     
-    public boolean Order(ShoppingCart cart, int id) //WORK IN PROGRESS, DOES NOT WORK
+    public boolean OrderLine(ShoppingCart cart, int id) //WORK IN PROGRESS, DOES NOT WORK
     {
         ArrayList<Cupcake> shoppingCart = cart.getShoppingCart();
         
