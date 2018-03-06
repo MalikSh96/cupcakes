@@ -17,11 +17,9 @@ public class Main
         Calculator calc = new Calculator();
         
         ShoppingCart shop = new ShoppingCart();
-//        shop.shoppingCartAdd(new Cupcake(d.getCakeTopping("Chocolate"), d.getCakeBottom("Almond"), 
-//            d.getCakeTopping("Chocolate").getTopping_price(), d.getCakeBottom("Almond").getBottom_price()));
-//        shop.shoppingCartAdd(new Cupcake(d.getCakeTopping("Blueberry"), d.getCakeBottom("Vanilla"), 
-//            d.getCakeTopping("Blueberry").getTopping_price(), d.getCakeBottom("Vanilla").getBottom_price()));
-
+        shop.shoppingCartAdd(new Cupcake(d.getCakeTopping("Chocolate"), d.getCakeBottom("Vanilla"), d.getCakeToppingPrice("Chocolate"), 
+                d.getCakeBottomPrice("Vanilla")), 1);
+        
         Users u = d.getUser(1);
         u.setCart(shop);
         System.out.println(u.getBalance());

@@ -16,6 +16,9 @@
             <label id="labelPassword" for="password">Password</label>
             <input type="text" name="password" />
             
+            <label id="labelBalance" for="Balance">Balance</label>
+            <input type="text" name="balance" />
+            
             <input type="hidden" name="origin" value="registration" />
             <input type="submit" value="CREATE USER" />
         </form>

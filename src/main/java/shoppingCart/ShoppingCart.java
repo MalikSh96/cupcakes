@@ -25,19 +25,19 @@ public class ShoppingCart
     
     public void shoppingCartAdd(Cupcake cake, int amount) 
     {
-        for (int i = 0; i < amount; i++) 
-        {
-            
-        }
+//        for (int i = 0; i < amount; i++) 
+//        {
+//            
+//        }
         shoppingCart.add(cake);
 
         totalPrice += cake.getToppingPrice() + cake.getBottomPrice();
-        for (int i = 0; i < shoppingCart.size(); i++) 
-        {
-            
-        
-        }
-        totalPrice += (cake.getToppingPrice() + cake.getBottomPrice())*amount;
+//        for (int i = 0; i < shoppingCart.size(); i++) 
+//        {
+//            
+//        
+//        }
+       //totalPrice += (cake.getToppingPrice() + cake.getBottomPrice())*amount;
         for (int i = 0; i < shoppingCart.size(); i++) 
         {
             System.out.println(shoppingCart.get(i).toString());
