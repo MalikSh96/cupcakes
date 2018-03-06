@@ -4,7 +4,7 @@ public class Cupcake {
 
     private Cake_toppings topping;
     private Cake_bottoms bottom;
-    private int bottomPrice, toppingPrice, totalPrice;
+    private int bottomPrice, toppingPrice, totalPrice, id;
 
     public Cupcake(Cake_toppings topping, Cake_bottoms bottom, int toppingPrice, int bottomPrice) {
         this.topping = topping;
@@ -18,21 +18,30 @@ public class Cupcake {
         return bottomPrice + toppingPrice;
     }
         
-    public Cake_toppings getTopping() {
+    public Cake_toppings getTopping() 
+    {
         return topping;
     }
 
-    public Cake_bottoms getBottom() {
+    public Cake_bottoms getBottom() 
+    {
         return bottom;
     }
 
     
-    public int getBottomPrice() {
+    public int getBottomPrice() 
+    {
         return bottomPrice;
     }
 
-    public int getToppingPrice() {
+    public int getToppingPrice() 
+    {
         return toppingPrice;
+    }
+
+    public int getId(int id) 
+    {
+        return id;
     }
     
     @Override

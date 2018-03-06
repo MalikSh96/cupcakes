@@ -30,8 +30,8 @@ public class Main
         d.updateUserBalance(u);
         System.out.println("...After..." + d.updateUserBalance(u));
         
-
-
+        System.out.println("\n\nOrderline here");
+        System.out.println(d.Order(shop, 1));
         
 //        System.out.println(d.getCakeBottom("Vanilla"));
 //        System.out.println(d.getCakeTopping("Blueberry"));

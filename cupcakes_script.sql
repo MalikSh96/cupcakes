@@ -1,14 +1,14 @@
 DROP DATABASE IF EXISTS `cupcakes`;
 
 CREATE DATABASE `cupcakes`;
+
 USE `cupcakes`;
 
 DROP TABLE IF EXISTS `users`;
 DROP TABLE IF EXISTS `bottom`;
 DROP TABLE IF EXISTS `orderline`;
 DROP TABLE IF EXISTS `toppings`;
-DROP TABLE IF EXISTS `finalized_orders`;
-
+DROP TABLE IF EXISTS `orders`;
 
 create table `users` (
 `username` varchar(45),
@@ -27,11 +27,12 @@ create table `bottom` (
 );
 
 create table `orderline` (
-`toppings_id` int AUTO_INCREMENT primary key,
+`toppings_id` int not null,
 `bottom_id` int not null,
 `qty` int not null,
-`finalized_orders_id` int DEFAULT NULL,
-FOREIGN KEY (`finalized_orders_id`) REFERENCES finalized_orders(userOrderID)
+orders_id int not NULL,
+FOREIGN KEY (orders_id) REFERENCES orders(`id`),
+primary key (`toppings_id`, `bottom_id`, orders_id)
 );
 
 
@@ -42,7 +43,7 @@ create table `toppings` (
 `valuta` varchar(45) DEFAULT NULL
 );
 
-create table `finalized_orders` (
+create table `orders` (
 `id` int auto_increment primary key,
 userOrderID int not null,
 FOREIGN KEY (userOrderID) REFERENCES users(`user_id`),
@@ -50,7 +51,6 @@ FOREIGN KEY (userOrderID) REFERENCES users(`user_id`),
 );
 
 INSERT into users (username, password, balance, isAdmin) VALUES ('Malik', '5555', 1000, true);
-
 
 INSERT INTO bottom (cake_bottom, price, valuta) VALUES ('Chocolate',5,'kr'),('Vanilla',5,'kr'),('Nutmeg',5,'kr'),('Pictacio',6,'kr'),('Almond',7,'kr');
 

@@ -500,7 +500,7 @@ public class DAO implements DataInterface
 
         return false;
     }
-    public boolean finalOrder(ShoppingCart cart, int id) //WORK IN PROGRESS, DOES NOT WORK
+    public boolean Order(ShoppingCart cart, int id) //WORK IN PROGRESS, DOES NOT WORK
     {
         ArrayList<Cupcake> shoppingCart = cart.getShoppingCart();
         
@@ -509,15 +509,16 @@ public class DAO implements DataInterface
             dbc.open();
             for(int i = 0; i < shoppingCart.size(); i++)
             {
-                String sql = "insert into orderline values(?,?,?,?); ";
+                String sql = "insert into orderline values (?,?,?,?);";
                 PreparedStatement prep = dbc.preparedStatement(sql);
-                prep.setString(1, shoppingCart.get(i).getTopping().getTopping());
-                prep.setString(2, shoppingCart.get(i).getBottom().getBottom());
-                //prep.setString(3, shoppingCart.get(id));
+                prep.setInt(1, shoppingCart.get(i).getTopping().getTopping_price());
+                prep.setInt(2, shoppingCart.get(i).getBottom().getBottom_price());
+                prep.setInt(3, shoppingCart.get(i).getId(id)); //
                 prep.setInt(4, shoppingCart.get(i).getTotalPrice());
 
                 System.out.println("Check sql: " + sql);
-                dbc.executeUpdate(sql);
+                prep.executeUpdate();
+                //dbc.executeUpdate(sql);
             }
             dbc.close();
 
