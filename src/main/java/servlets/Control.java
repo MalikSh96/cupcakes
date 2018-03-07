@@ -82,7 +82,7 @@ public class Control extends HttpServlet {
             price += (dao.getCakeBottomPrice(bottom.toString()) + dao.getCakeBottomPrice(topping.toString()))*amount;
             Cupcake cake = new Cupcake(topping, bottom, price, amount);
             user.getCart().cupcakeList.add(new CupcakeList(topping.toString(),bottom.toString(),price,amount));
-            user.getCart().shoppingCartAdd(cake, amount);
+            user.getCart().cupcakeAdd(cake);
 
                 System.out.println(user.getCart().getShoppingCart());
                 if(request.getParameter("add") != null)
