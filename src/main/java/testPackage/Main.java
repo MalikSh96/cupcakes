@@ -19,7 +19,7 @@ public class Main
         ShoppingCart shop = new ShoppingCart();
     //    shop.cupcakeAdd(new Cupcake(d.getCakeTopping("Chocolate"), d.getCakeBottom("Vanilla"), 30));
      //   shop.cupcakeAdd(new Cupcake(d.getCakeTopping("Blueberry"), d.getCakeBottom("Vanilla"), 120));
-        shop.cupcakeAdd(new Cupcake(d.getCakeTopping("Blueberry"), d.getCakeBottom("Chocolate"), 10));
+        shop.cupcakeAdd(new Cupcake(d.getCakeTopping("Blueberry"), d.getCakeBottom("Chocolate"), 20));
      
         Users u = d.getUser(1);
         u.setCart(shop);
