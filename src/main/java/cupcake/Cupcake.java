@@ -82,4 +82,8 @@ public class Cupcake {
         return "\n" + "Bottom: " + bottom.toString() + " <br>Top: " + topping.toString() + "<br>Amount: " + amount;
     }
     
+        public String toString2(String top, String bottom, int amount, int pris, int fullPrice) {  
+        return "Topping: " + top + "<br>Bottom: " + bottom +  "<br>Amount: " + amount + "<br>Price: " + pris + "<br>Total Price: " + fullPrice;
+    }
+    
 }

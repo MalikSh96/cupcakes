@@ -84,7 +84,7 @@ public class Control extends HttpServlet {
             user.getCart().cupcakeList.add(new CupcakeList(topping.toString(),bottom.toString(),price,amount));
             user.getCart().shoppingCartAdd(cake, amount);
 
-            
+                System.out.println(user.getCart().getShoppingCart());
                 if(request.getParameter("add") != null)
                 response.sendRedirect("products.jsp");
               //  else response.sendRedirect("confirmation.jsp");
@@ -98,8 +98,8 @@ public class Control extends HttpServlet {
         }
         try (PrintWriter out = response.getWriter()) {
             
-            //request.getSession().setAttribute("user", user);
             user.setCart(cart);
+           // System.out.println(user.getCart().printCart());
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -121,7 +121,7 @@ public class Control extends HttpServlet {
             out.println("<br>");
             out.println("<br>");
             out.println("Shoppingcart: <br>");
-            out.println(user.getCart().toString2()+"<br><br><br><br><br>");
+            out.println(user.getCart() +"<br><br><br><br><br>");
             
             out.println("</center>");
             out.println("</body>");
