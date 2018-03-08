@@ -113,17 +113,6 @@ public class Control extends HttpServlet {
             out.println("<body>");
             out.println("<h1>Order info " + request.getContextPath() + "</h1>");
             out.println("<center>");
-            out.println("Amount: " + amount);;
-            out.println("<br>");
-            out.println("Topping: " + topping);
-            out.println("<br>");
-            out.println("Bottom: " + bottom);
-            out.println("<br>");
-            out.println("<br>");
-            out.println("<br>");
-            out.println("<br>");
-            out.println("<br>");
-            out.println("<br>");
             out.println("Shoppingcart: <br>");
             for (Cupcake cake : user.getCart().getShoppingCart()) {
                 out.print("<table border = " + 1 + ">");

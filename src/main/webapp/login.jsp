@@ -7,9 +7,7 @@
         <title>Cupcake Shop</title>
     </head>
     <body>
-        <h1> Home Page</h1>
-        
-        <h2>Log In</h2>
+        <h1> Login </h1>
         
         <form action="Control" method="post">
             <input type="text" name="username" value="" placeholder="Username" />

@@ -7,8 +7,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <h2>Register</h2>
+        <h1>Registration</h1>
+        <h2>Register as user</h2>
         
         <form id="formCreate" action="Control" method="post">
             <label id="labelUsername" for="username">Username</label>

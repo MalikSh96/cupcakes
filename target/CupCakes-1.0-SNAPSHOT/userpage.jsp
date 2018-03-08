@@ -23,7 +23,7 @@
             Admin: <%= user.isAdmin() %><br>
             
         </p>
-        <a href ="products.jsp"> Click here for cupcakes </a>
+        <a href ="products.jsp"> Products </a>
         
     </body>
 </html>

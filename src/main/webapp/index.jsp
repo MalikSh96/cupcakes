@@ -7,10 +7,10 @@
         <title>Cupcake Shop</title>
     </head>
     <body>
-        <h1>CUPCAKES</h1>
+        <h1>Homepage</h1>
         <div class="order-section">
             
-            <a href ="login.jsp"> Click here to order </a>
+            <a href ="login.jsp"> Login </a>
         </div>
 
     </body>
