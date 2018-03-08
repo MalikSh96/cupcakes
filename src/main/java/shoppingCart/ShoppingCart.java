@@ -8,7 +8,8 @@ import datasource.DataSource1;
 
 public class ShoppingCart 
 {
-    private int totalPrice, id, pris, amount;
+    private int totalPrice = 0;
+            private int id, pris, amount;
     private int fullPrice = 0;
     ArrayList<Cupcake> shoppingCart = new ArrayList<>();
     public ArrayList<CupcakeList> cupcakeList = new ArrayList<>();
@@ -23,7 +24,7 @@ public class ShoppingCart
         cupcakeList.add(new CupcakeList(cake.getTopping().toString(),cake.getBottom().toString(),amount,(cake.getTopping().getTopping_price() + cake.getBottom().getBottom_price())*amount));
             
        
-        totalPrice += (cake.getTopping().getTopping_price() + cake.getBottom().getBottom_price())*amount;
+        totalPrice += (cake.getPrice())*amount;
     }
     
     public int getTotalPrice() 

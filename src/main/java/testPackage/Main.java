@@ -19,15 +19,16 @@ public class Main
         ShoppingCart shop = new ShoppingCart();
     //    shop.shoppingCartAdd(new Cupcake(d.getCakeTopping("Chocolate"), d.getCakeBottom("Vanilla"), 30));
      //   shop.shoppingCartAdd(new Cupcake(d.getCakeTopping("Blueberry"), d.getCakeBottom("Vanilla"), 120));
+     Cupcake cake = new Cupcake(d.getCakeTopping("Blueberry"), d.getCakeBottom("Chocolate"), 20);
        // shop.shoppingCartAdd(new Cupcake(d.getCakeTopping("Blueberry"), d.getCakeBottom("Chocolate"), 20));
-     
+     shop.shoppingCartAdd(cake, 20);
         Users u = d.getUser(1);
         u.setCart(shop);
         System.out.println(u.getBalance());
-        System.out.println("...Before..." + d.updateUserBalance(u));
+   //     System.out.println("...Before..." + d.updateUserBalance(u));
         System.out.println("Balance: " + calc.calculatePrice(u));
-        d.updateUserBalance(u);
-        System.out.println("...After..." + d.updateUserBalance(u));
+    //    d.updateUserBalance(u);
+  //      System.out.println("...After..." + d.updateUserBalance(u) + u.getBalance());
         
         System.out.println("\n\nOrderline here");
         System.out.println(d.orderID(u));

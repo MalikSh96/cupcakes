@@ -8,9 +8,10 @@ public class Calculator
     ShoppingCart shop;
     
    
-    public double calculatePrice(Users u)
+    public boolean calculatePrice(Users u)
     {
-        if(u.getBalance() >= u.getCart().getTotalPrice()) return u.getBalance() - u.getCart().getTotalPrice();
-        else throw new IllegalStateException("Insufficient funds");
+        if(u.getBalance() >= u.getCart().getTotalPrice()) return true;
+       // else throw new IllegalStateException("Insufficient funds");
+        else return false;
     }
 }

@@ -402,29 +402,32 @@ public class DAO implements DataInterface {
         return balance;
     }
 
-    public int getUserId(Users u) {
-        int id = u.getId();
+    public int getUserId(String username) {
         try {
             dbc.open();
 
-            String sql = "select * from users where username = '" + u.getUsername()
-                    + "'";
+            String sql = "select * from users where username = '" + username + "'";
+            ResultSet resultset = dbc.executeQuery(sql);
 
-            dbc.executeQuery(sql);
-
-            dbc.close();
-
-            return id;
-        } catch (SQLException e) {
+            while (resultset.next()) {
+                int id = resultset.getInt("user_id");
+             return id;   
+            }
+        
+        dbc.close();
+    } catch (SQLException e){
             e.printStackTrace();
         }
 
-        return id;
+    return 0;
     }
-
+    
     public boolean updateUserBalance(Users u) {
-        //ShoppingCart shop = new ShoppingCart();
+
         int balance = u.getBalance() - u.getCart().getTotalPrice();
+        System.out.println(balance);
+        System.out.println(u.getCart().getTotalPrice());
+        System.out.println(u.getId());
         try {
             dbc.open();
 
@@ -460,14 +463,12 @@ public class DAO implements DataInterface {
                 ResultSet res = prep.getGeneratedKeys();
                 res.next();
                 orderId = res.getInt(1); //ir
-                System.out.println("DEBUG : "+orderId);
-                
-                OrderLine(u.getCart(),orderId);
+                System.out.println("DEBUG : " + orderId);
+
+                OrderLine(u.getCart(), orderId);
                 u.getCart().setId(orderId);
                 dbc.getConnection().commit();
-            } 
-            else 
-            {
+            } else {
                 dbc.getConnection().rollback();
             }
 
@@ -479,8 +480,7 @@ public class DAO implements DataInterface {
         return u;
     }
 
-    public boolean OrderLine(ShoppingCart cart, int orderId)
-    {
+    public boolean OrderLine(ShoppingCart cart, int orderId) {
         ArrayList<Cupcake> cupcakes = cart.getShoppingCart();
 
         try {
@@ -497,7 +497,6 @@ public class DAO implements DataInterface {
                 System.out.println("Check sql: " + sql);
                 prep.executeUpdate();
             }
-            
 
             return true;
         } catch (SQLException e) {
@@ -540,7 +539,7 @@ public class DAO implements DataInterface {
 
         return user;
     }
-    
+
     public Cupcake getCake(String cake_top, String cake_bottom, int amount) {
 
         Cake_toppings top = null;

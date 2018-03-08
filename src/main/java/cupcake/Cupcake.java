@@ -50,12 +50,6 @@ public class Cupcake {
         return toppingPrice;
     }
 
-
-     public int getTotalPrice() 
-    {
-        return bottom.getBottom_price() + topping.getTopping_price();
-    }
-
     public int getPrice() {
         return price;
     }
