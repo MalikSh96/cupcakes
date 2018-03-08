@@ -115,8 +115,8 @@ public class Control extends HttpServlet {
             }
         }
         try (PrintWriter out = response.getWriter()) {
-
-            user.setCart(cart);
+if(user != null) {
+           // user.setCart(cart);
             //System.out.println(user.getCart().printCart());
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -158,6 +158,7 @@ public class Control extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
 
+        }
         }
     }
 
