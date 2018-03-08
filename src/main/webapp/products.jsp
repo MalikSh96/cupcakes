@@ -50,9 +50,6 @@
                 <input type="hidden" name="origin" value="products" />
                 <input type ="submit" name="add" value="Add to cart">
             </div>
-<c:forEach items="${yourArrayList}" var="item">
-    <c:out value="${item.name}" />
-</c:forEach>
 
             <div class="submit-button">
                 <input type ="submit" value="Checkout">

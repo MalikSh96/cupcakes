@@ -16,14 +16,14 @@ public class ShoppingCart
     DAO dao = new DAO(ds.getDataSource());
 
 
-    public void cupcakeAdd(Cupcake cake) {
+    public void shoppingCartAdd(Cupcake cake, int amount) {
         
             
         shoppingCart.add(cake);
-        cupcakeList.add(new CupcakeList(cake.getTopping().toString(),cake.getBottom().toString(),cake.getAmount(),(cake.getTopping().getTopping_price() + cake.getBottom().getBottom_price())*cake.getAmount()));
+        cupcakeList.add(new CupcakeList(cake.getTopping().toString(),cake.getBottom().toString(),amount,(cake.getTopping().getTopping_price() + cake.getBottom().getBottom_price())*amount));
             
        
-        totalPrice += (cake.getTopping().getTopping_price() + cake.getBottom().getBottom_price())*cake.getAmount();
+        totalPrice += (cake.getTopping().getTopping_price() + cake.getBottom().getBottom_price())*amount;
     }
     
     public int getTotalPrice() 

@@ -84,13 +84,15 @@ public class Control extends HttpServlet {
             amount = Integer.parseInt(request.getParameter("amount"));
             price += (dao.getCakeBottomPrice(bottom.toString()) + dao.getCakeBottomPrice(topping.toString()))*amount;
             Cupcake cake = new Cupcake(topping, bottom, price, amount);
-            user.getCart().cupcakeList.add(new CupcakeList(topping.toString(),bottom.toString(),price,amount));
-            user.getCart().cupcakeAdd(cake);
+           
 
 
                 System.out.println(user.getCart().getShoppingCart());
                 if (request.getParameter("add") != null) {
-                    response.sendRedirect("products.jsp");
+                user.getCart().cupcakeList.add(new CupcakeList(topping.toString(),bottom.toString(),price,amount));
+                user.getCart().shoppingCartAdd(cake, amount);
+                response.sendRedirect("products.jsp");
+                    
                 }
                 //  else response.sendRedirect("confirmation.jsp");
             }
@@ -103,7 +105,7 @@ public class Control extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
 
             user.setCart(cart);
-            // System.out.println(user.getCart().printCart());
+             //System.out.println(user.getCart().printCart());
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -111,8 +113,23 @@ public class Control extends HttpServlet {
             out.println("<link href=\"stylesheet.css\" rel=\"stylesheet\" type=\"text/css\"/>");
             out.println("</head>");
             out.println("<body>");
+            
+            
             out.println("<h1>Order info " + request.getContextPath() + "</h1>");
             out.println("<center>");
+//                        out.println("Amount: " + amount);;
+//            out.println("<br>");
+//            out.println("Topping: " + topping);
+//            out.println("<br>");
+//            out.println("Bottom: " + bottom);
+//            out.println("<br>");
+//            out.println("<br>");
+//            out.println("<br>");
+//            out.println("<br>");
+//            out.println("<br>");
+//            out.println("<br>");
+            
+            
             out.println("Shoppingcart: <br>");
             for (Cupcake cake : user.getCart().getShoppingCart()) {
                 out.print("<table border = " + 1 + ">");
