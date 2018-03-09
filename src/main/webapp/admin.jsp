@@ -17,7 +17,7 @@
   <a href="userpage.jsp">Your profile</a>
   <a href="products.jsp">Products</a>
 </div>
-        
+    <center>
         <h1>Admin page</h1>
         <%
             Users user = (Users) session.getAttribute("user");
@@ -37,6 +37,6 @@
             Users: <br><br><%= admin.usernames.toString().replace("[","").replace("]","").replace(",","")%><br>
             
         </p>
-
+    </center>
     </body>
 </html>

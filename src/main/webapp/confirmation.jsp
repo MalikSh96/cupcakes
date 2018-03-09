@@ -18,7 +18,7 @@
   <a href="userpage.jsp">Your profile</a>
   <a href="products.jsp">Products</a>
 </div>
-        
+    <center>
         <h1>Order Confirmation</h1>
         
         <form>
@@ -32,5 +32,6 @@
                 Balance: <%= user.getBalance() %> <br>
             </p>
         </form>
+    </center>
         </body>
 </html>

@@ -11,5 +11,6 @@ datasource\DataSource1.class
 cupcake\CupcakeList.class
 connecter\DBConnector.class
 cupcake\Cupcake.class
+entity\Admin.class
 servlets\ProductList.class
 databaseConnect\DAO.class
