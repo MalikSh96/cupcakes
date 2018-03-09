@@ -12,9 +12,10 @@
         
         <%
             Users user = (Users) session.getAttribute("user");
+            user.setId(user);
         %>
         <p>
-        
+            
             Logged in as: <%= user.getUsername() %><br>
             Id: <%= user.getId() %><br>
             Password: <%= user.getPassword() %><br>

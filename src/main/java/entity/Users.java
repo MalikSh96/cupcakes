@@ -59,7 +59,7 @@ public class Users
         this.admin = admin;
     }
     
-        public Users(String username, String password, int balance) {
+    public Users(String username, String password, int balance) {
         this.username = username;
         this.password = password;
         this.balance = balance;

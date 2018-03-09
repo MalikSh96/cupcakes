@@ -51,7 +51,9 @@ public class Control extends HttpServlet {
 
                     //request.getRequestDispatcher("user.jsp").forward(request, response);
                     this.user = user;
-                    user.setCart(cart);
+                    if (user != null) {
+                        user.setCart(cart);
+                    }
 
                     response.sendRedirect("validatelogin.jsp");
 
@@ -59,20 +61,22 @@ public class Control extends HttpServlet {
             }
             break;
             case "registration": {
-                System.out.println("registration");
+                //  System.out.println("registration");
                 String username = request.getParameter("username");
                 String password = request.getParameter("password");
                 String balance = request.getParameter("balance");
-                System.out.println(balance);
+                //System.out.println(balance);
 
                 int number = Integer.parseInt(balance);
                 //String email = request.getParameter("email");
                 //Boolean.parseBoolean(request.getParameter("admin"));
                 //search.alreadyExist(username);
                 Users u;
-                
+
                 dao.createUser(u = new Users(username, password, number));
+                System.out.println(u.getId());
                 u.setId(u);
+                System.out.println(u.getId());
                 response.sendRedirect("index.jsp");
 
             }
@@ -80,7 +84,6 @@ public class Control extends HttpServlet {
             case "products": {
 
                 price = 0;
-                System.out.println("products");
                 Cake_bottoms bottom = new Cake_bottoms(request.getParameter("cake_bottom"));
                 Cake_toppings topping = new Cake_toppings(request.getParameter("cake_topping"));
                 this.topping = request.getParameter("cake_topping");
@@ -96,69 +99,43 @@ public class Control extends HttpServlet {
                     response.sendRedirect("products.jsp");
 
                 }
-                //  else response.sendRedirect("confirmation.jsp");
             }
             break;
-            case "confirmation": {
-                System.out.println("confirmation");
-        //        dao.updateUserBalance(user);
-                calc.calculatePrice(user);
-       //         dao.updateUserBalance(user);
-                break;
-            }
-            case "calculator": {          
-                System.out.println("calculator");   
-                dao.updateUserBalance(user);
-                System.out.println(user.getBalance());
-                response.sendRedirect("confirmation.jsp");
-                break;
-            }
         }
         try (PrintWriter out = response.getWriter()) {
-if(user != null) {
-           // user.setCart(cart);
-            //System.out.println(user.getCart().printCart());
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Servlet</title>");
-            out.println("<link href=\"stylesheet.css\" rel=\"stylesheet\" type=\"text/css\"/>");
-            out.println("</head>");
-            out.println("<body>");
+            if (user != null) {
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title>Servlet Servlet</title>");
+                out.println("<link href=\"stylesheet.css\" rel=\"stylesheet\" type=\"text/css\"/>");
+                out.println("</head>");
+                out.println("<body>");
 
-            out.println("<h1>Order info " + request.getContextPath() + "</h1>");
-            out.println("<center>");
-            out.println("Shoppingcart: <br>");
-            for (Cupcake cake : user.getCart().getShoppingCart()) {
-                out.print("<table border = " + 1 + ">");
-                out.print("<tr>");
-                out.print("<td>" + cake.getTopping() + "</td>");
-                out.print("<td>" + cake.getBottom() + "</td>");
-                out.print("<td>" + cake.getAmount() + "</td>");
-                out.print("<td>" + cake.getPrice() * cake.getAmount() + "</td>");
-                out.print("</tr>");
-            }
-            //     out.print("Total:" + user.getCart().getTotalPrice());
-            //out.println(user.getCart().getShoppingCart() +"<br><br><br><br><br>");
+                out.println("<h1>Order info " + request.getContextPath() + "</h1>");
+                out.println("<center>");
+                out.println("Shoppingcart: <br>");
+                for (Cupcake cake : user.getCart().getShoppingCart()) {
+                    out.print("<table border = " + 1 + ">");
+                    out.print("<tr>");
+                    out.print("<td>" + cake.getTopping() + "</td>");
+                    out.print("<td>" + cake.getBottom() + "</td>");
+                    out.print("<td>" + cake.getAmount() + "</td>");
+                    out.print("<td>" + cake.getPrice() * cake.getAmount() + "</td>");
+                    out.print("</tr>");
+                }
+                //     out.print("Total:" + user.getCart().getTotalPrice());
+                //out.println(user.getCart().getShoppingCart() +"<br><br><br><br><br>");
 
-            out.println("</center>");
-            out.println("<div id=\"footer\">" + "Total:" + user.getCart().getTotalPrice() + "</div>");
-            if (calc.calculatePrice(user)) {
-//                calc.calculatePrice(user);
-//                dao.updateUserBalance(user);
+                out.println("</center>");
+                out.println("<div id=\"footer\">" + "Total:" + user.getCart().getTotalPrice() + "</div>");
                 out.println("<form action=\"calculator.jsp\">");
                 out.println("<input type=\"submit\" value=\"Confirm Order\"/>");
                 out.println("</form>");
-            } else {
-                out.println("<form action=\"insufficient Funds.jsp\">");
-                out.println("<input type=\"submit\" value=\"Confirm Order\"/>");
-                out.println("</form>");
+                out.println("</body>");
+                out.println("</html>");
+
             }
-
-            out.println("</body>");
-            out.println("</html>");
-
-        }
         }
     }
 
