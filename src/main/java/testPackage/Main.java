@@ -5,6 +5,7 @@ import cupcake.Cake_bottoms;
 import cupcake.Cupcake;
 import databaseConnect.DAO;
 import datasource.DataSource1;
+import entity.Admin;
 import entity.Users;
 import shoppingCart.ShoppingCart;
 
@@ -16,11 +17,14 @@ public class Main
         DAO d = new DAO(ds1.getDataSource());
         Calculator calc = new Calculator();
         Users u = new Users("john","flaske", 2200);
+        Admin ad = new Admin();
         
-        System.out.println(u.getId());
-        u.setId(u);
-        System.out.println(u.getId());
+        ad.printUsers();
         
+//        System.out.println(u.getId());
+//        u.setId(u);
+//        System.out.println(u.getId());
+//        
 //        ShoppingCart shop = new ShoppingCart();
 //    //    shop.shoppingCartAdd(new Cupcake(d.getCakeTopping("Chocolate"), d.getCakeBottom("Vanilla"), 30));
 //     //   shop.shoppingCartAdd(new Cupcake(d.getCakeTopping("Blueberry"), d.getCakeBottom("Vanilla"), 120));

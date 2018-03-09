@@ -411,17 +411,17 @@ public class DAO implements DataInterface {
 
             while (resultset.next()) {
                 int id = resultset.getInt("user_id");
-             return id;   
+                return id;
             }
-        
-        dbc.close();
-    } catch (SQLException e){
+
+            dbc.close();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
-    return 0;
+        return 0;
     }
-    
+
     public boolean updateUserBalance(Users u) {
 
         int balance = u.getBalance() - u.getCart().getTotalPrice();
@@ -512,12 +512,6 @@ public class DAO implements DataInterface {
         try {
             dbc.open();
 
-            /*
-            String sql = "select * from user where username = '" + username + "' and password = '" + password + "'";
-            System.out.println("SQL: " + sql);
-            ResultSet resultSet = dbc.executeQuery(sql);
-             */
-            //PreparedStatement
             String sql = "select * from users where username = ? and password = ?";
             PreparedStatement preparedStatement = dbc.preparedStatement(sql);
             preparedStatement.setString(1, username);
@@ -527,7 +521,7 @@ public class DAO implements DataInterface {
 
             if (resultSet.next()) {
                 int balance = resultSet.getInt("balance");
-                //boolean admin = resultSet.getInt("admin") > 0;
+                // boolean admin = resultSet.getInt("admin") > 0;
 
                 user = new Users(username, password, balance);
             }
@@ -578,5 +572,27 @@ public class DAO implements DataInterface {
         }
 
         return null;
+    }
+
+    public boolean validateAdmin(Users u) {
+        
+        try {
+            dbc.open();
+
+            String sql = "select * from users where username = '" + u.getUsername() + "'";
+            ResultSet resultset = dbc.executeQuery(sql);
+
+            while (resultset.next()) {
+               int id = resultset.getInt("isAdmin");
+               if(id == 1) {
+                   u.setAdmin(true);
+                   return true;
+               }
+            }
+            dbc.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

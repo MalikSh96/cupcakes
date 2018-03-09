@@ -9,7 +9,6 @@ entity\Users.class
 servlets\ProductControl.class
 datasource\DataSource1.class
 cupcake\CupcakeList.class
-usersearch\Searcher.class
 connecter\DBConnector.class
 cupcake\Cupcake.class
 servlets\ProductList.class
