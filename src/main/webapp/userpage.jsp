@@ -5,17 +5,27 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>USERPAGE</h1>
         
+                <div class="navbar">
+  <a href="index.jsp">Home</a>
+  <a href="login.jsp">Log In</a>
+  <a href="registration.jsp">Registration</a>
+  <a href="userpage.jsp">Your profile</a>
+  <a href="products.jsp">Products</a>
+</div>
+        
+        <h1>USERPAGE</h1>
+    <center>
         <%
             Users user = (Users) session.getAttribute("user");
             user.setId(user);
         %>
         <p>
-            
+        
             Logged in as: <%= user.getUsername() %><br>
             Id: <%= user.getId() %><br>
             Password: <%= user.getPassword() %><br>
@@ -24,7 +34,9 @@
             Admin: <%= user.isAdmin() %><br>
             
         </p>
+        <div class="order-section">
         <a href ="products.jsp"> Products </a>
-        
+        </div>
+    </center>
     </body>
 </html>

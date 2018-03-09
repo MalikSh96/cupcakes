@@ -12,28 +12,25 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import usersearch.Searcher;
 import databaseConnect.DAO;
 import datasource.DataSource1;
 import entity.Users;
-import static java.lang.System.out;
 
 import shoppingCart.ShoppingCart;
 
 @WebServlet(name = "Control", urlPatterns = {"/Control"})
 public class Control extends HttpServlet {
 
-    Searcher search;
     DataSource1 ds1 = new DataSource1();
     DAO dao = new DAO(ds1.getDataSource());
-    int amount = 0;
     String bottom;
     String topping;
-    Users user;
+    Users u;
     CupcakeList cl;
     ShoppingCart cart = new ShoppingCart();
     Calculator calc = new Calculator();
     int price = 0;
+    int amount = 0;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -49,8 +46,8 @@ public class Control extends HttpServlet {
 
                     request.getSession().setAttribute("user", user);
 
-                    //request.getRequestDispatcher("user.jsp").forward(request, response);
-                    this.user = user;
+                    //request.getRequestDispatcher("u.jsp").forward(request, response);
+                    this.u = user;
                     if (user != null) {
                         user.setCart(cart);
                     }
@@ -61,16 +58,13 @@ public class Control extends HttpServlet {
             }
             break;
             case "registration": {
-                //  System.out.println("registration");
                 String username = request.getParameter("username");
                 String password = request.getParameter("password");
                 String balance = request.getParameter("balance");
-                //System.out.println(balance);
 
                 int number = Integer.parseInt(balance);
                 //String email = request.getParameter("email");
                 //Boolean.parseBoolean(request.getParameter("admin"));
-                //search.alreadyExist(username);
                 Users u;
 
                 dao.createUser(u = new Users(username, password, number));
@@ -92,10 +86,10 @@ public class Control extends HttpServlet {
                 price += (dao.getCakeBottomPrice(bottom.toString()) + dao.getCakeToppingPrice(topping.toString()));
                 Cupcake cake = new Cupcake(topping, bottom, price, amount);
 
-                System.out.println(user.getCart().getShoppingCart());
+                System.out.println(u.getCart().getShoppingCart());
                 if (request.getParameter("add") != null) {
-                    user.getCart().cupcakeList.add(new CupcakeList(topping.toString(), bottom.toString(), price, amount));
-                    user.getCart().shoppingCartAdd(cake, amount);
+                    u.getCart().cupcakeList.add(new CupcakeList(topping.toString(), bottom.toString(), price, amount));
+                    u.getCart().shoppingCartAdd(cake, amount);
                     response.sendRedirect("products.jsp");
 
                 }
@@ -103,7 +97,7 @@ public class Control extends HttpServlet {
             break;
         }
         try (PrintWriter out = response.getWriter()) {
-            if (user != null) {
+            if (u != null) {
                 out.println("<!DOCTYPE html>");
                 out.println("<html>");
                 out.println("<head>");
@@ -115,7 +109,7 @@ public class Control extends HttpServlet {
                 out.println("<h1>Order info " + request.getContextPath() + "</h1>");
                 out.println("<center>");
                 out.println("Shoppingcart: <br>");
-                for (Cupcake cake : user.getCart().getShoppingCart()) {
+                for (Cupcake cake : u.getCart().getShoppingCart()) {
                     out.print("<table border = " + 1 + ">");
                     out.print("<tr>");
                     out.print("<td>" + cake.getTopping() + "</td>");
@@ -124,11 +118,12 @@ public class Control extends HttpServlet {
                     out.print("<td>" + cake.getPrice() * cake.getAmount() + "</td>");
                     out.print("</tr>");
                 }
-                //     out.print("Total:" + user.getCart().getTotalPrice());
-                //out.println(user.getCart().getShoppingCart() +"<br><br><br><br><br>");
+                out.println("<br>");
+                //     out.print("Total:" + u.getCart().getTotalPrice());
+                //out.println(u.getCart().getShoppingCart() +"<br><br><br><br><br>");
 
                 out.println("</center>");
-                out.println("<div id=\"footer\">" + "Total:" + user.getCart().getTotalPrice() + "</div>");
+               // out.println("<div id=\"footer\">" + "Total:" + u.getCart().getTotalPrice() + "</div>");
                 out.println("<form action=\"calculator.jsp\">");
                 out.println("<input type=\"submit\" value=\"Confirm Order\"/>");
                 out.println("</form>");
