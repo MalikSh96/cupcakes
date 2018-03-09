@@ -16,6 +16,7 @@
   <a href="products.jsp">Products</a>
 </div>
         
-        <h1>Login failed, please try again</h1>
+        <h1>Login failed</h1>
+        <h2>please try again</h2>
     </body>
 </html>
