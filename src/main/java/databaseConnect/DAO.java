@@ -156,7 +156,24 @@ public class DAO implements DataInterface {
 
         return false;
     }
+    
+    public boolean deleteUser(String username) {
+        try {
+            dbc.open();
 
+            String sql = "delete from users where username = " + username;
+            dbc.executeUpdate(sql);
+
+            dbc.close();
+
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+    
     @Override
     public boolean updateUser(int id, String username) {
         try {
