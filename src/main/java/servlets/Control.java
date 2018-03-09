@@ -93,8 +93,18 @@ public class Control extends HttpServlet {
                     response.sendRedirect("products.jsp");
 
                 }
+               
             }
             break;
+            case "delete": {
+                
+                String username = request.getParameter("username");
+                 
+
+                //Users user = dao.validateUser(username, password);
+
+                 
+            }
         }
         try (PrintWriter out = response.getWriter()) {
             if (u != null) {

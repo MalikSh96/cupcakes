@@ -34,10 +34,11 @@
             
             Admin: <%= user.isAdmin() %><br>
             
-            <div class="delete">
-                <label> Delete user: </label><input type="username" name="username"/>
+            <form action="Control" method="post">
+                <input type="text" name="username" value="" placeholder="User to delete" />
+                <input type="hidden" name="origin" value="delete" />
                 <input type="submit" value="delete user" />
-            </div>
+            </form>
             
             Users: <br><br><%= admin.usernames.toString().replace("[","").replace("]","").replace(",","")%><br>
             
