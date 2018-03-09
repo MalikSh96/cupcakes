@@ -1,8 +1,8 @@
 body{
-background: pink;
-font-family: arial;
-margin-top: 100px;
-color: #fff;
+    background: pink;
+    font-family: arial;
+    margin-top: 100px;
+    color: #fff;
 }
 
 .prod {
@@ -140,8 +140,8 @@ form { /*centers input fields*/
     text-align: center;
     padding: 14px 16px;
     background-color: #99ccff;
-   text-decoration: none;
-   transition: background-color 0.5s ease;
+    text-decoration: none;
+    transition: background-color 0.5s ease;
 }
 
 /* Change background on mouse-over */
