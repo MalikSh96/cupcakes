@@ -161,7 +161,7 @@ public class DAO implements DataInterface {
         try {
             dbc.open();
 
-            String sql = "delete from users where username = " + username;
+            String sql = "delete from users where username = '" + username + "'";
             dbc.executeUpdate(sql);
 
             dbc.close();

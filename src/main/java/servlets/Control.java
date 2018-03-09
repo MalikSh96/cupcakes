@@ -98,11 +98,9 @@ public class Control extends HttpServlet {
             break;
             case "delete": {
                 
-                String username = request.getParameter("username");
-                 
-
-                //Users user = dao.validateUser(username, password);
-
+                String username = request.getParameter("username");                 
+                dao.deleteUser(username);
+                response.sendRedirect("admin.jsp");
                  
             }
         }
