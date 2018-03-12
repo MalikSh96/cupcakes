@@ -16,6 +16,8 @@ public class Main {
         Calculator calc = new Calculator();
         Users u = new Users("john", "flaske", 2200, 5);
         Admin ad = new Admin();
+        ShoppingCart cart = new ShoppingCart();
+        Users us = d.getUser(4);
 
 //        ad.printUsers();
 //        System.out.println(u.getId());
@@ -61,8 +63,6 @@ public class Main {
 //        System.out.println(u.getBalance());
 //        
 //        
-//        Users us = d.getUser(4);
-//        ShoppingCart cart = new ShoppingCart();
 //        us.setCart(cart);
 //        Cupcake cake = new Cupcake(d.getCakeTopping("Blueberry"), d.getCakeBottom("Chocolate"), 20, 1);
 //        us.getCart().shoppingCartAdd(cake, 1);
