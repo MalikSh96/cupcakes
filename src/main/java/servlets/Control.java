@@ -91,15 +91,15 @@ public class Control extends HttpServlet {
                     response.sendRedirect("products.jsp");
 
                 }
-               
+
             }
             break;
             case "delete": {
-                
-                String username = request.getParameter("username");                 
+
+                String username = request.getParameter("username");
                 dao.deleteUser(username);
                 response.sendRedirect("admin.jsp");
-                 
+
             }
         }
         try (PrintWriter out = response.getWriter()) {
@@ -111,16 +111,15 @@ public class Control extends HttpServlet {
                 out.println("<link href=\"stylesheet.css\" rel=\"stylesheet\" type=\"text/css\"/>");
                 out.println("</head>");
                 out.println("<body>");
-                
+
                 out.println("<div class=\"navbar\">");
                 out.println("<a href=\"index.jsp\">Home</a>");
-  out.println("<a href=\"login.jsp\">Log In</a>");
-  out.println("<a href=\"registration.jsp\">Registration</a>");
-  out.println("<a href=\"userpage.jsp\">Your profile</a>");
-  out.println("<a href=\"products.jsp\">Products</a>");
-out.println("</div>");
-                
-                
+                out.println("<a href=\"login.jsp\">Log In</a>");
+                out.println("<a href=\"registration.jsp\">Registration</a>");
+                out.println("<a href=\"userpage.jsp\">Your profile</a>");
+                out.println("<a href=\"products.jsp\">Products</a>");
+                out.println("</div>");
+
                 out.println("<h1>Order info " + request.getContextPath() + "</h1>");
                 out.println("<center>");
                 out.println("Shoppingcart: <br>");
