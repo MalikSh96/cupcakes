@@ -1,6 +1,5 @@
 package databaseConnect;
 
-import calculator.Calculator;
 import connecter.DBConnector;
 import cupcake.Cake_bottoms;
 import cupcake.Cake_toppings;
