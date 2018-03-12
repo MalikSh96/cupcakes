@@ -8,10 +8,9 @@ import datasource.DataSource1;
 
 public class ShoppingCart 
 {
-    private int totalPrice = 0;
-            private int id, pris, amount;
-    private int fullPrice = 0;
-    ArrayList<Cupcake> shoppingCart = new ArrayList<>();
+    private int totalPrice;
+    private int id;
+    public ArrayList<Cupcake> shoppingCart = new ArrayList<>();
     public ArrayList<CupcakeList> cupcakeList = new ArrayList<>();
     DataSource1 ds = new DataSource1();
     DAO dao = new DAO(ds.getDataSource());

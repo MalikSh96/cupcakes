@@ -65,6 +65,13 @@ public class Users
         this.balance = balance;
     }
     
+        public Users(String username, String password, int balance, int id) {
+        this.username = username;
+        this.password = password;
+        this.balance = balance;
+        this.id = id;
+    }
+    
 
     public Users(int id, int balance) 
     {

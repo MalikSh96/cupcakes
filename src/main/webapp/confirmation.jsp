@@ -1,3 +1,4 @@
+<%@page import="datasource.DataSource1"%>
 <%@page import="entity.Users"%>
 <%@page import="databaseConnect.DAO"%>
 
@@ -26,10 +27,12 @@
         </form>
                 <%
             Users user = (Users) session.getAttribute("user");
+            DataSource1 ds1 = new DataSource1();
+            DAO dao = new DAO(ds1.getDataSource());
         %>
         <form>
             <p>
-                Balance: <%= user.getBalance() %> <br>
+                New balance: <%= dao.getUserBalance(user) %> <br>
             </p>
         </form>
     </center>

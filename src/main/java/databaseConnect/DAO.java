@@ -399,23 +399,24 @@ public class DAO implements DataInterface {
     }
 
     public int getUserBalance(Users u) {
-        int balance = u.getBalance();
+        int balance;
         try {
             dbc.open();
 
-            String sql = "select * from users where username = '" + u.getUsername()
+            String sql = "select * from users where user_id = '" + u.getId()
                     + "'";
-
-            dbc.executeQuery(sql);
+            ResultSet resultset = dbc.executeQuery(sql);
+            while(resultset.next()) {
+                balance = resultset.getInt("balance");
+                return balance;
+            }
 
             dbc.close();
-
-            return balance;
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return balance;
+        return 0;
     }
 
     public int getUserId(String username) {
@@ -440,10 +441,12 @@ public class DAO implements DataInterface {
 
     public boolean updateUserBalance(Users u) {
 
-        int balance = u.getBalance() - u.getCart().getTotalPrice();
-        System.out.println(balance);
-        System.out.println(u.getCart().getTotalPrice());
-        System.out.println(u.getId());
+        int currentBalance = getUserBalance(u);
+        int balance = currentBalance - u.getCart().getTotalPrice();
+        System.out.println("Balance after shopping " +balance);
+        System.out.println("Current balance " + currentBalance);
+        System.out.println("Cart total price " + u.getCart().getTotalPrice());
+        System.out.println("user id " + u.getId());
         try {
             dbc.open();
 
