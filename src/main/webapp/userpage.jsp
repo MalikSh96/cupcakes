@@ -1,3 +1,5 @@
+<%@page import="databaseConnect.DAO"%>
+<%@page import="datasource.DataSource1"%>
 <%@page import="entity.Users"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -22,6 +24,8 @@
     <center>
         <%
             Users user = (Users) session.getAttribute("user");
+            DataSource1 ds1 = new DataSource1();
+            DAO dao = new DAO(ds1.getDataSource());
             user.setId(user);
         %>
         <p>
@@ -29,7 +33,7 @@
             Logged in as: <%= user.getUsername() %><br>
             Id: <%= user.getId() %><br>
             Password: <%= user.getPassword() %><br>
-            Balance: <%= user.getBalance() %> <br>
+            Balance: <%= dao.getUserBalance(user) %> <br>
             
             Admin: <%= user.isAdmin() %><br>
             
