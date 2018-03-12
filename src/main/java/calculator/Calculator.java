@@ -10,8 +10,6 @@ public class Calculator
    
     public boolean calculatePrice(Users u)
     {
-        if(u.getBalance() >= u.getCart().getTotalPrice()) return true;
-       // else throw new IllegalStateException("Insufficient funds");
-        else return false;
+        return u.getBalance() >= u.getCart().getTotalPrice();
     }
 }

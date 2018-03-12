@@ -46,7 +46,6 @@ public class Control extends HttpServlet {
 
                     request.getSession().setAttribute("user", user);
 
-                    //request.getRequestDispatcher("u.jsp").forward(request, response);
                     this.u = user;
                     if (user != null) {
                         user.setCart(cart);
@@ -64,7 +63,6 @@ public class Control extends HttpServlet {
 
                 int number = Integer.parseInt(balance);
                 //String email = request.getParameter("email");
-                //Boolean.parseBoolean(request.getParameter("admin"));
                 Users u;
 
                 dao.createUser(u = new Users(username, password, number));
@@ -136,11 +134,8 @@ out.println("</div>");
                     out.print("</tr>");
                 }
                 out.println("<br>");
-                //     out.print("Total:" + u.getCart().getTotalPrice());
-                //out.println(u.getCart().getShoppingCart() +"<br><br><br><br><br>");
 
                 out.println("</center>");
-               // out.println("<div id=\"footer\">" + "Total:" + u.getCart().getTotalPrice() + "</div>");
                 out.println("<form action=\"calculator.jsp\">");
                 out.println("<input type=\"submit\" value=\"Confirm Order\"/>");
                 out.println("</form>");
