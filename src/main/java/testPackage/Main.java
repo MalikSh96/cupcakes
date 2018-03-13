@@ -24,10 +24,10 @@ public class Main {
 //        u.setId(u);
 //        System.out.println(u.getId());
 //
-//        shop.shoppingCartAdd(new Cupcake(d.getCakeTopping("Chocolate"), d.getCakeBottom("Vanilla"), 30), 30);
-//        shop.shoppingCartAdd(new Cupcake(d.getCakeTopping("Blueberry"), d.getCakeBottom("Vanilla"), 120), 120);
-//        shop.shoppingCartAdd(new Cupcake(d.getCakeTopping("Blueberry"), d.getCakeBottom("Chocolate"), 20), 20);
-//        shop.shoppingCartAdd(cake, 20);
+//        shop.cupcakeAdd(new Cupcake(d.getCakeTopping("Chocolate"), d.getCakeBottom("Vanilla"), 30), 30);
+//        shop.cupcakeAdd(new Cupcake(d.getCakeTopping("Blueberry"), d.getCakeBottom("Vanilla"), 120), 120);
+//        shop.cupcakeAdd(new Cupcake(d.getCakeTopping("Blueberry"), d.getCakeBottom("Chocolate"), 20), 20);
+//        shop.cupcakeAdd(cake, 20);
 //        u.setCart(shop);
 //        System.out.println(u.getBalance());
 //        System.out.println("...Before..." + d.updateUserBalance(u));
@@ -65,7 +65,7 @@ public class Main {
 //        
 //        us.setCart(cart);
 //        Cupcake cake = new Cupcake(d.getCakeTopping("Blueberry"), d.getCakeBottom("Chocolate"), 20, 1);
-//        us.getCart().shoppingCartAdd(cake, 1);
+//        us.getCart().cupcakeAdd(cake, 1);
 //        System.out.println(us.getCart().shoppingCart.toString());
 //        d.updateUserBalance(us);
 //        //us.setBalance(us.getBalance() - us.getCart().getTotalPrice());

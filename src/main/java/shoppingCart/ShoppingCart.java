@@ -18,7 +18,7 @@ public class ShoppingCart
 
 
 
-    public void shoppingCartAdd(Cupcake cake, int amount) {
+    public void cupcakeAdd(Cupcake cake, int amount) {
         
             
         shoppingCart.add(cake);
