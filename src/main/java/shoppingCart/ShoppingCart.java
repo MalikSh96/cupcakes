@@ -16,6 +16,8 @@ public class ShoppingCart
     DAO dao = new DAO(ds.getDataSource());
 
 
+
+
     public void shoppingCartAdd(Cupcake cake, int amount) {
         
             
@@ -45,6 +47,9 @@ public class ShoppingCart
 
     public void setId(int id) {
         this.id = id;
+    }
+        public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
     }
     
     public String toString(String top, String bottom, int amount, int pris, int fullPrice) {  

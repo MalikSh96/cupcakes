@@ -12,11 +12,11 @@
   <a href="index.jsp">Home</a>
   <a href="login.jsp">Log In</a>
   <a href="registration.jsp">Registration</a>
-  <a href="userpage.jsp">Your profile</a>
-  <a href="products.jsp">Products</a>
 </div>
         
         <h1>Login failed</h1>
-        <h2>please try again</h2>
+        <div class="order-section">
+        <a href ="login.jsp"> Retry login </a>
+        </div>
     </body>
 </html>

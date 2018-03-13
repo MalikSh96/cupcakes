@@ -12,8 +12,6 @@
         
         <div class="navbar">
   <a href="index.jsp">Home</a>
-  <a href="login.jsp">Log In</a>
-  <a href="registration.jsp">Registration</a>
   <a href="userpage.jsp">Your profile</a>
   <a href="products.jsp">Products</a>
 </div>
@@ -54,7 +52,7 @@
             </div>
             <div class="amount">
                 <label> Amount</label><input type="number" name="amount" max="999" required value="0"/>
-            </div>
+            </div>            
 
             <div class="submit-button" action="/products.jsp">
                 <input type="hidden" name="origin" value="products" />

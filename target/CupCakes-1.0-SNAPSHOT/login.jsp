@@ -12,8 +12,6 @@
   <a href="index.jsp">Home</a>
   <a href="login.jsp">Log In</a>
   <a href="registration.jsp">Registration</a>
-  <a href="userpage.jsp">Your profile</a>
-  <a href="products.jsp">Products</a>
 </div>
         
         <h1> Login </h1>
