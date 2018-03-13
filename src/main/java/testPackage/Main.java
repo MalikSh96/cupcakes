@@ -10,7 +10,7 @@ import shoppingCart.ShoppingCart;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         DataSource1 ds1 = new DataSource1();
         DAO d = new DAO(ds1.getDataSource());
         Calculator calc = new Calculator();
@@ -19,23 +19,24 @@ public class Main {
         ShoppingCart shop = new ShoppingCart();
     //    shop.cupcakeAdd(new Cupcake(d.getCakeTopping("Chocolate"), d.getCakeBottom("Vanilla"), 30));
      //   shop.cupcakeAdd(new Cupcake(d.getCakeTopping("Blueberry"), d.getCakeBottom("Vanilla"), 120));
-        shop.cupcakeAdd(new Cupcake(d.getCakeTopping("Blueberry"), d.getCakeBottom("Chocolate"), 40));
+        int price = (d.getCakeBottom("Chocolate").getBottom_price() + d.getCakeTopping("Blueberry").getTopping_price());
+        shop.cupcakeAdd(new Cupcake(d.getCakeTopping("Blueberry"), d.getCakeBottom("Chocolate"), price, 30));
      
-//        Users u = d.getUser(1);
-//        u.setCart(shop);
-//        System.out.println(u.getBalance());
-//        System.out.println("...Before..." + d.updateUserBalance(u));
-//        System.out.println("Balance: " + calc.calculatePrice(u));
-//        d.updateUserBalance(u);
-//        System.out.println("...After..." + d.updateUserBalance(u));
-//        
-//        System.out.println("\n\nOrderline here");
-//        System.out.println(d.orderID(u));
+        Users u = d.getUser(1);
+        u.setCart(shop);
+        System.out.println(u.getBalance());
+        System.out.println("...Before..." + d.getUserBalance(u));
+        System.out.println("Balance: " + calc.calculatePrice(u));
+        d.updateUserBalance(u);
+        System.out.println("...After..." + d.getUserBalance(u));
         
-        Users u = new Users("john", "flaske", 2200, 5);
-        Admin ad = new Admin();
-        ShoppingCart cart = new ShoppingCart();
-        Users us = d.getUser(4);
+        System.out.println("\n\nOrderline here");
+        System.out.println(d.orderID(u));
+        
+//        Users u = new Users("john", "flaske", 2200, 5);
+//        Admin ad = new Admin();
+//        ShoppingCart cart = new ShoppingCart();
+//        Users us = d.getUser(4);
 
 //        ad.printUsers();
 //        System.out.println(u.getId());

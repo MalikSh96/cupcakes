@@ -18,7 +18,8 @@ public class ShoppingCart
     public void cupcakeAdd(Cupcake cake) 
     {        
         shoppingCart.add(cake);
-        cupcakeList.add(new CupcakeList(cake.getTopping().toString(),cake.getBottom().toString(),cake.getAmount(),(cake.getTopping().getTopping_price() + cake.getBottom().getBottom_price())*cake.getAmount()));
+        cupcakeList.add(new CupcakeList(cake.getTopping().getTopping(),cake.getBottom().toString(),
+                cake.getAmount(),(cake.getTopping().getTopping_price() + cake.getBottom().getBottom_price())*cake.getAmount()));
             
        
         totalPrice += (cake.getPrice())*cake.getAmount();
@@ -44,7 +45,8 @@ public class ShoppingCart
     public void setId(int id) {
         this.id = id;
     }
-        public void setTotalPrice(int totalPrice) {
+    
+    public void setTotalPrice(int totalPrice) {
         this.totalPrice = totalPrice;
     }
     

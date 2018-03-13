@@ -7,13 +7,6 @@ public class Cupcake {
     private int bottomPrice, toppingPrice, price;
     private int amount;
 
-        public Cupcake(Cake_toppings topping, Cake_bottoms bottom, int toppingPrice, int bottomPrice, int amount) {
-        this.topping = topping;
-        this.bottom = bottom;
-        this.bottomPrice = bottomPrice;
-        this.toppingPrice = toppingPrice;
-        this.amount = amount;
-    }
     
     public Cupcake(Cake_toppings topping, Cake_bottoms bottom, int amount) {
         this.topping = topping;

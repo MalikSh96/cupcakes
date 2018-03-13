@@ -1,4 +1,5 @@
 shoppingCart\ShoppingCart.class
+servlets\Control.class
 calculator\Calculator.class
 datasource\DataInterface.class
 testPackage\Main.class

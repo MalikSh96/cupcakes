@@ -13,8 +13,9 @@ public class Users
     private boolean admin;
     private String email;
     private ShoppingCart cart;
-        DataSource1 ds1 = new DataSource1(); 
-        DAO dao = new DAO(ds1.getDataSource());
+    DataSource1 ds1 = new DataSource1(); 
+    DAO dao = new DAO(ds1.getDataSource());
+    
     public Users(String username, int id)
     {
         this.username = username;
