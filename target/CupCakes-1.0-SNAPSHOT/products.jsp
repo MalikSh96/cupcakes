@@ -51,7 +51,7 @@
                 </select>
             </div>
             <div class="amount">
-                <label> Amount</label><input type="number" name="amount" max="999" required value="0"/>
+                <label> Amount</label><input type="number" name="amount" max="999" required value="1"/>
             </div>            
 
             <div class="submit-button" action="/products.jsp">
