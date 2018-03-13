@@ -8,22 +8,24 @@ import datasource.DataSource1;
 
 public class ShoppingCart 
 {
-    private int totalPrice, id, pris, amount;
-    private int fullPrice = 0;
-    ArrayList<Cupcake> shoppingCart = new ArrayList<>();
+    private int totalPrice;
+    private int id;
+    public ArrayList<Cupcake> shoppingCart = new ArrayList<>();
     public ArrayList<CupcakeList> cupcakeList = new ArrayList<>();
     DataSource1 ds = new DataSource1();
     DAO dao = new DAO(ds.getDataSource());
 
 
-    public void cupcakeAdd(Cupcake cake) {
+
+
+    public void cupcakeAdd(Cupcake cake, int amount) {
         
             
         shoppingCart.add(cake);
-        cupcakeList.add(new CupcakeList(cake.getTopping().toString(),cake.getBottom().toString(),cake.getAmount(),(cake.getTopping().getTopping_price() + cake.getBottom().getBottom_price())*cake.getAmount()));
+        cupcakeList.add(new CupcakeList(cake.getTopping().toString(),cake.getBottom().toString(),amount,(cake.getTopping().getTopping_price() + cake.getBottom().getBottom_price())*amount));
             
        
-        totalPrice += (cake.getTopping().getTopping_price() + cake.getBottom().getBottom_price())*cake.getAmount();
+        totalPrice += (cake.getPrice())*amount;
     }
     
     public int getTotalPrice() 
@@ -45,6 +47,9 @@ public class ShoppingCart
 
     public void setId(int id) {
         this.id = id;
+    }
+        public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
     }
     
     public String toString(String top, String bottom, int amount, int pris, int fullPrice) {  

@@ -1,6 +1,5 @@
 package databaseConnect;
 
-import calculator.Calculator;
 import connecter.DBConnector;
 import cupcake.Cake_bottoms;
 import cupcake.Cake_toppings;
@@ -168,7 +167,24 @@ public class DAO implements DataInterface {
 
         return false;
     }
+    
+    public boolean deleteUser(String username) {
+        try {
+            dbc.open();
 
+            String sql = "delete from users where username = '" + username + "'";
+            dbc.executeUpdate(sql);
+
+            dbc.close();
+
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+    
     @Override
     public boolean updateUser(int id, String username) {
         try {
@@ -395,48 +411,54 @@ public class DAO implements DataInterface {
     }
 
     public int getUserBalance(Users u) {
-        int balance = u.getBalance();
+        int balance;
         try {
             dbc.open();
 
-            String sql = "select * from users where username = '" + u.getUsername()
+            String sql = "select * from users where user_id = '" + u.getId()
                     + "'";
-
-            dbc.executeQuery(sql);
+            ResultSet resultset = dbc.executeQuery(sql);
+            while(resultset.next()) {
+                balance = resultset.getInt("balance");
+                return balance;
+            }
 
             dbc.close();
-
-            return balance;
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return balance;
+        return 0;
     }
 
-    public int getUserId(Users u) {
-        int id = u.getId();
+    public int getUserId(String username) {
         try {
             dbc.open();
 
-            String sql = "select * from users where username = '" + u.getUsername()
-                    + "'";
+            String sql = "select * from users where username = '" + username + "'";
+            ResultSet resultset = dbc.executeQuery(sql);
 
-            dbc.executeQuery(sql);
+            while (resultset.next()) {
+                int id = resultset.getInt("user_id");
+                return id;
+            }
 
             dbc.close();
-
-            return id;
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return id;
+        return 0;
     }
 
     public boolean updateUserBalance(Users u) {
-        //ShoppingCart shop = new ShoppingCart();
-        int balance = u.getBalance() - u.getCart().getTotalPrice();
+
+        int currentBalance = getUserBalance(u);
+        int balance = currentBalance - u.getCart().getTotalPrice();
+        System.out.println("Balance after shopping " +balance);
+        System.out.println("Current balance " + currentBalance);
+        System.out.println("Cart total price " + u.getCart().getTotalPrice());
+        System.out.println("user id " + u.getId());
         try {
             dbc.open();
 
@@ -472,14 +494,12 @@ public class DAO implements DataInterface {
                 ResultSet res = prep.getGeneratedKeys();
                 res.next();
                 orderId = res.getInt(1); //ir
-                System.out.println("DEBUG : "+orderId);
-                
-                OrderLine(u.getCart(),orderId);
+                System.out.println("DEBUG : " + orderId);
+
+                OrderLine(u.getCart(), orderId);
                 u.getCart().setId(orderId);
                 dbc.getConnection().commit();
-            } 
-            else 
-            {
+            } else {
                 dbc.getConnection().rollback();
             }
 
@@ -491,8 +511,7 @@ public class DAO implements DataInterface {
         return u;
     }
 
-    public boolean OrderLine(ShoppingCart cart, int orderId)
-    {
+    public boolean OrderLine(ShoppingCart cart, int orderId) {
         ArrayList<Cupcake> cupcakes = cart.getShoppingCart();
 
         try {
@@ -509,7 +528,6 @@ public class DAO implements DataInterface {
                 System.out.println("Check sql: " + sql);
                 prep.executeUpdate();
             }
-            
 
             return true;
         } catch (SQLException e) {
@@ -525,12 +543,6 @@ public class DAO implements DataInterface {
         try {
             dbc.open();
 
-            /*
-            String sql = "select * from user where username = '" + username + "' and password = '" + password + "'";
-            System.out.println("SQL: " + sql);
-            ResultSet resultSet = dbc.executeQuery(sql);
-             */
-            //PreparedStatement
             String sql = "select * from users where username = ? and password = ?";
             PreparedStatement preparedStatement = dbc.preparedStatement(sql);
             preparedStatement.setString(1, username);
@@ -540,7 +552,7 @@ public class DAO implements DataInterface {
 
             if (resultSet.next()) {
                 int balance = resultSet.getInt("balance");
-                //boolean admin = resultSet.getInt("admin") > 0;
+                // boolean admin = resultSet.getInt("admin") > 0;
 
                 user = new Users(username, password, balance);
             }
@@ -552,7 +564,7 @@ public class DAO implements DataInterface {
 
         return user;
     }
-    
+
     public Cupcake getCake(String cake_top, String cake_bottom, int amount) {
 
         Cake_toppings top = null;
@@ -591,5 +603,27 @@ public class DAO implements DataInterface {
         }
 
         return null;
+    }
+
+    public boolean validateAdmin(Users u) {
+        
+        try {
+            dbc.open();
+
+            String sql = "select * from users where username = '" + u.getUsername() + "'";
+            ResultSet resultset = dbc.executeQuery(sql);
+
+            while (resultset.next()) {
+               int id = resultset.getInt("isAdmin");
+               if(id == 1) {
+                   u.setAdmin(true);
+                   return true;
+               }
+            }
+            dbc.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

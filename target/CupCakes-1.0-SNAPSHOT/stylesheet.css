@@ -1,0 +1,156 @@
+body{
+    background: pink;
+    font-family: arial;
+    margin-top: 100px;
+    color: #fff;
+}
+
+.prod {
+    
+    background-image: url("cupcake.jpg");
+}
+
+
+h1 { /*makes header*/
+    font-size: 36px;
+    font-weight: 400;
+    text-align: center;
+}
+h1:after { /*Sets bar under header*/
+    content: '';
+    border-bottom: solid 3px #fff;
+    display: block;
+    width: 150px;
+    margin: 0 auto;
+    
+}
+
+h2{
+    text-align:  center;
+}
+.order-section { /*places body in the middle*/
+    text-align: center;
+    margin-top: 50px;
+}
+.order-section a { /*make next buttons lightblue*/
+   text-align: center;
+   color: #fff;
+   padding: 10px;
+   background-color: #99ccff;
+   text-decoration: none;
+   font-weight: 600;
+   transition: background-color 0.5s ease;
+}
+
+.order-section a:hover { /*button color change*/
+    background-color: #6385a8;
+}
+
+input[type="submit"]{
+   color: #fff;
+   padding: 10px;
+   background-color: #99ccff;
+   text-decoration: none;
+   font-weight: 600;
+   transition: background-color 0.5s ease;
+   border: none;
+   float: none;
+   width: 210px;
+   text-align: center;
+   
+}
+
+input[type="submit"]:hover { /*button color change*/
+    background-color: #6385a8;
+}
+
+.submit-button {
+   color: #fff;
+   padding: 10px;
+   background-color: #99ccff;
+   text-decoration: none;
+   font-weight: 600;
+   transition: background-color 0.5s ease;
+   border: none;
+   float:right;
+   width: 210px;
+}
+.submit-button input { /*makes submit buttons lightblue*/
+   color: #fff;
+   padding: 10px;
+   background-color: #99ccff;
+   text-decoration: none;
+   font-weight: 600;
+   transition: background-color 0.5s ease;
+   border: none;
+   float:right;
+   width: 210px;
+}
+.submit-button input:hover { /* color change mouseover*/
+    background-color: #6385a8;
+}
+form { /*centers input fields*/
+    margin: 0 auto;
+    width: 360px;
+}
+
+.reg {
+    
+
+}
+
+.Cake_toppings select, .Cake_bottoms select { /*sets buttons to middle*/
+    width: 210px !important;
+}
+.Cake_toppings, .Cake_bottoms, .amount { /* --""-- */
+    width: 360px;
+    padding-bottom: 40px;
+}
+
+.Cake_toppings label, .Cake_bottoms label, .amount label { /* --""-- */
+    float: left;
+    width: 150px;
+}
+.Cake_toppings select, .Cake_bottoms select, .amount input { /*changes input fields and lines them up*/
+    float: right;
+    width: 200px;
+    padding: 4px;
+    box-shadow: 1px 1px 2px #888888;
+    border-color: #888888;
+    border-width: 1px;
+}
+.special {
+    
+}
+
+/* The navigation bar */
+.navbar {
+    overflow: hidden;
+    background-color: #99ccff;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+}
+
+/* Links inside the navbar */
+.navbar a {
+    float: left;
+    display: block;
+    color: #fff;
+    text-align: center;
+    padding: 14px 16px;
+    background-color: #99ccff;
+    text-decoration: none;
+    transition: background-color 0.5s ease;
+}
+
+/* Change background on mouse-over */
+.navbar a:hover {
+    background-color: #6385a8;
+    color: #fff;
+}
+
+/* Main content */
+.main {
+    margin-top: 100px; /* Add a top margin to avoid content overlay */
+}

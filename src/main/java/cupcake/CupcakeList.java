@@ -1,7 +1,5 @@
 package cupcake;
 
-import java.util.ArrayList;
-
 public class CupcakeList {
 
 String top, bottom;    

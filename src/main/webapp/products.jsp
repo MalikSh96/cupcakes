@@ -5,10 +5,18 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
         <title>JSP Page</title>
     </head>
-    <body>
-        <h1>Hello World!</h1>
+    <body class="prod">
+        
+        <div class="navbar">
+  <a href="index.jsp">Home</a>
+  <a href="userpage.jsp">Your profile</a>
+  <a href="products.jsp">Products</a>
+</div>
+        
+        <h1>Products: </h1>
 
         <%
             Users user = (Users) session.getAttribute("user");
@@ -44,16 +52,13 @@
             </div>
             <div class="amount">
                 <label> Amount</label><input type="number" name="amount" max="999" required value="0"/>
-            </div>
+            </div>            
 
             <div class="submit-button" action="/products.jsp">
                 <input type="hidden" name="origin" value="products" />
                 <input type ="submit" name="add" value="Add to cart">
             </div>
-<c:forEach items="${yourArrayList}" var="item">
-    <c:out value="${item.name}" />
-</c:forEach>
-
+            <br />
             <div class="submit-button">
                 <input type ="submit" value="Checkout">
             </div>

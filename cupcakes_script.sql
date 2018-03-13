@@ -26,15 +26,6 @@ create table `bottom` (
 `valuta` varchar(45) DEFAULT NULL
 );
 
-create table `orderline` (
-`toppings_id` int not null,
-`bottom_id` int not null,
-`qty` int not null,
-orders_id int not NULL,
-FOREIGN KEY (orders_id) REFERENCES orders(`id`),
-primary key (`toppings_id`, `bottom_id`, orders_id)
-);
-
 
 create table `toppings` (
 `id` int AUTO_INCREMENT primary key,
@@ -48,6 +39,15 @@ create table `orders` (
 userOrderID int not null,
 FOREIGN KEY (userOrderID) REFERENCES users(`user_id`),
 `dates` datetime default current_timestamp
+);
+
+create table `orderline` (
+`toppings_id` int not null,
+`bottom_id` int not null,
+`qty` int not null,
+orders_id int not NULL,
+FOREIGN KEY (orders_id) REFERENCES orders(`id`),
+primary key (`toppings_id`, `bottom_id`, orders_id)
 );
 
 INSERT into users (username, password, balance, isAdmin) VALUES ('Malik', '5555', 1000, true);

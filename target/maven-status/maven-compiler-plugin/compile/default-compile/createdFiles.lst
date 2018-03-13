@@ -6,11 +6,9 @@ testPackage\Main.class
 cupcake\Cake_toppings.class
 cupcake\Cake_bottoms.class
 entity\Users.class
-servlets\ProductControl.class
 datasource\DataSource1.class
 cupcake\CupcakeList.class
-usersearch\Searcher.class
 connecter\DBConnector.class
 cupcake\Cupcake.class
-servlets\ProductList.class
+entity\Admin.class
 databaseConnect\DAO.class

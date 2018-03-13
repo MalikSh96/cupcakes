@@ -1,5 +1,7 @@
 package entity;
 
+import databaseConnect.DAO;
+import datasource.DataSource1;
 import shoppingCart.ShoppingCart;
 
 public class Users 
@@ -11,7 +13,8 @@ public class Users
     private boolean admin;
     private String email;
     private ShoppingCart cart;
-
+        DataSource1 ds1 = new DataSource1(); 
+        DAO dao = new DAO(ds1.getDataSource());
     public Users(String username, int id)
     {
         this.username = username;
@@ -56,10 +59,17 @@ public class Users
         this.admin = admin;
     }
     
-        public Users(String username, String password, int balance) {
+    public Users(String username, String password, int balance) {
         this.username = username;
         this.password = password;
         this.balance = balance;
+    }
+    
+        public Users(String username, String password, int balance, int id) {
+        this.username = username;
+        this.password = password;
+        this.balance = balance;
+        this.id = id;
     }
     
 
@@ -68,15 +78,19 @@ public class Users
         this.id = id;
         this.balance = balance;
     }
+
+    public Users() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     public int getId() 
     {
         return id;
     }
 
-    public void setId(int id) 
+    public void setId(Users u) 
     {
-        this.id = id;
+       this.id = dao.getUserId(u.getUsername());
     }
 
     public String getUsername() 
