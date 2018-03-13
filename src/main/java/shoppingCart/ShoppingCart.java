@@ -11,17 +11,12 @@ public class ShoppingCart
     private int totalPrice;
     private int id;
     public ArrayList<Cupcake> shoppingCart = new ArrayList<>();
-    public ArrayList<CupcakeList> cupcakeList = new ArrayList<>();
     DataSource1 ds = new DataSource1();
     DAO dao = new DAO(ds.getDataSource());
 
     public void cupcakeAdd(Cupcake cake) 
     {        
         shoppingCart.add(cake);
-        cupcakeList.add(new CupcakeList(cake.getTopping().getTopping(),cake.getBottom().toString(),
-                cake.getAmount(),(cake.getTopping().getTopping_price() + cake.getBottom().getBottom_price())*cake.getAmount()));
-            
-       
         totalPrice += (cake.getPrice())*cake.getAmount();
     }
     
