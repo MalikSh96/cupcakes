@@ -28,7 +28,8 @@
         <%
             Users user = (Users) session.getAttribute("user");
             DataSource1 ds1 = new DataSource1();
-            DAO dao = new DAO(ds1.getDataSource());            
+            DAO dao = new DAO(ds1.getDataSource()); 
+            dao.orderID(user);
             user.getCart().setTotalPrice(0);
             user.getCart().shoppingCart.clear();
         %>
