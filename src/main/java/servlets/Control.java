@@ -87,7 +87,7 @@ public class Control extends HttpServlet {
                 System.out.println(u.getCart().getShoppingCart());
                 if (request.getParameter("add") != null) {
                     u.getCart().cupcakeList.add(new CupcakeList(topping.toString(), bottom.toString(), price, amount));
-                    u.getCart().cupcakeAdd(cake, amount);
+                    u.getCart().cupcakeAdd(cake);
                     response.sendRedirect("products.jsp");
                 }
             }
