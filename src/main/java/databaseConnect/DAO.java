@@ -31,11 +31,23 @@ import shoppingCart.ShoppingCart;
 public class DAO implements DataInterface {
 
     private DBConnector dbc = new DBConnector();
-
+    
+    
+    /**
+     * Access to datasource
+     * @param ds 
+     */
     public DAO(DataSource ds) {
         dbc.setDs(ds);
     }
-
+    
+    
+    /**
+     * Variable users
+     * Objective to select from database users' id, name, password, balance and check if is admin.
+     * Adds to arraylist of object users
+     * @return users
+     */
     @Override
     public ArrayList<Users> getUsers() {
         ArrayList<Users> users = new ArrayList();
@@ -65,7 +77,13 @@ public class DAO implements DataInterface {
 
         return users;
     }
-
+    
+    /**
+     * 
+     * @param username
+     * Objective is to select from database, and return the user found, by inserting the username
+     * @return users found via username from the arraylist
+     */
     @Override
     public ArrayList<Users> getUsers(String username) {
         ArrayList<Users> users = new ArrayList();
@@ -96,6 +114,12 @@ public class DAO implements DataInterface {
         return users;
     }
 
+    /**
+     * 
+     * @param id
+     * Objective is to select from database, and return the user found, by inserting the users' id
+     * @return 
+     */
     @Override
     public Users getUser(int id) {
         Users u = null;
@@ -124,6 +148,12 @@ public class DAO implements DataInterface {
         return u;
     }
 
+    /**
+     * 
+     * @param username
+     * Objective is to select from database, and return the user found, by inserting the username
+     * @return the user found by username
+     */
     @Override
     public Users getUser(String username) {
         try {
@@ -150,6 +180,12 @@ public class DAO implements DataInterface {
         return null;
     }
 
+    /**
+     * 
+     * @param id
+     * Objective: deleting the user found by using the id
+     * @return true if deletion is successful, otherwise false
+     */
     @Override
     public boolean deleteUser(int id) {
         try {
@@ -168,6 +204,12 @@ public class DAO implements DataInterface {
         return false;
     }
     
+    /**
+     * 
+     * @param username
+     * Objective: deleting the user found by username
+     * @return true if deletion is successful, otherwise false
+     */
     public boolean deleteUser(String username) {
         try {
             dbc.open();
@@ -185,6 +227,13 @@ public class DAO implements DataInterface {
         return false;
     }
     
+    /**
+     * 
+     * @param id
+     * @param username
+     * Objective: Update username by using the id to locate the correct username
+     * @return true if update is successful, otherwise false
+     */
     @Override
     public boolean updateUser(int id, String username) {
         try {
@@ -206,6 +255,12 @@ public class DAO implements DataInterface {
         return false;
     }
 
+    /**
+     * 
+     * @param u
+     * Objective: Create a user in the database, by inserting the username, password, balance, and isAdmin
+     * @return true if creation is successful, otherwise false
+     */
     @Override
     public boolean createUser(Users u) {
         try {
@@ -229,28 +284,13 @@ public class DAO implements DataInterface {
         return false;
     }
 
-    public boolean createUserEmail(Users u) {
-        try {
-            dbc.open();
-
-            String sql = "insert into user values(null, "
-                    + "'" + u.getUsername() + "', "
-                    + "'" + u.getPassword() + "', "
-                    + "'" + u.getEmail() + "', "
-                    + u.isAdmin() + ")";
-
-            dbc.executeUpdate(sql);
-
-            dbc.close();
-
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return false;
-    }
-
+    /**
+     * 
+     * @param cake
+     * Objective: To search the database and find the cake bottom using a string
+     * Excpects a return of object cake_bottoms
+     * @return a new instance of a cake bottom with its id and price
+     */
     @Override
     public Cake_bottoms getCakeBottom(String cake) {
         try {
@@ -275,6 +315,13 @@ public class DAO implements DataInterface {
         return null;
     }
 
+    /**
+     * 
+     * @param cake
+     * Objective: To search the database and find the cake topping using a string 
+     * Excpects a return of object cake_toppings
+     * @return a new instance of a cake topping with its id and price 
+     */
     @Override
     public Cake_toppings getCakeTopping(String cake) {
         try {
@@ -299,6 +346,10 @@ public class DAO implements DataInterface {
         return null;
     }
 
+    /**
+     * Objective: search the database for all bottoms
+     * @returns a list of all the bottoms available 
+     */
     @Override
     public List<Cake_bottoms> getAllBottoms() {
         List<Cake_bottoms> bottoms = new ArrayList<>();
@@ -325,6 +376,10 @@ public class DAO implements DataInterface {
         return bottoms;
     }
 
+    /**
+     * Objective: search the database for all toppings
+     * @returns a list of all the toppings available 
+     */
     @Override
     public List<Cake_toppings> getAllToppings() {
         List<Cake_toppings> toppings = new ArrayList<>();
@@ -351,6 +406,13 @@ public class DAO implements DataInterface {
         return toppings;
     }
 
+    /**
+     * 
+     * @param cake
+     * Objective: Search the database to get the price, using the name, price and id
+     * New instance of cake bottom, if name searched equals the wanted, the bottom variable is overwritten
+     * @return total (total is the price)
+     */
     @Override
     public int getCakeBottomPrice(String cake) {
         Cake_bottoms bottom = new Cake_bottoms();
@@ -379,7 +441,14 @@ public class DAO implements DataInterface {
         }
         return total;
     }
-
+    
+    /**
+     * 
+     * @param cake
+     * Objective: Search the database to get the price, using the name, price and id
+     * New instance of cake topping, if name searched equals the wanted, the topping variable is overwritten
+     * @return total
+     */
     @Override
     public int getCakeToppingPrice(String cake) {
         Cake_toppings topping = new Cake_toppings();
@@ -410,6 +479,12 @@ public class DAO implements DataInterface {
         return total;
     }
 
+    /**
+     * 
+     * @param u
+     * Objective: Find the balance of the user from the database
+     * @return userbalance
+     */
     public int getUserBalance(Users u) {
         int balance;
         try {
@@ -431,6 +506,12 @@ public class DAO implements DataInterface {
         return 0;
     }
 
+    /**
+     * 
+     * @param username
+     * Objective: Find the user id, using the username to locate it
+     * @return id
+     */
     public int getUserId(String username) {
         try {
             dbc.open();
@@ -451,6 +532,12 @@ public class DAO implements DataInterface {
         return 0;
     }
 
+    /**
+     * 
+     * @param u
+     * Objective: Update the users' balance in the database, after confirmation of order
+     * @return true if balance is updated, else false
+     */
     public boolean updateUserBalance(Users u) {
 
         int currentBalance = getUserBalance(u);
@@ -478,6 +565,12 @@ public class DAO implements DataInterface {
         return false;
     }
 
+    /**
+     * 
+     * @param u
+     * Objective: Create an order id to the users' order, inserts into the database the id created
+     * @return id
+     */
     public Users orderID(Users u) {
         int orderId = 0;
         try {
@@ -511,6 +604,13 @@ public class DAO implements DataInterface {
         return u;
     }
 
+    /**
+     * 
+     * @param cart
+     * @param orderId
+     * Objective: Create and orderline by inserting the id'sof the toppings and bottoms chosen, quantity and the order id chosen to it
+     * @return true if an orderline is created
+     */
     public boolean OrderLine(ShoppingCart cart, int orderId) {
         ArrayList<Cupcake> cupcakes = cart.getShoppingCart();
 
@@ -537,6 +637,12 @@ public class DAO implements DataInterface {
         return false;
     }
 
+    /**
+     * Note: needs more explanation
+     * @param username
+     * @param password
+     * @return 
+     */
     public Users validateUser(String username, String password) {
         Users user = null;
 
@@ -565,6 +671,13 @@ public class DAO implements DataInterface {
         return user;
     }
 
+    /**
+     * Note: Maybe needs more explanation
+     * @param cake_top
+     * @param cake_bottom
+     * @param amount
+     * @return cupcake created
+     */
     public Cupcake getCake(String cake_top, String cake_bottom, int amount) {
 
         Cake_toppings top = null;
@@ -605,6 +718,11 @@ public class DAO implements DataInterface {
         return null;
     }
 
+    /**
+     * Note: Needs more explanation
+     * @param u
+     * @return true if isAdmin 
+     */
     public boolean validateAdmin(Users u) {
         
         try {

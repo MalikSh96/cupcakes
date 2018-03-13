@@ -79,10 +79,6 @@ public class Users
         this.id = id;
         this.balance = balance;
     }
-
-    public Users() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
     public int getId() 
     {
@@ -132,16 +128,6 @@ public class Users
     public void setBalance(int balance) 
     {
         this.balance = balance;
-    }
-    
-    public String getEmail() 
-    {
-        return email;
-    }
-
-    public void setEmail(String email) 
-    {
-        this.email = email;
     }
     
     public ShoppingCart getCart() 
