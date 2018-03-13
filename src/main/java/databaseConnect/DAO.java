@@ -16,6 +16,18 @@ import java.util.List;
 import javax.sql.DataSource;
 import shoppingCart.ShoppingCart;
 
+/**
+ * 
+ * @author malik
+ * Class contains access to database
+ * Implementation of different methods, that access the database
+ * Different usage og insert and select, and some set
+ * return: Users
+ * return: Cake bottoms and toppings
+ * return: Booleans
+ * return: Order id
+ */
+
 //Change your sql queries, as they for now are wrong
 public class DAO implements DataInterface {
 

@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="CupCakes">
+  <ClassDiagramComponents>
+    <Class name="Calculator" package="calculator" visibility="public" xPosition="576.0" yPosition="1128.0">
+      <Fields>
+        <Field name="shop" type="ShoppingCart" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="calculatePrice" returnType="double" visibility="public">
+          <Argument type="Users" name="u"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="DBConnector" package="connecter" visibility="public" xPosition="498.0" yPosition="60.0">
+      <Fields>
+        <Field name="ds" type="DataSource" visibility="private"/>
+        <Field name="connection" type="Connection" visibility="private"/>
+        <Field name="statement" type="Statement" visibility="private"/>
+        <Field name="resultSet" type="ResultSet" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="DataSource" name="ds"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setDs" returnType="void" visibility="public">
+          <Argument type="DataSource" name="ds"/>
+        </Method>
+        <Method name="getConnection" returnType="Connection" visibility="public"/>
+        <Method name="open" returnType="void" visibility="public"/>
+        <Method name="close" returnType="void" visibility="public"/>
+        <Method name="executeQuery" returnType="ResultSet" visibility="public">
+          <Argument type="String" name="sql"/>
+        </Method>
+        <Method name="executeUpdate" returnType="void" visibility="public">
+          <Argument type="String" name="sql"/>
+        </Method>
+        <Method name="preparedStatement" returnType="PreparedStatement" visibility="public">
+          <Argument type="String" name="sql"/>
+        </Method>
+        <Method name="preparedStatement" returnType="PreparedStatement" visibility="public">
+          <Argument type="String" name="sql"/>
+          <Argument type="int" name="key"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Cake_bottoms" package="cupcake" visibility="public" xPosition="2380.0" yPosition="409.0">
+      <Fields>
+        <Field name="bottom" type="String" visibility="private"/>
+        <Field name="bottom_price" type="int" visibility="private"/>
+        <Field name="id" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="bottom"/>
+          <Argument type="int" name="bottom_price"/>
+          <Argument type="int" name="id"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="bottom"/>
+          <Argument type="int" name="bottom_price"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="bottom"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getId" returnType="int" visibility="public"/>
+        <Method name="getBottom" returnType="String" visibility="public"/>
+        <Method name="setBottom" returnType="void" visibility="public">
+          <Argument type="String" name="bottom"/>
+        </Method>
+        <Method name="getBottom_price" returnType="int" visibility="public"/>
+        <Method name="setBottom_price" returnType="void" visibility="public">
+          <Argument type="int" name="bottom_price"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Cake_toppings" package="cupcake" visibility="public" xPosition="2371.0" yPosition="39.0">
+      <Fields>
+        <Field name="topping" type="String" visibility="private"/>
+        <Field name="topping_price" type="int" visibility="private"/>
+        <Field name="id" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="topping"/>
+          <Argument type="int" name="topping_price"/>
+          <Argument type="int" name="id"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="topping"/>
+          <Argument type="int" name="topping_price"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="topping"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getId" returnType="int" visibility="public"/>
+        <Method name="getTopping" returnType="String" visibility="public"/>
+        <Method name="setTopping" returnType="void" visibility="public">
+          <Argument type="String" name="topping"/>
+        </Method>
+        <Method name="getTopping_price" returnType="int" visibility="public"/>
+        <Method name="setTopping_price" returnType="void" visibility="public">
+          <Argument type="int" name="topping_price"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Cupcake" package="cupcake" visibility="public" xPosition="1512.0" yPosition="93.0">
+      <Fields>
+        <Field name="topping" type="Cake_toppings" visibility="private"/>
+        <Field name="bottom" type="Cake_bottoms" visibility="private"/>
+        <Field name="bottomPrice" type="int" visibility="private"/>
+        <Field name="amount" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Cake_toppings" name="topping"/>
+          <Argument type="Cake_bottoms" name="bottom"/>
+          <Argument type="int" name="toppingPrice"/>
+          <Argument type="int" name="bottomPrice"/>
+          <Argument type="int" name="amount"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="Cake_toppings" name="topping"/>
+          <Argument type="Cake_bottoms" name="bottom"/>
+          <Argument type="int" name="amount"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="Cake_toppings" name="topping"/>
+          <Argument type="Cake_bottoms" name="bottom"/>
+          <Argument type="int" name="price"/>
+          <Argument type="int" name="amount"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getTopping" returnType="Cake_toppings" visibility="public"/>
+        <Method name="getBottom" returnType="Cake_bottoms" visibility="public"/>
+        <Method name="getAmount" returnType="int" visibility="public"/>
+        <Method name="getBottomPrice" returnType="int" visibility="public"/>
+        <Method name="getToppingPrice" returnType="int" visibility="public"/>
+        <Method name="getTotalPrice" returnType="int" visibility="public"/>
+        <Method name="getPrice" returnType="int" visibility="public"/>
+        <Method name="setPrice" returnType="void" visibility="public">
+          <Argument type="int" name="price"/>
+        </Method>
+        <Method name="setTopping" returnType="void" visibility="public">
+          <Argument type="Cake_toppings" name="topping"/>
+        </Method>
+        <Method name="setBottom" returnType="void" visibility="public">
+          <Argument type="Cake_bottoms" name="bottom"/>
+        </Method>
+        <Method name="setAmount" returnType="void" visibility="public">
+          <Argument type="int" name="amount"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+        <Method name="toString2" returnType="String" visibility="public">
+          <Argument type="String" name="top"/>
+          <Argument type="String" name="bottom"/>
+          <Argument type="int" name="amount"/>
+          <Argument type="int" name="pris"/>
+          <Argument type="int" name="fullPrice"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="CupcakeList" package="cupcake" visibility="public" xPosition="1757.0" yPosition="755.0">
+      <Fields>
+        <Field name="top" type="String" visibility="package"/>
+        <Field name="amount" type="int" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="top"/>
+          <Argument type="String" name="bottom"/>
+          <Argument type="int" name="amount"/>
+          <Argument type="int" name="totalPrice"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="DAO" package="databaseConnect" visibility="public" xPosition="419.0" yPosition="543.0">
+      <Fields>
+        <Field name="dbc" type="DBConnector" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="DataSource" name="ds"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getUsers" returnType="ArrayList&lt;Users&gt;" visibility="public"/>
+        <Method name="getUsers" returnType="ArrayList&lt;Users&gt;" visibility="public">
+          <Argument type="String" name="username"/>
+        </Method>
+        <Method name="getUser" returnType="Users" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="getUser" returnType="Users" visibility="public">
+          <Argument type="String" name="username"/>
+        </Method>
+        <Method name="deleteUser" returnType="boolean" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="updateUser" returnType="boolean" visibility="public">
+          <Argument type="int" name="id"/>
+          <Argument type="String" name="username"/>
+        </Method>
+        <Method name="createUser" returnType="boolean" visibility="public">
+          <Argument type="Users" name="u"/>
+        </Method>
+        <Method name="createUserEmail" returnType="boolean" visibility="public">
+          <Argument type="Users" name="u"/>
+        </Method>
+        <Method name="getCakeBottom" returnType="Cake_bottoms" visibility="public">
+          <Argument type="String" name="cake"/>
+        </Method>
+        <Method name="getCakeTopping" returnType="Cake_toppings" visibility="public">
+          <Argument type="String" name="cake"/>
+        </Method>
+        <Method name="getAllBottoms" returnType="List&lt;Cake_bottoms&gt;" visibility="public"/>
+        <Method name="getAllToppings" returnType="List&lt;Cake_toppings&gt;" visibility="public"/>
+        <Method name="getCakeBottomPrice" returnType="int" visibility="public">
+          <Argument type="String" name="cake"/>
+        </Method>
+        <Method name="getCakeToppingPrice" returnType="int" visibility="public">
+          <Argument type="String" name="cake"/>
+        </Method>
+        <Method name="getUserBalance" returnType="int" visibility="public">
+          <Argument type="Users" name="u"/>
+        </Method>
+        <Method name="getUserId" returnType="int" visibility="public">
+          <Argument type="Users" name="u"/>
+        </Method>
+        <Method name="updateUserBalance" returnType="boolean" visibility="public">
+          <Argument type="Users" name="u"/>
+        </Method>
+        <Method name="orderID" returnType="Users" visibility="public">
+          <Argument type="Users" name="u"/>
+        </Method>
+        <Method name="OrderLine" returnType="boolean" visibility="public">
+          <Argument type="ShoppingCart" name="cart"/>
+          <Argument type="int" name="orderId"/>
+        </Method>
+        <Method name="validateUser" returnType="Users" visibility="public">
+          <Argument type="String" name="username"/>
+          <Argument type="String" name="password"/>
+        </Method>
+        <Method name="getCake" returnType="Cupcake" visibility="public">
+          <Argument type="String" name="cake_top"/>
+          <Argument type="String" name="cake_bottom"/>
+          <Argument type="int" name="amount"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="DataSource1" package="datasource" visibility="public" xPosition="719.0" yPosition="1661.0">
+      <Fields>
+        <Field name="dataSource" type="MysqlDataSource" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getDataSource" returnType="MysqlDataSource" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Users" package="entity" visibility="public" xPosition="20.0" yPosition="1029.0">
+      <Fields>
+        <Field name="username" type="String" visibility="private"/>
+        <Field name="password" type="String" visibility="private"/>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="balance" type="int" visibility="private"/>
+        <Field name="admin" type="boolean" visibility="private"/>
+        <Field name="email" type="String" visibility="private"/>
+        <Field name="cart" type="ShoppingCart" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="username"/>
+          <Argument type="int" name="id"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="username"/>
+          <Argument type="String" name="password"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="username"/>
+          <Argument type="String" name="password"/>
+          <Argument type="String" name="email"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="username"/>
+          <Argument type="String" name="password"/>
+          <Argument type="boolean" name="admin"/>
+          <Argument type="String" name="email"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="username"/>
+          <Argument type="String" name="password"/>
+          <Argument type="int" name="balance"/>
+          <Argument type="boolean" name="admin"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="username"/>
+          <Argument type="int" name="id"/>
+          <Argument type="String" name="password"/>
+          <Argument type="int" name="balance"/>
+          <Argument type="boolean" name="admin"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="username"/>
+          <Argument type="String" name="password"/>
+          <Argument type="int" name="balance"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="int" name="id"/>
+          <Argument type="int" name="balance"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getId" returnType="int" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="getUsername" returnType="String" visibility="public"/>
+        <Method name="setUsername" returnType="void" visibility="public">
+          <Argument type="String" name="username"/>
+        </Method>
+        <Method name="getPassword" returnType="String" visibility="public"/>
+        <Method name="setPassword" returnType="void" visibility="public">
+          <Argument type="String" name="password"/>
+        </Method>
+        <Method name="isAdmin" returnType="boolean" visibility="public"/>
+        <Method name="setAdmin" returnType="void" visibility="public">
+          <Argument type="boolean" name="admin"/>
+        </Method>
+        <Method name="getBalance" returnType="int" visibility="public"/>
+        <Method name="setBalance" returnType="void" visibility="public">
+          <Argument type="int" name="balance"/>
+        </Method>
+        <Method name="getEmail" returnType="String" visibility="public"/>
+        <Method name="setEmail" returnType="void" visibility="public">
+          <Argument type="String" name="email"/>
+        </Method>
+        <Method name="getCart" returnType="ShoppingCart" visibility="public"/>
+        <Method name="setCart" returnType="void" visibility="public">
+          <Argument type="ShoppingCart" name="cart"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Control" package="servlets" visibility="public" xPosition="1116.0" yPosition="755.0">
+      <Fields>
+        <Field name="search" type="Searcher" visibility="package"/>
+        <Field name="ds1" type="DataSource1" visibility="package"/>
+        <Field name="dao" type="DAO" visibility="package"/>
+        <Field name="amount" type="int" visibility="package"/>
+        <Field name="bottom" type="String" visibility="package"/>
+        <Field name="topping" type="String" visibility="package"/>
+        <Field name="user" type="Users" visibility="package"/>
+        <Field name="cl" type="CupcakeList" visibility="package"/>
+        <Field name="cart" type="ShoppingCart" visibility="package"/>
+        <Field name="price" type="int" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="processRequest" returnType="void" visibility="protected">
+          <Argument type="HttpServletRequest" name="request"/>
+          <Argument type="HttpServletResponse" name="response"/>
+        </Method>
+        <Method name="doGet" returnType="void" visibility="protected">
+          <Argument type="HttpServletRequest" name="request"/>
+          <Argument type="HttpServletResponse" name="response"/>
+        </Method>
+        <Method name="doPost" returnType="void" visibility="protected">
+          <Argument type="HttpServletRequest" name="request"/>
+          <Argument type="HttpServletResponse" name="response"/>
+        </Method>
+        <Method name="getServletInfo" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ProductControl" package="servlets" visibility="public" xPosition="-53.0" yPosition="284.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="processRequest" returnType="void" visibility="protected">
+          <Argument type="HttpServletRequest" name="request"/>
+          <Argument type="HttpServletResponse" name="response"/>
+        </Method>
+        <Method name="doGet" returnType="void" visibility="protected">
+          <Argument type="HttpServletRequest" name="request"/>
+          <Argument type="HttpServletResponse" name="response"/>
+        </Method>
+        <Method name="doPost" returnType="void" visibility="protected">
+          <Argument type="HttpServletRequest" name="request"/>
+          <Argument type="HttpServletResponse" name="response"/>
+        </Method>
+        <Method name="getServletInfo" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ProductList" package="servlets" visibility="public" xPosition="291.0" yPosition="1998.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="processRequest" returnType="void" visibility="protected">
+          <Argument type="HttpServletRequest" name="request"/>
+          <Argument type="HttpServletResponse" name="response"/>
+        </Method>
+        <Method name="doGet" returnType="void" visibility="protected">
+          <Argument type="HttpServletRequest" name="request"/>
+          <Argument type="HttpServletResponse" name="response"/>
+        </Method>
+        <Method name="doPost" returnType="void" visibility="protected">
+          <Argument type="HttpServletRequest" name="request"/>
+          <Argument type="HttpServletResponse" name="response"/>
+        </Method>
+        <Method name="getServletInfo" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ShoppingCart" package="shoppingCart" visibility="public" xPosition="1812.0" yPosition="1180.0">
+      <Fields>
+        <Field name="totalPrice" type="int" visibility="private"/>
+        <Field name="fullPrice" type="int" visibility="private"/>
+        <Field name="shoppingCart" type="ArrayList&lt;Cupcake&gt;" visibility="package"/>
+        <Field name="cupcakeList" type="ArrayList&lt;CupcakeList&gt;" visibility="public"/>
+        <Field name="ds" type="DataSource1" visibility="package"/>
+        <Field name="dao" type="DAO" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="cupcakeAdd" returnType="void" visibility="public">
+          <Argument type="Cupcake" name="cake"/>
+        </Method>
+        <Method name="getTotalPrice" returnType="int" visibility="public"/>
+        <Method name="getShoppingCart" returnType="ArrayList&lt;Cupcake&gt;" visibility="public"/>
+        <Method name="setShoppingCart" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;Cupcake&gt;" name="shoppingCart"/>
+        </Method>
+        <Method name="getId" returnType="int" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public">
+          <Argument type="String" name="top"/>
+          <Argument type="String" name="bottom"/>
+          <Argument type="int" name="amount"/>
+          <Argument type="int" name="pris"/>
+          <Argument type="int" name="fullPrice"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Main" package="testPackage" visibility="public" xPosition="291.0" yPosition="1868.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Searcher" package="usersearch" visibility="public" xPosition="1289.0" yPosition="1822.0">
+      <Fields>
+        <Field name="dbc" type="DBConnector" visibility="private"/>
+        <Field name="ds" type="DataSource1" visibility="private"/>
+        <Field name="dao" type="DAO" visibility="private"/>
+        <Field name="username" type="String" visibility="private"/>
+        <Field name="password" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="DataSource" name="ds"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="username"/>
+          <Argument type="String" name="password"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getUsername" returnType="Users" visibility="public">
+          <Argument type="String" name="username"/>
+          <Argument type="String" name="password"/>
+        </Method>
+        <Method name="getPassword" returnType="boolean" visibility="public">
+          <Argument type="String" name="username"/>
+          <Argument type="String" name="password"/>
+        </Method>
+        <Method name="alreadyExist" returnType="boolean" visibility="public">
+          <Argument type="String" name="username"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Interface name="DataInterface" package="datasource" visibility="public" xPosition="2358.0" yPosition="1822.0">
+      <Methods>
+        <Method name="getUsers" returnType="ArrayList&lt;Users&gt;" visibility="public"/>
+        <Method name="getUsers" returnType="ArrayList&lt;Users&gt;" visibility="public">
+          <Argument type="String" name="username"/>
+        </Method>
+        <Method name="getUser" returnType="Users" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="getUser" returnType="Users" visibility="public">
+          <Argument type="String" name="username"/>
+        </Method>
+        <Method name="deleteUser" returnType="boolean" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="updateUser" returnType="boolean" visibility="public">
+          <Argument type="int" name="id"/>
+          <Argument type="String" name="username"/>
+        </Method>
+        <Method name="createUser" returnType="boolean" visibility="public">
+          <Argument type="Users" name="u"/>
+        </Method>
+        <Method name="getCakeBottom" returnType="Cake_bottoms" visibility="public">
+          <Argument type="String" name="cake"/>
+        </Method>
+        <Method name="getCakeTopping" returnType="Cake_toppings" visibility="public">
+          <Argument type="String" name="cake"/>
+        </Method>
+        <Method name="getAllBottoms" returnType="List&lt;Cake_bottoms&gt;" visibility="public"/>
+        <Method name="getAllToppings" returnType="List&lt;Cake_toppings&gt;" visibility="public"/>
+        <Method name="getCakeBottomPrice" returnType="int" visibility="public">
+          <Argument type="String" name="cake"/>
+        </Method>
+        <Method name="getCakeToppingPrice" returnType="int" visibility="public">
+          <Argument type="String" name="cake"/>
+        </Method>
+      </Methods>
+    </Interface>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="cl" source="servlets.Control" target="cupcake.CupcakeList" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="CupcakeList"/>
+    <HasRelation name="dao" source="usersearch.Searcher" target="databaseConnect.DAO" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="cupcake.Cupcake" target="cupcake.Cake_bottoms" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="databaseConnect.DAO" target="cupcake.Cake_bottoms" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="dbc" source="usersearch.Searcher" target="connecter.DBConnector" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="cart" source="servlets.Control" target="shoppingCart.ShoppingCart" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="databaseConnect.DAO" target="cupcake.Cupcake" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="dao" source="servlets.Control" target="databaseConnect.DAO" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="cupcake.Cupcake" target="cupcake.Cake_toppings" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="user" source="servlets.Control" target="entity.Users" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="bottom" source="cupcake.Cupcake" target="cupcake.Cake_bottoms" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="shoppingCart" source="shoppingCart.ShoppingCart" target="cupcake.Cupcake" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Cupcake&gt;"/>
+    <HasRelation name="cupcakeList" source="shoppingCart.ShoppingCart" target="cupcake.CupcakeList" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;CupcakeList&gt;"/>
+    <UseRelation source="usersearch.Searcher" target="entity.Users" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="dbc" source="databaseConnect.DAO" target="connecter.DBConnector" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="calculator.Calculator" target="entity.Users" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="cart" source="entity.Users" target="shoppingCart.ShoppingCart" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ds" source="shoppingCart.ShoppingCart" target="datasource.DataSource1" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="databaseConnect.DAO" target="cupcake.Cake_toppings" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ds" source="usersearch.Searcher" target="datasource.DataSource1" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="shoppingCart.ShoppingCart" target="cupcake.Cupcake" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ds1" source="servlets.Control" target="datasource.DataSource1" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="datasource.DataInterface" target="entity.Users" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="entity.Users" target="shoppingCart.ShoppingCart" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="datasource.DataInterface" target="cupcake.Cake_toppings" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="search" source="servlets.Control" target="usersearch.Searcher" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="shop" source="calculator.Calculator" target="shoppingCart.ShoppingCart" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="databaseConnect.DAO" target="shoppingCart.ShoppingCart" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="dao" source="shoppingCart.ShoppingCart" target="databaseConnect.DAO" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="databaseConnect.DAO" target="entity.Users" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="databaseConnect.DAO" target="datasource.DataInterface"/>
+    <HasRelation name="topping" source="cupcake.Cupcake" target="cupcake.Cake_toppings" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="datasource.DataInterface" target="cupcake.Cake_bottoms" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
