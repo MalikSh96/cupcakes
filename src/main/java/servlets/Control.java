@@ -23,8 +23,6 @@ public class Control extends HttpServlet {
 
     DataSource1 ds1 = new DataSource1();
     DAO dao = new DAO(ds1.getDataSource());
-    String bottom;
-    String topping;
     Users u;
     CupcakeList cl;
     ShoppingCart cart = new ShoppingCart();
@@ -78,19 +76,21 @@ public class Control extends HttpServlet {
                 price = 0;
                 Cake_bottoms bottom = new Cake_bottoms(request.getParameter("cake_bottom"));
                 Cake_toppings topping = new Cake_toppings(request.getParameter("cake_topping"));
-                this.topping = request.getParameter("cake_topping");
-                this.bottom = request.getParameter("cake_bottom");
                 amount = Integer.parseInt(request.getParameter("amount"));
                 price += (dao.getCakeBottomPrice(bottom.toString()) + dao.getCakeToppingPrice(topping.toString()));
                 Cupcake cake = new Cupcake(topping, bottom, price, amount);
 
                 System.out.println(u.getCart().getShoppingCart());
                 if (request.getParameter("add") != null) {
+                    if(cake.getAmount() > 0) {
                     u.getCart().cupcakeList.add(new CupcakeList(topping.toString(), bottom.toString(), price, amount));
 
                     u.getCart().cupcakeAdd(cake);
 
-                    response.sendRedirect("products.jsp");
+
+                    }
+                    response.sendRedirect("products.jsp");                   
+
                 }
             }
             break;
