@@ -2,18 +2,18 @@
 
 <ClassDiagram name="CupCakes">
   <ClassDiagramComponents>
-    <Class name="Calculator" package="calculator" visibility="public" xPosition="576.0" yPosition="1128.0">
+    <Class name="Calculator" package="calculator" visibility="public" xPosition="4.0" yPosition="1372.0">
       <Fields>
         <Field name="shop" type="ShoppingCart" visibility="package"/>
       </Fields>
       <Constructors/>
       <Methods>
-        <Method name="calculatePrice" returnType="double" visibility="public">
+        <Method name="calculatePrice" returnType="boolean" visibility="public">
           <Argument type="Users" name="u"/>
         </Method>
       </Methods>
     </Class>
-    <Class name="DBConnector" package="connecter" visibility="public" xPosition="498.0" yPosition="60.0">
+    <Class name="DBConnector" package="connecter" visibility="public" xPosition="1526.0" yPosition="1372.0">
       <Fields>
         <Field name="ds" type="DataSource" visibility="private"/>
         <Field name="connection" type="Connection" visibility="private"/>
@@ -48,7 +48,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Cake_bottoms" package="cupcake" visibility="public" xPosition="2380.0" yPosition="409.0">
+    <Class name="Cake_bottoms" package="cupcake" visibility="public" xPosition="1664.0" yPosition="7.0">
       <Fields>
         <Field name="bottom" type="String" visibility="private"/>
         <Field name="bottom_price" type="int" visibility="private"/>
@@ -82,7 +82,7 @@
         <Method name="toString" returnType="String" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="Cake_toppings" package="cupcake" visibility="public" xPosition="2371.0" yPosition="39.0">
+    <Class name="Cake_toppings" package="cupcake" visibility="public" xPosition="1634.0" yPosition="928.0">
       <Fields>
         <Field name="topping" type="String" visibility="private"/>
         <Field name="topping_price" type="int" visibility="private"/>
@@ -116,7 +116,7 @@
         <Method name="toString" returnType="String" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="Cupcake" package="cupcake" visibility="public" xPosition="1512.0" yPosition="93.0">
+    <Class name="Cupcake" package="cupcake" visibility="public" xPosition="692.0" yPosition="7.0">
       <Fields>
         <Field name="topping" type="Cake_toppings" visibility="private"/>
         <Field name="bottom" type="Cake_bottoms" visibility="private"/>
@@ -149,7 +149,6 @@
         <Method name="getAmount" returnType="int" visibility="public"/>
         <Method name="getBottomPrice" returnType="int" visibility="public"/>
         <Method name="getToppingPrice" returnType="int" visibility="public"/>
-        <Method name="getTotalPrice" returnType="int" visibility="public"/>
         <Method name="getPrice" returnType="int" visibility="public"/>
         <Method name="setPrice" returnType="void" visibility="public">
           <Argument type="int" name="price"/>
@@ -173,7 +172,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="CupcakeList" package="cupcake" visibility="public" xPosition="1757.0" yPosition="755.0">
+    <Class name="CupcakeList" package="cupcake" visibility="public" xPosition="4.0" yPosition="1795.0">
       <Fields>
         <Field name="top" type="String" visibility="package"/>
         <Field name="amount" type="int" visibility="package"/>
@@ -188,7 +187,7 @@
       </Constructors>
       <Methods/>
     </Class>
-    <Class name="DAO" package="databaseConnect" visibility="public" xPosition="419.0" yPosition="543.0">
+    <Class name="DAO" package="databaseConnect" visibility="public" xPosition="931.0" yPosition="601.0">
       <Fields>
         <Field name="dbc" type="DBConnector" visibility="private"/>
       </Fields>
@@ -210,6 +209,9 @@
         </Method>
         <Method name="deleteUser" returnType="boolean" visibility="public">
           <Argument type="int" name="id"/>
+        </Method>
+        <Method name="deleteUser" returnType="boolean" visibility="public">
+          <Argument type="String" name="username"/>
         </Method>
         <Method name="updateUser" returnType="boolean" visibility="public">
           <Argument type="int" name="id"/>
@@ -239,7 +241,7 @@
           <Argument type="Users" name="u"/>
         </Method>
         <Method name="getUserId" returnType="int" visibility="public">
-          <Argument type="Users" name="u"/>
+          <Argument type="String" name="username"/>
         </Method>
         <Method name="updateUserBalance" returnType="boolean" visibility="public">
           <Argument type="Users" name="u"/>
@@ -260,9 +262,12 @@
           <Argument type="String" name="cake_bottom"/>
           <Argument type="int" name="amount"/>
         </Method>
+        <Method name="validateAdmin" returnType="boolean" visibility="public">
+          <Argument type="Users" name="u"/>
+        </Method>
       </Methods>
     </Class>
-    <Class name="DataSource1" package="datasource" visibility="public" xPosition="719.0" yPosition="1661.0">
+    <Class name="DataSource1" package="datasource" visibility="public" xPosition="1282.0" yPosition="1795.0">
       <Fields>
         <Field name="dataSource" type="MysqlDataSource" visibility="package"/>
       </Fields>
@@ -273,7 +278,20 @@
         <Method name="getDataSource" returnType="MysqlDataSource" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="Users" package="entity" visibility="public" xPosition="20.0" yPosition="1029.0">
+    <Class name="Admin" package="entity" visibility="public" xPosition="1230.0" yPosition="1372.0">
+      <Fields>
+        <Field name="ds1" type="DataSource1" visibility="package"/>
+        <Field name="dao" type="DAO" visibility="package"/>
+        <Field name="users" type="ArrayList&lt;Users&gt;" visibility="package"/>
+        <Field name="usernames" type="ArrayList&lt;String&gt;" visibility="public"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="printUsers" returnType="void" visibility="public"/>
+        <Method name="nameList" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Users" package="entity" visibility="public" xPosition="4.0" yPosition="430.0">
       <Fields>
         <Field name="username" type="String" visibility="private"/>
         <Field name="password" type="String" visibility="private"/>
@@ -282,6 +300,8 @@
         <Field name="admin" type="boolean" visibility="private"/>
         <Field name="email" type="String" visibility="private"/>
         <Field name="cart" type="ShoppingCart" visibility="private"/>
+        <Field name="ds1" type="DataSource1" visibility="package"/>
+        <Field name="dao" type="DAO" visibility="package"/>
       </Fields>
       <Constructors>
         <Constructor visibility="public">
@@ -322,14 +342,21 @@
           <Argument type="int" name="balance"/>
         </Constructor>
         <Constructor visibility="public">
+          <Argument type="String" name="username"/>
+          <Argument type="String" name="password"/>
+          <Argument type="int" name="balance"/>
+          <Argument type="int" name="id"/>
+        </Constructor>
+        <Constructor visibility="public">
           <Argument type="int" name="id"/>
           <Argument type="int" name="balance"/>
         </Constructor>
+        <Constructor visibility="public"/>
       </Constructors>
       <Methods>
         <Method name="getId" returnType="int" visibility="public"/>
         <Method name="setId" returnType="void" visibility="public">
-          <Argument type="int" name="id"/>
+          <Argument type="Users" name="u"/>
         </Method>
         <Method name="getUsername" returnType="String" visibility="public"/>
         <Method name="setUsername" returnType="void" visibility="public">
@@ -358,18 +385,18 @@
         <Method name="toString" returnType="String" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="Control" package="servlets" visibility="public" xPosition="1116.0" yPosition="755.0">
+    <Class name="Control" package="servlets" visibility="public" xPosition="493.0" yPosition="1925.0">
       <Fields>
-        <Field name="search" type="Searcher" visibility="package"/>
         <Field name="ds1" type="DataSource1" visibility="package"/>
         <Field name="dao" type="DAO" visibility="package"/>
-        <Field name="amount" type="int" visibility="package"/>
         <Field name="bottom" type="String" visibility="package"/>
         <Field name="topping" type="String" visibility="package"/>
-        <Field name="user" type="Users" visibility="package"/>
+        <Field name="u" type="Users" visibility="package"/>
         <Field name="cl" type="CupcakeList" visibility="package"/>
         <Field name="cart" type="ShoppingCart" visibility="package"/>
+        <Field name="calc" type="Calculator" visibility="package"/>
         <Field name="price" type="int" visibility="package"/>
+        <Field name="amount" type="int" visibility="package"/>
       </Fields>
       <Constructors/>
       <Methods>
@@ -388,49 +415,11 @@
         <Method name="getServletInfo" returnType="String" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="ProductControl" package="servlets" visibility="public" xPosition="-53.0" yPosition="284.0">
-      <Fields/>
-      <Constructors/>
-      <Methods>
-        <Method name="processRequest" returnType="void" visibility="protected">
-          <Argument type="HttpServletRequest" name="request"/>
-          <Argument type="HttpServletResponse" name="response"/>
-        </Method>
-        <Method name="doGet" returnType="void" visibility="protected">
-          <Argument type="HttpServletRequest" name="request"/>
-          <Argument type="HttpServletResponse" name="response"/>
-        </Method>
-        <Method name="doPost" returnType="void" visibility="protected">
-          <Argument type="HttpServletRequest" name="request"/>
-          <Argument type="HttpServletResponse" name="response"/>
-        </Method>
-        <Method name="getServletInfo" returnType="String" visibility="public"/>
-      </Methods>
-    </Class>
-    <Class name="ProductList" package="servlets" visibility="public" xPosition="291.0" yPosition="1998.0">
-      <Fields/>
-      <Constructors/>
-      <Methods>
-        <Method name="processRequest" returnType="void" visibility="protected">
-          <Argument type="HttpServletRequest" name="request"/>
-          <Argument type="HttpServletResponse" name="response"/>
-        </Method>
-        <Method name="doGet" returnType="void" visibility="protected">
-          <Argument type="HttpServletRequest" name="request"/>
-          <Argument type="HttpServletResponse" name="response"/>
-        </Method>
-        <Method name="doPost" returnType="void" visibility="protected">
-          <Argument type="HttpServletRequest" name="request"/>
-          <Argument type="HttpServletResponse" name="response"/>
-        </Method>
-        <Method name="getServletInfo" returnType="String" visibility="public"/>
-      </Methods>
-    </Class>
-    <Class name="ShoppingCart" package="shoppingCart" visibility="public" xPosition="1812.0" yPosition="1180.0">
+    <Class name="ShoppingCart" package="shoppingCart" visibility="public" xPosition="625.0" yPosition="1372.0">
       <Fields>
         <Field name="totalPrice" type="int" visibility="private"/>
-        <Field name="fullPrice" type="int" visibility="private"/>
-        <Field name="shoppingCart" type="ArrayList&lt;Cupcake&gt;" visibility="package"/>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="shoppingCart" type="ArrayList&lt;Cupcake&gt;" visibility="public"/>
         <Field name="cupcakeList" type="ArrayList&lt;CupcakeList&gt;" visibility="public"/>
         <Field name="ds" type="DataSource1" visibility="package"/>
         <Field name="dao" type="DAO" visibility="package"/>
@@ -449,6 +438,9 @@
         <Method name="setId" returnType="void" visibility="public">
           <Argument type="int" name="id"/>
         </Method>
+        <Method name="setTotalPrice" returnType="void" visibility="public">
+          <Argument type="int" name="totalPrice"/>
+        </Method>
         <Method name="toString" returnType="String" visibility="public">
           <Argument type="String" name="top"/>
           <Argument type="String" name="bottom"/>
@@ -458,7 +450,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Main" package="testPackage" visibility="public" xPosition="291.0" yPosition="1868.0">
+    <Class name="Main" package="testPackage" visibility="public" xPosition="348.0" yPosition="7.0">
       <Fields/>
       <Constructors/>
       <Methods>
@@ -467,38 +459,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Searcher" package="usersearch" visibility="public" xPosition="1289.0" yPosition="1822.0">
-      <Fields>
-        <Field name="dbc" type="DBConnector" visibility="private"/>
-        <Field name="ds" type="DataSource1" visibility="private"/>
-        <Field name="dao" type="DAO" visibility="private"/>
-        <Field name="username" type="String" visibility="private"/>
-        <Field name="password" type="String" visibility="private"/>
-      </Fields>
-      <Constructors>
-        <Constructor visibility="public">
-          <Argument type="DataSource" name="ds"/>
-        </Constructor>
-        <Constructor visibility="public">
-          <Argument type="String" name="username"/>
-          <Argument type="String" name="password"/>
-        </Constructor>
-      </Constructors>
-      <Methods>
-        <Method name="getUsername" returnType="Users" visibility="public">
-          <Argument type="String" name="username"/>
-          <Argument type="String" name="password"/>
-        </Method>
-        <Method name="getPassword" returnType="boolean" visibility="public">
-          <Argument type="String" name="username"/>
-          <Argument type="String" name="password"/>
-        </Method>
-        <Method name="alreadyExist" returnType="boolean" visibility="public">
-          <Argument type="String" name="username"/>
-        </Method>
-      </Methods>
-    </Class>
-    <Interface name="DataInterface" package="datasource" visibility="public" xPosition="2358.0" yPosition="1822.0">
+    <Interface name="DataInterface" package="datasource" visibility="public" xPosition="1738.0" yPosition="487.0">
       <Methods>
         <Method name="getUsers" returnType="ArrayList&lt;Users&gt;" visibility="public"/>
         <Method name="getUsers" returnType="ArrayList&lt;Users&gt;" visibility="public">
@@ -538,38 +499,40 @@
     </Interface>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
-    <HasRelation name="cl" source="servlets.Control" target="cupcake.CupcakeList" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="CupcakeList"/>
-    <HasRelation name="dao" source="usersearch.Searcher" target="databaseConnect.DAO" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="cupcake.Cupcake" target="cupcake.Cake_bottoms" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="databaseConnect.DAO" target="cupcake.Cake_bottoms" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="dbc" source="usersearch.Searcher" target="connecter.DBConnector" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="cart" source="servlets.Control" target="shoppingCart.ShoppingCart" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="databaseConnect.DAO" target="cupcake.Cupcake" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="dao" source="servlets.Control" target="databaseConnect.DAO" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="cupcake.Cupcake" target="cupcake.Cake_toppings" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="user" source="servlets.Control" target="entity.Users" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="bottom" source="cupcake.Cupcake" target="cupcake.Cake_bottoms" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="shoppingCart" source="shoppingCart.ShoppingCart" target="cupcake.Cupcake" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Cupcake&gt;"/>
-    <HasRelation name="cupcakeList" source="shoppingCart.ShoppingCart" target="cupcake.CupcakeList" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;CupcakeList&gt;"/>
-    <UseRelation source="usersearch.Searcher" target="entity.Users" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="dbc" source="databaseConnect.DAO" target="connecter.DBConnector" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="calculator.Calculator" target="entity.Users" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="cart" source="entity.Users" target="shoppingCart.ShoppingCart" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="ds" source="shoppingCart.ShoppingCart" target="datasource.DataSource1" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="databaseConnect.DAO" target="cupcake.Cake_toppings" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="ds" source="usersearch.Searcher" target="datasource.DataSource1" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="shoppingCart.ShoppingCart" target="cupcake.Cupcake" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="ds1" source="servlets.Control" target="datasource.DataSource1" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="datasource.DataInterface" target="entity.Users" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="entity.Users" target="shoppingCart.ShoppingCart" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="datasource.DataInterface" target="cupcake.Cake_toppings" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="search" source="servlets.Control" target="usersearch.Searcher" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="shop" source="calculator.Calculator" target="shoppingCart.ShoppingCart" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="databaseConnect.DAO" target="shoppingCart.ShoppingCart" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="dao" source="shoppingCart.ShoppingCart" target="databaseConnect.DAO" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="databaseConnect.DAO" target="entity.Users" sourceCardinality="1..1" targetCardinality="1..1"/>
     <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="databaseConnect.DAO" target="datasource.DataInterface"/>
-    <HasRelation name="topping" source="cupcake.Cupcake" target="cupcake.Cake_toppings" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="datasource.DataInterface" target="entity.Users" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="databaseConnect.DAO" target="cupcake.Cake_toppings" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="databaseConnect.DAO" target="cupcake.Cake_bottoms" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="entity.Users" target="shoppingCart.ShoppingCart" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="dao" source="shoppingCart.ShoppingCart" target="databaseConnect.DAO" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="cupcakeList" source="shoppingCart.ShoppingCart" target="cupcake.CupcakeList" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;CupcakeList&gt;"/>
+    <UseRelation source="databaseConnect.DAO" target="cupcake.Cupcake" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="calculator.Calculator" target="entity.Users" sourceCardinality="1..1" targetCardinality="1..1"/>
     <UseRelation source="datasource.DataInterface" target="cupcake.Cake_bottoms" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="bottom" source="cupcake.Cupcake" target="cupcake.Cake_bottoms" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="dao" source="entity.Admin" target="databaseConnect.DAO" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="databaseConnect.DAO" target="shoppingCart.ShoppingCart" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="dao" source="servlets.Control" target="databaseConnect.DAO" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ds1" source="entity.Users" target="datasource.DataSource1" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="cupcake.Cupcake" target="cupcake.Cake_toppings" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="dbc" source="databaseConnect.DAO" target="connecter.DBConnector" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="shop" source="calculator.Calculator" target="shoppingCart.ShoppingCart" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ds" source="shoppingCart.ShoppingCart" target="datasource.DataSource1" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="cupcake.Cupcake" target="cupcake.Cake_bottoms" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="databaseConnect.DAO" target="entity.Users" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="topping" source="cupcake.Cupcake" target="cupcake.Cake_toppings" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="cart" source="entity.Users" target="shoppingCart.ShoppingCart" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="shoppingCart.ShoppingCart" target="cupcake.Cupcake" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="cl" source="servlets.Control" target="cupcake.CupcakeList" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="CupcakeList"/>
+    <UseRelation source="entity.Users" target="entity.Users" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="datasource.DataInterface" target="cupcake.Cake_toppings" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="u" source="servlets.Control" target="entity.Users" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="cart" source="servlets.Control" target="shoppingCart.ShoppingCart" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="shoppingCart" source="shoppingCart.ShoppingCart" target="cupcake.Cupcake" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Cupcake&gt;"/>
+    <HasRelation name="users" source="entity.Admin" target="entity.Users" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Users&gt;"/>
+    <HasRelation name="dao" source="entity.Users" target="databaseConnect.DAO" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="calc" source="servlets.Control" target="calculator.Calculator" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ds1" source="servlets.Control" target="datasource.DataSource1" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ds1" source="entity.Admin" target="datasource.DataSource1" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
   </ClassDiagramRelations>
 </ClassDiagram>
