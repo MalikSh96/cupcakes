@@ -1,0 +1,24 @@
+-classpath
+'C:/Users/malik/.m2/repository/mysql/mysql-connector-java/5.1.44/mysql-connector-java-5.1.44.jar;C:/Users/malik/.m2/repository/javax/javaee-web-api/7.0/javaee-web-api-7.0.jar'
+-encoding
+'UTF-8'
+-protected
+-sourcepath
+'C:/Users/malik/OneDrive/Documents/NetBeansProjects/CupCakes/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2018. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/malik/OneDrive/Documents/NetBeansProjects/CupCakes/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'CupCakes 1.0-SNAPSHOT API'
+-linkoffline
+'https://docs.oracle.com/javase/7/docs/api' 'C:/Users/malik/OneDrive/Documents/NetBeansProjects/CupCakes/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'CupCakes 1.0-SNAPSHOT API'

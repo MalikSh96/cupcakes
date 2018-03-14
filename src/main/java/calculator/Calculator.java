@@ -10,8 +10,8 @@ public class Calculator
     /**
      * 
      * @param u
-     * Objective: Check if the user's balance is > than the amount
-     * @return true if balance is > otherwise and exception is thwrown
+     * Objective: Check if the user's balance is greater than the amount
+     * @return true if balance is greater otherwise and exception is thwrown
      * @throws Exception 
      */
     public boolean calculatePrice(Users u) throws Exception
