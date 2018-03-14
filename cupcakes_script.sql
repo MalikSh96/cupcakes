@@ -47,7 +47,9 @@ create table `orderline` (
 `qty` int not null,
 orders_id int not NULL,
 FOREIGN KEY (orders_id) REFERENCES orders(`id`),
-primary key (`toppings_id`, `bottom_id`, orders_id)
+FOREIGN KEY (toppings_id) REFERENCES toppings(`id`),
+FOREIGN KEY (bottom_id) REFERENCES bottom(`id`),
+primary key (orders_id)
 );
 
 INSERT into users (username, password, balance, isAdmin) VALUES ('Malik', '5555', 1000, true);
