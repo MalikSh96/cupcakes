@@ -42,7 +42,7 @@
             
             Users: <br><br><%= admin.usernames.toString().replace("[","").replace("]","").replace(",","")%><br>
             
-        </p>
+
     </center>
     </body>
 </html>
