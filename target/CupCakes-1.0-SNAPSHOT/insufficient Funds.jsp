@@ -19,7 +19,7 @@
         
         <h1>Insufficient Funds</h1>
                 <%
-            Users user = (Users) session.getAttribute("user");          
+            Users user = (Users) session.getAttribute("user");
             user.getCart().setTotalPrice(0);
             user.getCart().shoppingCart.clear();
         %>

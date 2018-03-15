@@ -26,8 +26,7 @@
             DataSource1 ds1 = new DataSource1();
             DAO dao = new DAO(ds1.getDataSource());
             if (calc.calculatePrice(user))
-            {
-                
+            {                
                 dao.updateUserBalance(user);
                 System.out.println(dao.getUserBalance(user));
                 response.sendRedirect("confirmation.jsp");               
