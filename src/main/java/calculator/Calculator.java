@@ -16,7 +16,6 @@ public class Calculator
      */
     public boolean calculatePrice(Users u) throws Exception
     {
-        if(u.getBalance() >= u.getCart().getTotalPrice()) return true;
-        else throw new Exception("Insufficient funds");
+        return u.getBalance() >= u.getCart().getTotalPrice();
     }
 }

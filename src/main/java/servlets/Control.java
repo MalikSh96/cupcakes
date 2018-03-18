@@ -71,6 +71,11 @@ public class Control extends HttpServlet {
 
             }
             break;
+            /**
+             * Variable users Objective to select from database cupcake_topping,
+             * cupcake_bottom, price and read the amount the users inputs. Adds 
+             * to shoppingcart arraylist of object cupcake for the given user.             * 
+             */
             case "products": {
 
                 price = 0;
@@ -97,6 +102,10 @@ public class Control extends HttpServlet {
 
             }
         }
+        /**
+             *Controller shows the user the current status of the shoppingcart.
+             * the user then has the option to checkout the cart. 
+             */
         try (PrintWriter out = response.getWriter()) {
             if (u != null) {
                 out.println("<!DOCTYPE html>");
