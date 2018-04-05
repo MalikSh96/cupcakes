@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import databaseConnect.DAO;
+import databaseConnect.UsersOrders;
 import datasource.DataSource1;
 import entity.Users;
 
@@ -22,7 +22,7 @@ import shoppingCart.ShoppingCart;
 public class Control extends HttpServlet {
 
     DataSource1 ds1 = new DataSource1();
-    DAO dao = new DAO(ds1.getDataSource());
+    UsersOrders dao = new UsersOrders(ds1.getDataSource());
     Users u;
     CupcakeList cl;
     ShoppingCart cart = new ShoppingCart();
