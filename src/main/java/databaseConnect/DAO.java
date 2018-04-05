@@ -544,10 +544,7 @@ public class DAO implements DataInterface {
 
         int currentBalance = getUserBalance(u);
         int balance = currentBalance - u.getCart().getTotalPrice();
-//        System.out.println("Balance after shopping " +balance);
-//        System.out.println("Current balance " + currentBalance);
-//        System.out.println("Cart total price " + u.getCart().getTotalPrice());
-//        System.out.println("user id " + u.getId());
+        
         try {
             dbc.open();
 
@@ -563,7 +560,7 @@ public class DAO implements DataInterface {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        
         return false;
     }
 

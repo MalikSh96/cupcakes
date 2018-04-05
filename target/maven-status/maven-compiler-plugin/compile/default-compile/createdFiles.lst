@@ -9,6 +9,6 @@ entity\Users.class
 datasource\DataSource1.class
 cupcake\CupcakeList.class
 connecter\DBConnector.class
-databaseConnect\UsersOrders.class
 cupcake\Cupcake.class
 entity\Admin.class
+databaseConnect\DAO.class

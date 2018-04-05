@@ -20,7 +20,7 @@ public class Main {
     //    shop.cupcakeAdd(new Cupcake(d.getCakeTopping("Chocolate"), d.getCakeBottom("Vanilla"), 30));
      //   shop.cupcakeAdd(new Cupcake(d.getCakeTopping("Blueberry"), d.getCakeBottom("Vanilla"), 120));
         int price = (d.getCakeBottom("Chocolate").getBottom_price() + d.getCakeTopping("Blueberry").getTopping_price());
-        shop.cupcakeAdd(new Cupcake(d.getCakeTopping("Blueberry"), d.getCakeBottom("Chocolate"), price, 30));
+        shop.cupcakeAdd(new Cupcake(d.getCakeTopping("Blueberry"), d.getCakeBottom("Chocolate"), price, 300));
      
         Users u = d.getUser(1);
         u.setCart(shop);
