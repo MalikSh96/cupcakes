@@ -348,6 +348,7 @@ public class DAO implements DataInterface {
 
     /**
      * Objective: search the database for all bottoms
+     * @return 
      * @returns a list of all the bottoms available 
      */
     @Override
@@ -378,6 +379,7 @@ public class DAO implements DataInterface {
 
     /**
      * Objective: search the database for all toppings
+     * @return 
      * @returns a list of all the toppings available 
      */
     @Override
