@@ -2,7 +2,7 @@ package testPackage;
 
 import calculator.Calculator;
 import cupcake.Cupcake;
-import databaseConnect.UsersOrders;
+import databaseConnect.DAO;
 import datasource.DataSource1;
 import entity.Admin;
 import entity.Users;
@@ -12,7 +12,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         DataSource1 ds1 = new DataSource1();
-        UsersOrders d = new UsersOrders(ds1.getDataSource());
+        DAO d = new DAO(ds1.getDataSource());
         Calculator calc = new Calculator();
 
         

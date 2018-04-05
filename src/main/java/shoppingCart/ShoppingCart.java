@@ -3,7 +3,7 @@ package shoppingCart;
 import cupcake.Cupcake;
 import cupcake.CupcakeList;
 import java.util.ArrayList;
-import databaseConnect.UsersOrders;
+import databaseConnect.DAO;
 import datasource.DataSource1;
 
 public class ShoppingCart 
@@ -12,7 +12,7 @@ public class ShoppingCart
     private int id;
     public ArrayList<Cupcake> shoppingCart = new ArrayList<>();
     DataSource1 ds = new DataSource1();
-    UsersOrders dao = new UsersOrders(ds.getDataSource());
+    DAO dao = new DAO(ds.getDataSource());
 
     public void cupcakeAdd(Cupcake cake) 
     {        

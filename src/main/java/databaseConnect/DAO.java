@@ -28,7 +28,7 @@ import shoppingCart.ShoppingCart;
  */
 
 //Change your sql queries, as they for now are wrong
-public class UsersOrders implements DataInterface {
+public class DAO implements DataInterface {
 
     private DBConnector dbc = new DBConnector();
     
@@ -37,7 +37,7 @@ public class UsersOrders implements DataInterface {
      * Access to datasource
      * @param ds 
      */
-    public UsersOrders(DataSource ds) {
+    public DAO(DataSource ds) {
         dbc.setDs(ds);
     }
     

@@ -1,6 +1,6 @@
 package entity;
 
-import databaseConnect.UsersOrders;
+import databaseConnect.DAO;
 import datasource.DataSource1;
 import shoppingCart.ShoppingCart;
 
@@ -14,7 +14,7 @@ public class Users
     private String email;
     private ShoppingCart cart;
     DataSource1 ds1 = new DataSource1(); 
-    UsersOrders dao = new UsersOrders(ds1.getDataSource());
+    DAO dao = new DAO(ds1.getDataSource());
     
     public Users(String username, int id)
     {
